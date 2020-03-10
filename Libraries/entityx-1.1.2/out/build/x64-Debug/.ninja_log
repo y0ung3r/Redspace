@@ -1,0 +1,27 @@
+# ninja log v5
+7	597	604435538	CMakeFiles/entityx.dir/entityx/help/Timer.cc.obj	df9a660516964277
+1	611	604435538	CMakeFiles/entityx.dir/entityx/Event.cc.obj	8f7a9b51f674801a
+25	615	604435538	CMakeFiles/entityx_shared.dir/entityx/Event.cc.obj	b356551c23031229
+15	618	604435538	CMakeFiles/entityx_shared.dir/entityx/help/Timer.cc.obj	4da912407f78e674
+27	622	604435538	CMakeFiles/entityx_shared.dir/entityx/help/Pool.cc.obj	6bfa1ac568a0a6b8
+12	626	604435538	CMakeFiles/entityx.dir/entityx/help/Pool.cc.obj	8cff0e728485f88
+4	918	604435538	CMakeFiles/entityx.dir/entityx/System.cc.obj	238fd1946d417122
+22	943	604435538	CMakeFiles/entityx_shared.dir/entityx/Entity.cc.obj	7f258bcb022c80b6
+9	1044	604435538	CMakeFiles/entityx.dir/entityx/Entity.cc.obj	4b897b129201077f
+19	1055	604435539	CMakeFiles/entityx_shared.dir/entityx/System.cc.obj	a60fd3033177fc3e
+1045	1221	604435539	entityx-d.lib	5c0c732bedc04d4a
+1056	1845	604435539	entityx.dll	41ea6f7aba9eeae5
+1056	1845	604435539	entityx.lib	41ea6f7aba9eeae5
+598	3683	604435541	CMakeFiles/pool_test.dir/entityx/help/Pool_test.cc.obj	1bdbe7b7e5b065e7
+622	3786	604435541	CMakeFiles/tags_component_test.dir/entityx/tags/TagsComponent_test.cc.obj	c82da76d1d66edec
+619	3973	604435541	CMakeFiles/system_test.dir/entityx/System_test.cc.obj	2cf53421c64d6774
+615	4069	604435542	CMakeFiles/event_test.dir/entityx/Event_test.cc.obj	db6111c7ef0a4679
+626	4329	604435542	CMakeFiles/dependencies_test.dir/entityx/deps/Dependencies_test.cc.obj	b103404bfe10546b
+3710	4626	604435542	pool_test.exe	c257ca295aee825c
+3789	4844	604435542	tags_component_test.exe	46a09eb94b72dc82
+4071	5019	604435542	event_test.exe	87ecc5680ce9a6b1
+3976	5065	604435542	system_test.exe	340321d4fef0c76b
+4333	5167	604435543	dependencies_test.exe	c654273025a6ae54
+611	5251	604435543	CMakeFiles/entity_test.dir/entityx/Entity_test.cc.obj	eca6f71daba70bd0
+5254	5973	604435543	entity_test.exe	2dfb47086df288e9
+5974	6041	0	CMakeFiles/install.util	9c60047e9f9139d3

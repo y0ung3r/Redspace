@@ -1,0 +1,74 @@
+#include "CCameraSystem.h"
+
+void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
+{
+	ex::Entity camera = entities.get(this->cameraId);
+	ex::Entity map = entities.get(this->mapId);
+	ex::Entity object = entities.get(this->objectId);
+
+	ex::ComponentHandle<CCameraComponent> cameraComponent = camera.component<CCameraComponent>();
+	ex::ComponentHandle<CRenderComponent> mapRenderComponent = map.component<CRenderComponent>();
+	ex::ComponentHandle<CRenderComponent> objectRenderComponent = object.component<CRenderComponent>();
+
+	sf::Vector2u targetSize = this->target.getSize();
+
+	float newSizeX = (float)targetSize.x;
+	float newSizeY = (float)targetSize.y;
+
+	cameraComponent->setSize(newSizeX, newSizeY);
+
+	float cameraSizeX = newSizeX / 2.0f;
+	float cameraSizeY = newSizeY / 2.0f;
+
+	sf::IntRect mapSize = mapRenderComponent->getTextureRect();
+
+	sf::Vector2f objectPosition = objectRenderComponent->getPosition();
+	cameraComponent->setCenter(objectPosition);
+
+	bool isReachedLeft = objectPosition.x - cameraSizeX < mapSize.left;
+	bool isReachedTop = objectPosition.y - cameraSizeY < mapSize.top;
+	bool isReachedRight = objectPosition.x + cameraSizeX > mapSize.width;
+	bool isReachedBottom = objectPosition.y + cameraSizeY > mapSize.height;
+
+	if (isReachedLeft)
+	{
+		cameraComponent->setCenter(cameraSizeX, objectPosition.y);
+	}
+
+	if (isReachedTop)
+	{
+		cameraComponent->setCenter(objectPosition.x, cameraSizeY);
+	}
+
+	if (isReachedLeft && isReachedTop)
+	{
+		cameraComponent->setCenter(cameraSizeX, cameraSizeY);
+	}
+
+	if (isReachedRight)
+	{
+		cameraComponent->setCenter(mapSize.width - cameraSizeX, objectPosition.y);
+	}
+
+	if (isReachedBottom)
+	{
+		cameraComponent->setCenter(objectPosition.x, mapSize.height - cameraSizeY);
+	}
+
+	if (isReachedRight && isReachedBottom)
+	{
+		cameraComponent->setCenter(mapSize.width - cameraSizeX, mapSize.height - cameraSizeY);
+	}
+
+	if (isReachedLeft && isReachedBottom)
+	{
+		cameraComponent->setCenter(cameraSizeX, mapSize.height - cameraSizeY);
+	}
+
+	if (isReachedRight && isReachedTop)
+	{
+		cameraComponent->setCenter(mapSize.width - cameraSizeX, cameraSizeY);
+	}
+
+	this->target.setView(*cameraComponent.get());
+}
