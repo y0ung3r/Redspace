@@ -3,8 +3,8 @@
 CMovementComponent::CMovementComponent(float maxSpeed)
 {
 	this->maxSpeed = maxSpeed;
-	this->speed = 150.0f;
-	this->direction = sf::Vector2f(1.0f, 1.0f);
+	this->speed = 0.0f;
+	this->direction = sf::Vector2f(0.0f, 0.0f);
 }
 
 const sf::Vector2f& CMovementComponent::getSpeed(ex::TimeDelta timeDelta)
@@ -20,8 +20,15 @@ void CMovementComponent::setDirection(float x, float y)
 
 void CMovementComponent::addAcceleration(float acceleration)
 {
-	if (this->speed <= this->maxSpeed)
+	if (this->speed > this->maxSpeed && acceleration > 0)
 	{
-		this->speed += acceleration;
+		return;
 	}
+
+	if (this->speed <= 0 && acceleration < 0)
+	{
+		return;
+	}
+
+	this->speed += acceleration;
 }

@@ -7,7 +7,14 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	ex::ComponentHandle<CRenderComponent> playerRenderComponent = player.component<CRenderComponent>();
 	ex::ComponentHandle<CMovementComponent> playerMovementComponent = player.component<CMovementComponent>();
 
-	/*bool isMovingToTop = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+	sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
+	sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
+	sf::Vector2f playerPosition = playerRenderComponent->getPosition();
+	
+	float angleRotate = CVectorHelper::getAngleInDegrees(mousePositionInCoords, playerPosition);
+	playerRenderComponent->setRotation(angleRotate);
+
+	bool isMovingToTop = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
 	bool isMovingToLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 	bool isMovingToBottom = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	bool isMovingToRight = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
@@ -16,7 +23,12 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	{
 		playerMovementComponent->addAcceleration(2.0f);
 	}
-	
+
+	if (!isMovingToTop && !isMovingToLeft && !isMovingToBottom && !isMovingToRight)
+	{
+		playerMovementComponent->addAcceleration(-2.0f);
+	}
+
 	if (isMovingToTop)
 	{
 		playerMovementComponent->setDirection(0.0f, -1.0f);
@@ -39,40 +51,28 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 	if (isMovingToTop && isMovingToLeft)
 	{
-		playerMovementComponent->setDirection(-1.0f, -1.0f);
+		playerMovementComponent->setDirection(-0.75f, -0.75f);
 	}
 
 	if (isMovingToTop && isMovingToRight)
 	{
-		playerMovementComponent->setDirection(1.0f, -1.0f);
-	}
-
-	if (isMovingToTop && isMovingToLeft)
-	{
-		playerMovementComponent->setDirection(-1.0f, -1.0f);
-	}
-
-	if (isMovingToBottom && isMovingToRight)
-	{
-		playerMovementComponent->setDirection(1.0f, 1.0f);
+		playerMovementComponent->setDirection(0.75f, -0.75f);
 	}
 
 	if (isMovingToBottom && isMovingToLeft)
 	{
-		playerMovementComponent->setDirection(-1.0f, 1.0f);
+		playerMovementComponent->setDirection(-0.75f, 0.75f);
+	}
+
+	if (isMovingToBottom && isMovingToRight)
+	{
+		playerMovementComponent->setDirection(0.75f, 0.75f);
 	}
 
 	sf::Vector2f direction = playerMovementComponent->getSpeed(timeDelta);
-	playerRenderComponent->move(direction);*/
+	playerRenderComponent->move(direction);
 
-	sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
-	sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
-	sf::Vector2f playerPosition = playerRenderComponent->getPosition();
-	
-	float angleRotate = CVectorHelper::getAngleInDegrees(mousePositionInCoords, playerPosition);
-	playerRenderComponent->setRotation(angleRotate);
-
-	bool isRequiredAcceleration = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
+	/*bool isRequiredAcceleration = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
 
 	if (isRequiredAcceleration)
 	{
@@ -83,6 +83,5 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	playerMovementComponent->setDirection(mouseDirection.x, mouseDirection.y);
 
 	sf::Vector2f playerDirection = playerMovementComponent->getSpeed(timeDelta);
-
-	playerRenderComponent->move(mouseDirection.x * 150.f * timeDelta, mouseDirection.y * 150.f * timeDelta);
+	playerRenderComponent->move(playerDirection);*/
 }
