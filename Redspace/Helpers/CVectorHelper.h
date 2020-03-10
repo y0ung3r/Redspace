@@ -60,15 +60,6 @@ public:
 	{
 		return valueA * 1.0f / CVectorHelper::getLength(valueA);
 	}
-
-	template <typename T>
-	/* ¬озвращает ортонормированный вектор */
-	static sf::Vector2<T> toNormalized(sf::Vector2<T>& valueA)
-	{
-		sf::Vector2<T> ort = CVectorHelper::getOrt(valueA);
-
-		return sf::Vector2<T>(roundf(ort.x), roundf(ort.y));
-	}
 };
 
 #endif

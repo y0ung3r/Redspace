@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+/* Компонент камеры */
 using CCameraComponent = sf::View;
 
 #endif

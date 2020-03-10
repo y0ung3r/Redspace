@@ -71,17 +71,4 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 	sf::Vector2f direction = playerMovementComponent->getSpeed(timeDelta);
 	playerRenderComponent->move(direction);
-
-	/*bool isRequiredAcceleration = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
-
-	if (isRequiredAcceleration)
-	{
-		playerMovementComponent->addAcceleration(2.0f);
-	}
-
-	sf::Vector2f mouseDirection = CVectorHelper::toNormalized(mousePositionInCoords);
-	playerMovementComponent->setDirection(mouseDirection.x, mouseDirection.y);
-
-	sf::Vector2f playerDirection = playerMovementComponent->getSpeed(timeDelta);
-	playerRenderComponent->move(playerDirection);*/
 }
