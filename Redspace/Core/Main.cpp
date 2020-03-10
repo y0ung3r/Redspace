@@ -8,7 +8,7 @@ int main()
 	window.create
 	(
 		videoMode,
-		"Redland"
+		"Redspace"
 	);
 
 	window.setFramerateLimit(120);

@@ -91,7 +91,16 @@
     <Image Include="Resources\Sprites\Player.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Textures\Background.png">
+    <Image Include="Resources\Textures\Background (dark).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Background (light).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Background (black).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Background (blue).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

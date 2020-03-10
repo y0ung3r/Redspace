@@ -22,7 +22,7 @@ ex::Entity::Id CGame::createMap()
 	CRenderComponent mapRenderComponent;
 
 	sf::Texture* mapTexture = new sf::Texture();
-	mapTexture->loadFromFile("Resources/Textures/Background.png");
+	mapTexture->loadFromFile("Resources/Textures/Background (black).png");
 	mapTexture->setRepeated(true);
 	mapRenderComponent.setTexture(*mapTexture);
 	

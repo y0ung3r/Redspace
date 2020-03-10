@@ -47,7 +47,10 @@
   <ItemGroup>
     <Image Include="Resources\Sprites\Crosshair.png" />
     <Image Include="Resources\Sprites\Player.png" />
-    <Image Include="Resources\Textures\Background.png" />
+    <Image Include="Resources\Textures\Background (black).png" />
+    <Image Include="Resources\Textures\Background (blue).png" />
+    <Image Include="Resources\Textures\Background (dark).png" />
+    <Image Include="Resources\Textures\Background (light).png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
