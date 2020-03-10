@@ -10,6 +10,7 @@
 #include "../Systems/CCursorSystem.h"
 #include "../Systems/CCameraSystem.h"
 #include "../Systems/CPlayerSystem.h"
+#include "../Systems/CMeteoriteSystem.h"
 
 namespace ex = entityx;
 

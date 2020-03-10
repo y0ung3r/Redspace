@@ -11,6 +11,7 @@ CGame::CGame(sf::RenderWindow& target) : target(target)
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target, cursorId);
 	std::shared_ptr<CCameraSystem> cameraSystem = this->systems.add<CCameraSystem>(this->target, cameraId, mapId, playerId);
 	std::shared_ptr<CPlayerSystem> playerSystem = this->systems.add<CPlayerSystem>(this->target, playerId);
+	std::shared_ptr<CMeteoriteSystem> meteoriteSystem = this->systems.add<CMeteoriteSystem>(this->target, mapId, 35);
 
 	this->systems.configure();
 }
@@ -22,7 +23,7 @@ ex::Entity::Id CGame::createMap()
 	CRenderComponent mapRenderComponent;
 
 	sf::Texture* mapTexture = new sf::Texture();
-	mapTexture->loadFromFile("Resources/Textures/Background (black).png");
+	mapTexture->loadFromFile("Resources/Textures/Background (light).png");
 	mapTexture->setRepeated(true);
 	mapRenderComponent.setTexture(*mapTexture);
 	
@@ -49,8 +50,8 @@ ex::Entity::Id CGame::createCursor()
 	sf::Vector2f cursorTextureSizeInCoords = static_cast<sf::Vector2f>(cursorTextureSizeInPixels);
 
 	sf::Vector2f cursorOrigin;
-	cursorOrigin.x = cursorTextureSizeInPixels.x / 2.0f;
-	cursorOrigin.y = cursorTextureSizeInPixels.y / 2.0f;
+	cursorOrigin.x = cursorTextureSizeInCoords.x / 2.0f;
+	cursorOrigin.y = cursorTextureSizeInCoords.y / 2.0f;
 	cursorRenderComponent.setOrigin(cursorOrigin);
 
 	cursor.assign<CRenderComponent>(cursorRenderComponent);
@@ -96,7 +97,7 @@ ex::Entity::Id CGame::createPlayer()
 
 	player.assign<CRenderComponent>(playerRenderComponent);
 
-	CMovementComponent playerMovementComponent(250.0f);
+	CMovementComponent playerMovementComponent(0.0f, 250.0f);
 	player.assign<CMovementComponent>(playerMovementComponent);
 
 	return player.id();

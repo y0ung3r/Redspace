@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
     <ClCompile Include="Components\CAnimationComponent.cpp" />
     <ClCompile Include="Components\CCameraComponent.cpp" />
     <ClCompile Include="Components\CMovementComponent.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Systems\CRenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Systems\CMeteoriteSystem.h" />
     <ClInclude Include="Components\CAnimationComponent.h" />
     <ClInclude Include="Components\CCameraComponent.h" />
     <ClInclude Include="Components\CMovementComponent.h" />
@@ -46,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Crosshair.png" />
+    <Image Include="Resources\Sprites\Meteorite (big, gray).png" />
     <Image Include="Resources\Sprites\Player.png" />
     <Image Include="Resources\Textures\Background (black).png" />
     <Image Include="Resources\Textures\Background (blue).png" />

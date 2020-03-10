@@ -1,12 +1,5 @@
 #include "CMovementComponent.h"
 
-CMovementComponent::CMovementComponent(float maxSpeed)
-{
-	this->maxSpeed = maxSpeed;
-	this->speed = 0.0f;
-	this->direction = sf::Vector2f(0.0f, 0.0f);
-}
-
 const sf::Vector2f& CMovementComponent::getSpeed(ex::TimeDelta timeDelta)
 {
 	return sf::Vector2f(this->direction.x, this->direction.y) * this->speed * static_cast<float>(timeDelta);
