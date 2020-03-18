@@ -13,7 +13,6 @@ int main()
 
 	window.setFramerateLimit(120);
 	window.setVerticalSyncEnabled(false);
-	window.setMouseCursorVisible(false);
 
 	CGame game(window);
 

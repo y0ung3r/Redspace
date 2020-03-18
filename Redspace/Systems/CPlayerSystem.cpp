@@ -18,10 +18,18 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	bool isMovingToLeft = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
 	bool isMovingToBottom = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	bool isMovingToRight = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+	bool isNeedMoreAcceleration = sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
+
+	float acceleration = 1.0f;
+
+	if (isNeedMoreAcceleration)
+	{
+		acceleration += 4.0f;
+	}
 
 	if (isMovingToTop || isMovingToLeft || isMovingToBottom || isMovingToRight)
 	{
-		playerMovementComponent->addAcceleration(1.0f);
+		playerMovementComponent->addAcceleration(acceleration);
 	}
 
 	if (!isMovingToTop && !isMovingToLeft && !isMovingToBottom && !isMovingToRight)

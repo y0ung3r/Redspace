@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
+#include "../Enums/GameStates.h"
 #include "../Helpers/CAssetsHelper.h"
 #include "../Helpers/CVectorHelper.h"
 #include "../Components/CRenderComponent.h"
@@ -20,13 +21,14 @@ namespace ex = entityx;
 class CGame : public ex::EntityX
 {
 private:
+	/* Текущее игровое состояние */
+	static GameStates gameState;
+
+	/* Ссылка на окно */
 	sf::RenderWindow& target;
 
 	/* Создает карту и возвращает ее идентификатор */
 	ex::Entity::Id createMap();
-
-	/* Создает курсор и возвращает его идентификатор */
-	ex::Entity::Id createCursor();
 
 	/* Создает объект камеры и возвращает его идентификатор */
 	ex::Entity::Id createCamera();
@@ -40,6 +42,9 @@ public:
 
 	/* Обновляет игру */
 	void update(ex::TimeDelta timeDelta);
+
+	/* Возвращает истину, если текущее игровое состояние совпадает с переданным в качестве параметра */
+	static bool isGameState(GameStates gameState);
 };
 
 #endif

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CMeteoriteComponent.cpp" />
+    <ClCompile Include="Enums\GameStates.cpp" />
     <ClCompile Include="Helpers\CAssetsHelper.cpp" />
     <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
     <ClCompile Include="Components\CAnimationComponent.cpp" />
@@ -36,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CMeteoriteComponent.h" />
+    <ClInclude Include="Enums\GameStates.h" />
     <ClInclude Include="Helpers\CAssetsHelper.h" />
     <ClInclude Include="Systems\CMeteoriteSystem.h" />
     <ClInclude Include="Components\CAnimationComponent.h" />
@@ -51,7 +53,8 @@
     <ClInclude Include="Systems\CRenderSystem.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Sprites\Crosshair.png" />
+    <Image Include="Resources\Sprites\Cursor %28crosshair%29.png" />
+    <Image Include="Resources\Sprites\Cursor (ship).png" />
     <Image Include="Resources\Sprites\Meteorite (big, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (big, gray).png" />
     <Image Include="Resources\Sprites\Meteorite (middle, brown).png" />

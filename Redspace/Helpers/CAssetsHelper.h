@@ -17,11 +17,11 @@ private:
 	/* Переопределение оператора присвоения */
 	CAssetsHelper& operator=(const CAssetsHelper&) = delete;
 
-	/* Текстуры карты */
+	/* Текстуры для карты */
 	std::vector<sf::Texture*> mapTextures;
 
-	/* Текстура прицела */
-	sf::Texture* crosshairTexture;
+	/* Курсоры */
+	std::vector<sf::Cursor*> cursors;
 
 	/* Текстура игрока */
 	sf::Texture* playerTexture;
@@ -34,13 +34,13 @@ public:
 	static CAssetsHelper& getInstance();
 
 	/* Инициализирует все ресурсы игры */
-	void configure();
+	void configure(bool isTexturesSmooth = false);
 
 	/* Возвращает текстуры карты */
 	const std::vector<sf::Texture*> getMapTextures();
 
-	/* Возвращает текстуру прицела */
-	sf::Texture* getCrosshairTexture();
+	/* Возвращает курсоры */
+	const std::vector<sf::Cursor*> getCursors();
 
 	/* Возвращает текстуру игрока */
 	sf::Texture* getPlayerTexture();

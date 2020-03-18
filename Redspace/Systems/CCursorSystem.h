@@ -1,9 +1,13 @@
 #ifndef CCURSORSYSTEM_H
 #define CCURSORSYSTEM_H
 
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "entityx/entityx.h"
 
+#include "../Helpers/CAssetsHelper.h"
+#include "../Core/CGame.h"
+#include "../Enums/GameStates.h"
 #include "../Components/CRenderComponent.h"
 
 namespace ex = entityx;
@@ -15,13 +19,10 @@ private:
 	/* Ссылка на окно */
 	sf::RenderWindow& target;
 
-	/* Идентификатор курсора */
-	ex::Entity::Id cursorId;
-
 public:
 	/* Базовый конструктор */
-	explicit CCursorSystem(sf::RenderWindow& target, ex::Entity::Id& cursorId)
-		: target(target), cursorId(cursorId)
+	explicit CCursorSystem(sf::RenderWindow& target)
+		: target(target)
 	{ }
 
 	/* Обновляет систему управления курсором */

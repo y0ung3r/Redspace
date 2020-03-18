@@ -2,14 +2,14 @@
 
 void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	ex::Entity cursor = entities.get(this->cursorId);
+	std::vector<sf::Cursor*> cursors = CAssetsHelper::getInstance().getCursors();
 
-	ex::ComponentHandle<CRenderComponent> cursorRenderComponent = cursor.component<CRenderComponent>();
-
-	sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
-	sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
-
-	cursorRenderComponent->rotate(0.5f);
-
-	cursorRenderComponent->setPosition(mousePositionInCoords);
+	if (CGame::isGameState(GameStates::Unpaused))
+	{
+		this->target.setMouseCursor(*cursors[0]);
+	}
+	else if (CGame::isGameState(GameStates::Paused))
+	{
+		this->target.setMouseCursor(*cursors[1]);
+	}
 }
