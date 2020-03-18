@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\CMeteoriteComponent.cpp" />
+    <ClCompile Include="Helpers\CAssetsHelper.cpp" />
     <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
     <ClCompile Include="Components\CAnimationComponent.cpp" />
     <ClCompile Include="Components\CCameraComponent.cpp" />
@@ -33,6 +35,8 @@
     <ClCompile Include="Systems\CRenderSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\CMeteoriteComponent.h" />
+    <ClInclude Include="Helpers\CAssetsHelper.h" />
     <ClInclude Include="Systems\CMeteoriteSystem.h" />
     <ClInclude Include="Components\CAnimationComponent.h" />
     <ClInclude Include="Components\CCameraComponent.h" />
@@ -48,7 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Crosshair.png" />
+    <Image Include="Resources\Sprites\Meteorite (big, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (big, gray).png" />
+    <Image Include="Resources\Sprites\Meteorite (middle, brown).png" />
+    <Image Include="Resources\Sprites\Meteorite (middle, gray).png" />
+    <Image Include="Resources\Sprites\Meteorite (small, brown).png" />
+    <Image Include="Resources\Sprites\Meteorite (small, gray).png" />
     <Image Include="Resources\Sprites\Player.png" />
     <Image Include="Resources\Textures\Background (black).png" />
     <Image Include="Resources\Textures\Background (blue).png" />

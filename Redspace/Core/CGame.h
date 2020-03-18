@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
+#include "../Helpers/CAssetsHelper.h"
+#include "../Helpers/CVectorHelper.h"
 #include "../Components/CRenderComponent.h"
 #include "../Components/CCameraComponent.h"
 #include "../Systems/CRenderSystem.h"

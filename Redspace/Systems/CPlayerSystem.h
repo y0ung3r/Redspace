@@ -4,9 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
+#include "../Helpers/CVectorHelper.h"
 #include "../Components/CRenderComponent.h"
 #include "../Components/CMovementComponent.h"
-#include "../Helpers/CVectorHelper.h"
 
 namespace ex = entityx;
 
@@ -14,6 +14,8 @@ namespace ex = entityx;
 class CPlayerSystem : public ex::System<CPlayerSystem>
 {
 private:
+	CVectorHelper& vectorHelper;
+
 	/* Ссылка на окно */
 	sf::RenderWindow& target;
 	
@@ -22,8 +24,8 @@ private:
 
 public:
 	/* Базовый конструктор */
-	explicit CPlayerSystem(sf::RenderWindow& target, ex::Entity::Id& playerId)
-		: target(target), playerId(playerId)
+	explicit CPlayerSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id& playerId)
+		: vectorHelper(vectorHelper), target(target), playerId(playerId)
 	{ }
 
 	/* Обновляет систему перемещения игрока */

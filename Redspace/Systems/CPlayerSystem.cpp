@@ -11,7 +11,7 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
 	sf::Vector2f playerPosition = playerRenderComponent->getPosition();
 	
-	float angleRotate = CVectorHelper::getAngleInDegrees(mousePositionInCoords, playerPosition);
+	float angleRotate = vectorHelper.getAngleInDegrees(mousePositionInCoords, playerPosition);
 	playerRenderComponent->setRotation(angleRotate);
 
 	bool isMovingToTop = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
@@ -21,7 +21,7 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 	if (isMovingToTop || isMovingToLeft || isMovingToBottom || isMovingToRight)
 	{
-		playerMovementComponent->addAcceleration(2.0f);
+		playerMovementComponent->addAcceleration(1.0f);
 	}
 
 	if (!isMovingToTop && !isMovingToLeft && !isMovingToBottom && !isMovingToRight)

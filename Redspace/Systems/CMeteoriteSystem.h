@@ -1,12 +1,15 @@
-#ifndef CMETEORITESYSTEM
-#define CMETEORITESYSTEM
+#ifndef CMETEORITESYSTEM_H
+#define CMETEORITESYSTEM_H
 
 #include <random>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
+#include "../Helpers/CAssetsHelper.h"
 #include "../Components/CRenderComponent.h"
 #include "../Components/CMovementComponent.h"
+#include "../Components/CMeteoriteComponent.h"
 
 namespace ex = entityx;
 

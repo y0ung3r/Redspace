@@ -4,32 +4,48 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 {
 	int counter = 0;
 
-	std::default_random_engine randomGenerator(std::time(0));
+	std::default_random_engine randomGenerator(static_cast<unsigned int>(std::time(0)));
+	std::vector<sf::Texture*> meteoritesTextures = CAssetsHelper::getInstance().getMeteoritesTextures();
 
 	ex::Entity map = entities.get(this->mapId);
 	ex::ComponentHandle<CRenderComponent> mapRenderComponent = map.component<CRenderComponent>();
 
+	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
+
 	ex::ComponentHandle<CRenderComponent> renderComponent;
 	ex::ComponentHandle<CMovementComponent> movementComponent;
+	ex::ComponentHandle<CMeteoriteComponent> meteoriteComponent;
 
-	for (ex::Entity entity : entities.entities_with_components(renderComponent, movementComponent))
+	for (ex::Entity entity : entities.entities_with_components(renderComponent, movementComponent, meteoriteComponent))
 	{
 		counter++;
+
+		sf::FloatRect globalBounds = renderComponent->getGlobalBounds();
 
 		sf::Vector2f direction = movementComponent->getSpeed(timeDelta);
 		renderComponent->move(direction);
 
 		renderComponent->rotate(0.2f);
+
+		if (!globalBounds.intersects(mapGlobalBounds))
+		{
+			entity.destroy();
+
+			this->count--;
+		}
 	}
 
 	for (int i = 0; i < count - counter; i++)
 	{
 		ex::Entity meteorite = entities.create();
 
+		CMeteoriteComponent meteoriteComponent;
 		CRenderComponent meteoriteRenderComponent;
 
-		sf::Texture* meteoriteTexture = new sf::Texture();
-		meteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (big, gray).png");
+		std::uniform_int_distribution<int> textureNumberDistribution(0, static_cast<int>(meteoritesTextures.size()) - 1);
+		int textureNumber = textureNumberDistribution(randomGenerator);
+
+		sf::Texture* meteoriteTexture = meteoritesTextures[textureNumber];
 		meteoriteRenderComponent.setTexture(*meteoriteTexture);
 
 		sf::Vector2u meteoriteTextureSizeInPixels = meteoriteTexture->getSize();
@@ -52,6 +68,7 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		meteoriteRenderComponent.setPosition(meteoritePosition);
 
 		meteorite.assign<CRenderComponent>(meteoriteRenderComponent);
+		meteorite.assign<CMeteoriteComponent>(meteoriteComponent);
 
 		CMovementComponent meteoriteMovementComponent(25.0f);
 
