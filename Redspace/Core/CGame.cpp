@@ -1,6 +1,7 @@
 #include "CGame.h"
 
-GameStates CGame::gameState = GameStates::Paused; /* В дальнейшем необходимо изменять данное состояние в процессе игры */
+/* В дальнейшем необходимо изменять состояние игры в процессе геймплея */
+GameStates CGame::gameState = GameStates::Paused; 
 
 CGame::CGame(sf::RenderWindow& target) : target(target)
 {
@@ -16,6 +17,7 @@ CGame::CGame(sf::RenderWindow& target) : target(target)
 	std::shared_ptr<CCameraSystem> cameraSystem = this->systems.add<CCameraSystem>(this->target, cameraId, mapId, playerId);
 	std::shared_ptr<CPlayerSystem> playerSystem = this->systems.add<CPlayerSystem>(vectorHelper, this->target, playerId);
 	std::shared_ptr<CMeteoriteSystem> meteoriteSystem = this->systems.add<CMeteoriteSystem>(this->target, mapId, 35);
+	std::shared_ptr<CCollisionSystem> collisionSystem = this->systems.add<CCollisionSystem>(this->target);
 
 	this->systems.configure();
 }
@@ -77,6 +79,12 @@ ex::Entity::Id CGame::createPlayer()
 
 	CMovementComponent playerMovementComponent(0.0f, 350.0f);
 	player.assign<CMovementComponent>(playerMovementComponent);
+
+	CCollisionComponent playerCollisionComponent;
+	player.assign<CCollisionComponent>(playerCollisionComponent);
+
+	CPlayerComponent playerComponent;
+	player.assign<CPlayerComponent>(playerComponent);
 
 	return player.id();
 }

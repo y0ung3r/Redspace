@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CMeteoriteComponent.cpp" />
+    <ClCompile Include="Components\CPlayerComponent.cpp" />
+    <ClCompile Include="Events\CCollisionEvent.cpp" />
+    <ClCompile Include="Components\CCollisionComponent.cpp" />
+    <ClCompile Include="Systems\CCollisionSystem.cpp" />
     <ClCompile Include="Enums\GameStates.cpp" />
     <ClCompile Include="Helpers\CAssetsHelper.cpp" />
     <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
@@ -37,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CMeteoriteComponent.h" />
+    <ClInclude Include="Components\CPlayerComponent.h" />
+    <ClInclude Include="Events\CCollisionEvent.h" />
+    <ClInclude Include="Components\CCollisionComponent.h" />
+    <ClInclude Include="Systems\CCollisionSystem.h" />
     <ClInclude Include="Enums\GameStates.h" />
     <ClInclude Include="Helpers\CAssetsHelper.h" />
     <ClInclude Include="Systems\CMeteoriteSystem.h" />
@@ -57,6 +65,8 @@
     <Image Include="Resources\Sprites\Cursor (ship).png" />
     <Image Include="Resources\Sprites\Meteorite (big, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (big, gray).png" />
+    <Image Include="Resources\Sprites\Meteorite (large, brown).png" />
+    <Image Include="Resources\Sprites\Meteorite (large, gray).png" />
     <Image Include="Resources\Sprites\Meteorite (middle, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (middle, gray).png" />
     <Image Include="Resources\Sprites\Meteorite (small, brown).png" />

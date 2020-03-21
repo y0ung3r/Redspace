@@ -7,6 +7,7 @@
 #include "../Helpers/CVectorHelper.h"
 #include "../Components/CRenderComponent.h"
 #include "../Components/CMovementComponent.h"
+#include "../Components/CPlayerComponent.h"
 
 namespace ex = entityx;
 

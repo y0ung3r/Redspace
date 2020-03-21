@@ -5,6 +5,11 @@ const sf::Vector2f& CMovementComponent::getSpeed(ex::TimeDelta timeDelta)
 	return sf::Vector2f(this->direction.x, this->direction.y) * this->speed * static_cast<float>(timeDelta);
 }
 
+const sf::Vector2f& CMovementComponent::getDirection()
+{
+	return this->direction;
+}
+
 void CMovementComponent::setDirection(float x, float y)
 {
 	this->direction.x = x;

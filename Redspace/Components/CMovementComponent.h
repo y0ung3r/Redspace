@@ -28,6 +28,9 @@ public:
 	/* ¬озвращает вектор скорости */
 	const sf::Vector2f& getSpeed(ex::TimeDelta timeDelta);
 
+	/* ¬озвращает направление скорости (от -1.0f до 1.0f) */
+	const sf::Vector2f& getDirection();
+
 	/* ”станавливает направление дл€ скорости */
 	void setDirection(float x, float y);
 

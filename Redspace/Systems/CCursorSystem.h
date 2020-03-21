@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "entityx/entityx.h"
+#include <entityx/entityx.h>
 
 #include "../Helpers/CAssetsHelper.h"
 #include "../Core/CGame.h"

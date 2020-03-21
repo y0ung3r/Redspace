@@ -54,10 +54,22 @@
     <ClCompile Include="Helpers\CAssetsHelper.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Enums\GameStates.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CCollisionSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CCollisionComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CCollisionEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="Components\CMeteoriteComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Enums\GameStates.cpp">
+    <ClCompile Include="Components\CPlayerComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,10 +113,22 @@
     <ClInclude Include="Helpers\CAssetsHelper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Enums\GameStates.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CCollisionSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CCollisionComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CCollisionEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
     <ClInclude Include="Components\CMeteoriteComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Enums\GameStates.h">
+    <ClInclude Include="Components\CPlayerComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,6 +170,12 @@
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="Resources\Sprites\Cursor (ship).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (large, brown).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (large, gray).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

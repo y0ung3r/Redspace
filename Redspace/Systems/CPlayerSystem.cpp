@@ -6,6 +6,7 @@ void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 	ex::ComponentHandle<CRenderComponent> playerRenderComponent = player.component<CRenderComponent>();
 	ex::ComponentHandle<CMovementComponent> playerMovementComponent = player.component<CMovementComponent>();
+	ex::ComponentHandle<CPlayerComponent> playerComponent = player.component<CPlayerComponent>();
 
 	sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
 	sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);

@@ -2,7 +2,7 @@
 #define CCAMERASYSTEM_H
 
 #include <SFML/Graphics.hpp>
-#include "entityx/entityx.h"
+#include <entityx/entityx.h>
 
 #include "../Components/CCameraComponent.h"
 #include "../Components/CRenderComponent.h"

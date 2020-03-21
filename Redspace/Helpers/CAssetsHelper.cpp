@@ -74,6 +74,16 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	bigGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
 	this->meteoritesTextures.push_back(bigGrayMeteoriteTexture);
 
+	sf::Texture* largeBrownMeteoriteTexture = new sf::Texture();
+	largeBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (large, brown).png");
+	largeBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
+	this->meteoritesTextures.push_back(largeBrownMeteoriteTexture);
+
+	sf::Texture* largeGrayMeteoriteTexture = new sf::Texture();
+	largeGrayMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (large, gray).png");
+	largeGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
+	this->meteoritesTextures.push_back(largeGrayMeteoriteTexture);
+
 	sf::Texture* middleBrownMeteoriteTexture = new sf::Texture();
 	middleBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (middle, brown).png");
 	middleBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
