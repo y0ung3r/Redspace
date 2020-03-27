@@ -31,6 +31,8 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 	{
 		counter++;
 
+		renderComponent->setColor(sf::Color::White);
+
 		sf::FloatRect globalBounds = renderComponent->getGlobalBounds();
 
 		sf::Vector2f direction = movementComponent->getSpeed(timeDelta);
@@ -109,12 +111,29 @@ void CMeteoriteSystem::receive(const CCollisionEvent& collisionEvent)
 		return;
 	}
 
-	if (firstMeteorite.valid() && secondMeteorite.valid())
+	if (!firstMeteorite.valid() && !secondMeteorite.valid())
+	{
+		return;
+	}
+
+	if (this->firstCollidedMeteorite != firstMeteorite || this->secondCollidedMeteorite != secondMeteorite)
 	{
 		ex::ComponentHandle<CRenderComponent> firstMeteoriteRenderComponent = firstMeteorite.component<CRenderComponent>();
 		ex::ComponentHandle<CMovementComponent> firstMeteoriteMovementComponent = firstMeteorite.component<CMovementComponent>();
 
 		ex::ComponentHandle<CRenderComponent> secondMeteoriteRenderComponent = secondMeteorite.component<CRenderComponent>();
 		ex::ComponentHandle<CMovementComponent> secondMeteoriteMovementComponent = secondMeteorite.component<CMovementComponent>();
+
+		firstMeteoriteRenderComponent->setColor(sf::Color::Red);
+		secondMeteoriteRenderComponent->setColor(sf::Color::Red);
+
+		sf::Vector2f firstMeteoriteDirection = -firstMeteoriteMovementComponent->getDirection();
+		sf::Vector2f secondMeteoriteDirection = -secondMeteoriteMovementComponent->getDirection();
+
+		firstMeteoriteMovementComponent->setDirection(secondMeteoriteDirection.x, secondMeteoriteDirection.y);
+		secondMeteoriteMovementComponent->setDirection(firstMeteoriteDirection.x, firstMeteoriteDirection.y);
 	}
+
+	this->firstCollidedMeteorite = firstMeteorite;
+	this->secondCollidedMeteorite = secondMeteorite;
 }

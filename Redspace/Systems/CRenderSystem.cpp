@@ -9,7 +9,7 @@ void CRenderSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		this->target.draw(*renderComponent.get());
 
 		/* Код отрисовки границ у всех объектах */
-		{
+		/*{
 			sf::RectangleShape rectangleShape;
 
 			sf::FloatRect renderGlobalBounds = renderComponent->getGlobalBounds();
@@ -22,9 +22,11 @@ void CRenderSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 			rectangleShape.setFillColor(sf::Color::Transparent);
 			rectangleShape.setOutlineThickness(1.0f);
-			rectangleShape.setOutlineColor(sf::Color::White);
+
+			sf::Color renderColor = renderComponent->getColor();
+			rectangleShape.setOutlineColor(renderColor);
 
 			this->target.draw(rectangleShape);
-		}
+		}*/
 	}
 }

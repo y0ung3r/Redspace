@@ -25,6 +25,10 @@ private:
 	/* Идентификатор карты */
 	ex::Entity::Id mapId;
 
+	ex::Entity firstCollidedMeteorite;
+
+	ex::Entity secondCollidedMeteorite;
+
 	/* Количество метеоритов */
 	int count;
 
