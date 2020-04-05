@@ -1,4 +1,22 @@
+#include <random>
+#include <vector>
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Helpers/CAssetsHelper.h"
+#include "../Components/CRenderComponent.h"
+#include "../Components/CMovementComponent.h"
+#include "../Components/CCollisionComponent.h"
+#include "../Components/CMeteoriteComponent.h"
+#include "../Events/CCollisionEvent.h"
+
 #include "CMeteoriteSystem.h"
+
+CMeteoriteSystem::CMeteoriteSystem(sf::RenderWindow& target, ex::Entity::Id mapId, int count)
+	: target(target), mapId(mapId), count(count)
+{ }
 
 void CMeteoriteSystem::configure(ex::EventManager& events)
 {
@@ -97,7 +115,7 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		meteorite.assign<CCollisionComponent>(meteoriteCollisionComponent);
 
 		CMeteoriteComponent meteoriteComponent;
-		meteorite.assign<CMeteoriteComponent>();
+		meteorite.assign<CMeteoriteComponent>(meteoriteComponent);
 	}
 }
 

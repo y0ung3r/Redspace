@@ -1,13 +1,6 @@
 #ifndef CRENDERSYSTEM_H
 #define CRENDERSYSTEM_H
 
-#include <SFML/Graphics.hpp>
-#include <entityx/entityx.h>
-
-#include "../Components/CRenderComponent.h"
-
-namespace ex = entityx;
-
 /* Система, управляющая логикой отрисовки объектов */
 class CRenderSystem : public ex::System<CRenderSystem>
 {
@@ -17,9 +10,7 @@ private:
 
 public:
 	/* Базовый конструктор */
-	explicit CRenderSystem(sf::RenderWindow& target) 
-		: target(target) 
-	{ }
+	explicit CRenderSystem(sf::RenderWindow& target);
 
 	/* Обновляет систему отрисовки объектов */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;

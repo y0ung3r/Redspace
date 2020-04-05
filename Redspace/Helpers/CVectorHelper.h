@@ -1,7 +1,7 @@
 #ifndef CVECTORHELPER_H
 #define CVECTORHELPER_H
 
-#include <SFML/Graphics.hpp>
+class CVectorHelper;
 
 /* Число PI */
 const float PI = 3.1415926535f;

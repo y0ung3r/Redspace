@@ -1,8 +1,7 @@
 #ifndef CASSETSHELPER_H
 #define CASSETSHELPER_H
 
-#include <vector>
-#include <SFML/Graphics.hpp>
+class CAssetsHelper;
 
 /* Класс-помощник для управления ресурсами игры */
 class CAssetsHelper

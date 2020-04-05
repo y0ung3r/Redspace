@@ -1,4 +1,18 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Helpers/CVectorHelper.h"
+#include "../Components/CRenderComponent.h"
+#include "../Components/CMovementComponent.h"
+#include "../Components/CPlayerComponent.h"
+
 #include "CPlayerSystem.h"
+
+CPlayerSystem::CPlayerSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id& playerId)
+	: vectorHelper(vectorHelper), target(target), playerId(playerId)
+{ }
 
 void CPlayerSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {

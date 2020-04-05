@@ -1,4 +1,15 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
 #include "CMovementComponent.h"
+
+CMovementComponent::CMovementComponent(float initialSpeed, float maxSpeed) 
+	: speed(initialSpeed), maxSpeed(maxSpeed)
+{ 
+	this->setDirection(0.0f, 0.0f);
+}
 
 const sf::Vector2f& CMovementComponent::getSpeed(ex::TimeDelta timeDelta)
 {

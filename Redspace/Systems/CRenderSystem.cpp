@@ -1,4 +1,15 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Components/CRenderComponent.h"
+
 #include "CRenderSystem.h"
+
+CRenderSystem::CRenderSystem(sf::RenderWindow& target)
+	: target(target)
+{ }
 
 void CRenderSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
@@ -9,7 +20,7 @@ void CRenderSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		this->target.draw(*renderComponent.get());
 
 		/* Код отрисовки границ у всех объектах */
-		/*{
+		{
 			sf::RectangleShape rectangleShape;
 
 			sf::FloatRect renderGlobalBounds = renderComponent->getGlobalBounds();
@@ -27,6 +38,6 @@ void CRenderSystem::update(ex::EntityManager& entities, ex::EventManager& events
 			rectangleShape.setOutlineColor(renderColor);
 
 			this->target.draw(rectangleShape);
-		}*/
+		}
 	}
 }

@@ -1,3 +1,6 @@
+#include <vector>
+#include <SFML/Graphics.hpp>
+
 #include "CAssetsHelper.h"
 
 CAssetsHelper& CAssetsHelper::getInstance()

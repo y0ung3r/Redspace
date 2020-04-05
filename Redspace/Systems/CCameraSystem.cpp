@@ -1,4 +1,16 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Components/CCameraComponent.h"
+#include "../Components/CRenderComponent.h"
+
 #include "CCameraSystem.h"
+
+CCameraSystem::CCameraSystem(sf::RenderWindow& target, ex::Entity::Id cameraId, ex::Entity::Id mapId, ex::Entity::Id objectId) 
+	: target(target), cameraId(cameraId), mapId(mapId), objectId(objectId)
+{ }
 
 void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {

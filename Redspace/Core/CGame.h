@@ -1,23 +1,8 @@
 #ifndef CGAME_H
 #define CGAME_H
 
-#include <SFML/Graphics.hpp>
-#include <entityx/entityx.h>
-
-#include "../Enums/GameStates.h"
-#include "../Helpers/CAssetsHelper.h"
-#include "../Helpers/CVectorHelper.h"
-#include "../Components/CRenderComponent.h"
-#include "../Components/CCameraComponent.h"
-#include "../Components/CPlayerComponent.h"
-#include "../Systems/CRenderSystem.h"
-#include "../Systems/CCursorSystem.h"
-#include "../Systems/CCameraSystem.h"
-#include "../Systems/CPlayerSystem.h"
-#include "../Systems/CMeteoriteSystem.h"
-#include "../Systems/CCollisionSystem.h"
-
-namespace ex = entityx;
+class CGame;
+enum GameStates;
 
 /* Основной класс игры */
 class CGame : public ex::EntityX

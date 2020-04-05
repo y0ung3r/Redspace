@@ -1,3 +1,10 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "CGame.h"
+
 #include "Main.h"
 
 int main()

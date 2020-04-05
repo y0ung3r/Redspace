@@ -1,0 +1,123 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.3"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EntityX",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "dependencies_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dependencies_test-Debug-68c0ceceef5c59c5fc94.json",
+					"name" : "dependencies_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "entity_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-entity_test-Debug-d8d53728bcee062d7a45.json",
+					"name" : "entity_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "entityx::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-entityx-Debug-8fc74994985591171027.json",
+					"name" : "entityx",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "entityx_shared::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-entityx_shared-Debug-cca51a296f40956f9907.json",
+					"name" : "entityx_shared",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "event_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-event_test-Debug-85b191e1874513cefb34.json",
+					"name" : "event_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pool_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pool_test-Debug-73532915121fd494bbf1.json",
+					"name" : "pool_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "system_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-system_test-Debug-fdd429d9624830280f8d.json",
+					"name" : "system_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tags_component_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tags_component_test-Debug-8bc6d481579f6a04ab64.json",
+					"name" : "tags_component_test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/build/x64-Debug",
+		"source" : "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -1,10 +1,7 @@
 #ifndef CMOVEMENTCOMPONENT_H
 #define CMOVEMENTCOMPONENT_H
 
-#include <SFML/Graphics.hpp>
-#include <entityx/entityx.h>
-
-namespace ex = entityx;
+class CMovementComponent;
 
 /* Компонент для перемещения */
 class CMovementComponent
@@ -21,9 +18,7 @@ private:
 
 public:
 	/* Базовый конструктор */
-	CMovementComponent(float startSpeed = 0.0f, float maxSpeed = 50.0f)
-		: speed(startSpeed), maxSpeed(maxSpeed), direction(sf::Vector2f(0.0f, 0.0f))
-	{ }
+	CMovementComponent(float initialSpeed = 0.0f, float maxSpeed = 50.0f);
 
 	/* Возвращает вектор скорости */
 	const sf::Vector2f& getSpeed(ex::TimeDelta timeDelta);

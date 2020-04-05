@@ -1,4 +1,17 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Components/CRenderComponent.h"
+#include "../Components/CCollisionComponent.h"
+#include "../Events/CCollisionEvent.h"
+
 #include "CCollisionSystem.h"
+
+CCollisionSystem::CCollisionSystem(sf::RenderWindow& target)
+	: target(target)
+{ }
 
 void CCollisionSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {

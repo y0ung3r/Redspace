@@ -1,8 +1,8 @@
-# Install script for directory: D:/Проекты C++/Redland/Libraries/entityx-1.1.2
+# Install script for directory: D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug")
+  set(CMAKE_INSTALL_PREFIX "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,42 +34,42 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/pkgconfig/entityx.pc")
+   "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/pkgconfig/entityx.pc")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/pkgconfig" TYPE FILE FILES "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx.pc")
+file(INSTALL DESTINATION "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/pkgconfig" TYPE FILE FILES "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/entityx" FILES_MATCHING REGEX "/[^/]*\\.h$")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/entityx-d.lib")
-  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-file(INSTALL DESTINATION "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib" TYPE STATIC_LIBRARY FILES "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx-d.lib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/entityx" FILES_MATCHING REGEX "/[^/]*\\.h$")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/entityx.lib")
+   "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/entityx-d.lib")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/install/x64-Debug/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx.lib")
+file(INSTALL DESTINATION "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib" TYPE STATIC_LIBRARY FILES "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx-d.lib")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+   "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib/entityx.lib")
+  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+file(INSTALL DESTINATION "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/install/x64-Debug/lib" TYPE STATIC_LIBRARY OPTIONAL FILES "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/build/x64-Debug/entityx.lib")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -80,5 +80,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/Проекты C++/Redland/Libraries/entityx-1.1.2/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/Мои файлы/Проекты C++/Redspace/Libraries/entityx-1.1.2/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

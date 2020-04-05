@@ -1,10 +1,6 @@
 #ifndef CCOLLISIONEVENT_H
 #define CCOLLISIONEVENT_H
 
-#include <entityx/entityx.h>
-
-namespace ex = entityx;
-
 /* Класс, хранящий в себе информацию о столкновении двух объектов */
 class CCollisionEvent
 {
@@ -17,9 +13,7 @@ private:
 
 public:
 	/* Базовый конструктор */
-	CCollisionEvent(const ex::Entity& firstEntity, const ex::Entity& secondEntity)
-		: firstEntity(firstEntity), secondEntity(secondEntity)
-	{ }
+	CCollisionEvent(const ex::Entity& firstEntity, const ex::Entity& secondEntity);
 
 	/* Возвращает первый объект */
 	const ex::Entity& getFirstEntity() const;

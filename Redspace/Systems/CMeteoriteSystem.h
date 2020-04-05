@@ -1,19 +1,8 @@
 #ifndef CMETEORITESYSTEM_H
 #define CMETEORITESYSTEM_H
 
-#include <random>
-#include <vector>
-#include <SFML/Graphics.hpp>
-#include <entityx/entityx.h>
-
-#include "../Helpers/CAssetsHelper.h"
-#include "../Components/CRenderComponent.h"
-#include "../Components/CMovementComponent.h"
-#include "../Components/CCollisionComponent.h"
-#include "../Components/CMeteoriteComponent.h"
-#include "../Events/CCollisionEvent.h"
-
-namespace ex = entityx;
+class CMeteoriteSystem;
+class CCollisionEvent;
 
 /* Система, управляющая поведением метеоритов */
 class CMeteoriteSystem : public ex::System<CMeteoriteSystem>, public ex::Receiver<CMeteoriteSystem>
@@ -25,8 +14,10 @@ private:
 	/* Идентификатор карты */
 	ex::Entity::Id mapId;
 
+	/* Первый столкнувшийся метеорит */
 	ex::Entity firstCollidedMeteorite;
 
+	/* Второй столкнувшийся метеорит */
 	ex::Entity secondCollidedMeteorite;
 
 	/* Количество метеоритов */
@@ -34,9 +25,7 @@ private:
 
 public:
 	/* Базовый конструктор */
-	CMeteoriteSystem(sf::RenderWindow& target, ex::Entity::Id mapId, int count)
-		: target(target), mapId(mapId), count(count)
-	{ } 
+	CMeteoriteSystem(sf::RenderWindow& target, ex::Entity::Id mapId, int count);
 
 	/* Настраивает менеджер событий для данной системы */
 	void configure(ex::EventManager& events) override;

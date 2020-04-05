@@ -1,3 +1,23 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Enums/GameStates.h"
+#include "../Helpers/CAssetsHelper.h"
+#include "../Helpers/CVectorHelper.h"
+#include "../Components/CMovementComponent.h"
+#include "../Components/CRenderComponent.h"
+#include "../Components/CCameraComponent.h"
+#include "../Components/CPlayerComponent.h"
+#include "../Components/CCollisionComponent.h"
+#include "../Systems/CRenderSystem.h"
+#include "../Systems/CCursorSystem.h"
+#include "../Systems/CCameraSystem.h"
+#include "../Systems/CPlayerSystem.h"
+#include "../Systems/CMeteoriteSystem.h"
+#include "../Systems/CCollisionSystem.h"
+
 #include "CGame.h"
 
 /* В дальнейшем необходимо изменять состояние игры в процессе геймплея */
@@ -80,7 +100,7 @@ ex::Entity::Id CGame::createPlayer()
 	CMovementComponent playerMovementComponent(0.0f, 350.0f);
 	player.assign<CMovementComponent>(playerMovementComponent);
 
-	CCollisionComponent playerCollisionComponent;
+	CCollisionComponent playerCollisionComponent = CCollisionComponent();
 	player.assign<CCollisionComponent>(playerCollisionComponent);
 
 	CPlayerComponent playerComponent;

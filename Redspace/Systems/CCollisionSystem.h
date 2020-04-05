@@ -1,14 +1,7 @@
 #ifndef CCOLLISIONSYSTEM_H
 #define CCOLLISIONSYSTEM_H
 
-#include <SFML/Graphics.hpp>
-#include <entityx/entityx.h>
-
-#include "../Components/CRenderComponent.h"
-#include "../Components/CCollisionComponent.h"
-#include "../Events/CCollisionEvent.h"
-
-namespace ex = entityx;
+class CCollisionSystem;
 
 /* Система, управляющая логикой столкновения объектов */
 class CCollisionSystem : public ex::System<CCollisionSystem>
@@ -19,9 +12,7 @@ private:
 
 public:
 	/* Базовый конструктор */
-	explicit CCollisionSystem(sf::RenderWindow& target)
-		: target(target)
-	{ }
+	explicit CCollisionSystem(sf::RenderWindow& target);
 
 	/* Обновляет систему столкновений объектов */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;

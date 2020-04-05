@@ -1,4 +1,19 @@
+#include <vector>
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Helpers/CAssetsHelper.h"
+#include "../Core/CGame.h"
+#include "../Enums/GameStates.h"
+#include "../Components/CRenderComponent.h"
+
 #include "CCursorSystem.h"
+
+CCursorSystem::CCursorSystem(sf::RenderWindow& target)
+	: target(target)
+{ }
 
 void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
