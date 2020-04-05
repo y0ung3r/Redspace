@@ -178,5 +178,11 @@
     <Image Include="Resources\Sprites\Meteorite (large, gray).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="Resources\Sprites\Enemy.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>
