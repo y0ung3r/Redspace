@@ -27,6 +27,8 @@ public:
 	/* Базовый конструктор */
 	explicit CGame(sf::RenderWindow& target);
 
+	void pollEvent(sf::Event event);
+
 	/* Обновляет игру */
 	void update(ex::TimeDelta timeDelta);
 

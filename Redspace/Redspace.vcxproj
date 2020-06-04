@@ -19,51 +19,62 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\CMeteoriteComponent.cpp" />
+    <ClCompile Include="Components\CEndpointMarkerComponent.cpp" />
+    <ClCompile Include="Events\CMouseInputEvent.cpp" />
+    <ClCompile Include="Systems\CPlayerEndpointMarkerSystem.cpp" />
+    <ClCompile Include="Components\CInputComponent.cpp" />
     <ClCompile Include="Components\CPlayerComponent.cpp" />
+    <ClCompile Include="Components\CRotationComponent.cpp" />
+    <ClCompile Include="Systems\CPlayerRotationSystem.cpp" />
     <ClCompile Include="Events\CCollisionEvent.cpp" />
     <ClCompile Include="Components\CCollisionComponent.cpp" />
     <ClCompile Include="Systems\CCollisionSystem.cpp" />
     <ClCompile Include="Enums\GameStates.cpp" />
     <ClCompile Include="Helpers\CAssetsHelper.cpp" />
-    <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
     <ClCompile Include="Components\CAnimationComponent.cpp" />
     <ClCompile Include="Components\CCameraComponent.cpp" />
     <ClCompile Include="Components\CMovementComponent.cpp" />
-    <ClCompile Include="Components\CRenderComponent.cpp" />
+    <ClCompile Include="Components\CRenderingComponent.cpp" />
     <ClCompile Include="Core\CGame.cpp" />
     <ClCompile Include="Core\Main.cpp" />
     <ClCompile Include="Helpers\CVectorHelper.cpp" />
     <ClCompile Include="Systems\CCameraSystem.cpp" />
     <ClCompile Include="Systems\CCursorSystem.cpp" />
-    <ClCompile Include="Systems\CPlayerSystem.cpp" />
-    <ClCompile Include="Systems\CRenderSystem.cpp" />
+    <ClCompile Include="Systems\CPlayerInputSystem.cpp" />
+    <ClCompile Include="Systems\CPlayerMovementSystem.cpp" />
+    <ClCompile Include="Systems\CRenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\CMeteoriteComponent.h" />
+    <ClInclude Include="Components\CEndpointMarkerComponent.h" />
+    <ClInclude Include="Events\CMouseInputEvent.h" />
+    <ClInclude Include="Systems\CPlayerEndpointMarkerSystem.h" />
+    <ClInclude Include="Components\CInputComponent.h" />
     <ClInclude Include="Components\CPlayerComponent.h" />
+    <ClInclude Include="Components\CRotationComponent.h" />
+    <ClInclude Include="Systems\CPlayerRotationSystem.h" />
     <ClInclude Include="Events\CCollisionEvent.h" />
     <ClInclude Include="Components\CCollisionComponent.h" />
     <ClInclude Include="Systems\CCollisionSystem.h" />
     <ClInclude Include="Enums\GameStates.h" />
     <ClInclude Include="Helpers\CAssetsHelper.h" />
-    <ClInclude Include="Systems\CMeteoriteSystem.h" />
     <ClInclude Include="Components\CAnimationComponent.h" />
     <ClInclude Include="Components\CCameraComponent.h" />
     <ClInclude Include="Components\CMovementComponent.h" />
-    <ClInclude Include="Components\CRenderComponent.h" />
+    <ClInclude Include="Components\CRenderingComponent.h" />
     <ClInclude Include="Core\CGame.h" />
     <ClInclude Include="Core\Main.h" />
     <ClInclude Include="Helpers\CVectorHelper.h" />
     <ClInclude Include="Systems\CCameraSystem.h" />
     <ClInclude Include="Systems\CCursorSystem.h" />
-    <ClInclude Include="Systems\CPlayerSystem.h" />
-    <ClInclude Include="Systems\CRenderSystem.h" />
+    <ClInclude Include="Systems\CPlayerInputSystem.h" />
+    <ClInclude Include="Systems\CPlayerMovementSystem.h" />
+    <ClInclude Include="Systems\CRenderingSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Bullet.png" />
     <Image Include="Resources\Sprites\Cursor %28crosshair%29.png" />
     <Image Include="Resources\Sprites\Cursor (ship).png" />
+    <Image Include="Resources\Sprites\Marker %28endpoint%29.png" />
     <Image Include="Resources\Sprites\Enemy.png" />
     <Image Include="Resources\Sprites\Meteorite (big, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (big, gray).png" />

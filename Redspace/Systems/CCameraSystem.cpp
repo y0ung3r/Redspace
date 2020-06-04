@@ -4,7 +4,7 @@
 namespace ex = entityx;
 
 #include "../Components/CCameraComponent.h"
-#include "../Components/CRenderComponent.h"
+#include "../Components/CRenderingComponent.h"
 
 #include "CCameraSystem.h"
 
@@ -19,8 +19,8 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	ex::Entity object = entities.get(this->objectId);
 
 	ex::ComponentHandle<CCameraComponent> cameraComponent = camera.component<CCameraComponent>();
-	ex::ComponentHandle<CRenderComponent> mapRenderComponent = map.component<CRenderComponent>();
-	ex::ComponentHandle<CRenderComponent> objectRenderComponent = object.component<CRenderComponent>();
+	ex::ComponentHandle<CRenderingComponent> mapRenderingComponent = map.component<CRenderingComponent>();
+	ex::ComponentHandle<CRenderingComponent> objectRenderingComponent = object.component<CRenderingComponent>();
 
 	sf::Vector2u targetSize = this->target.getSize();
 
@@ -32,9 +32,9 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	float cameraSizeX = newSizeX / 2.0f;
 	float cameraSizeY = newSizeY / 2.0f;
 
-	sf::IntRect mapSize = mapRenderComponent->getTextureRect();
+	sf::IntRect mapSize = mapRenderingComponent->getTextureRect();
 
-	sf::Vector2f objectPosition = objectRenderComponent->getPosition();
+	sf::Vector2f objectPosition = objectRenderingComponent->getPosition();
 	cameraComponent->setCenter(objectPosition);
 
 	bool isReachedLeft = objectPosition.x - cameraSizeX < mapSize.left;

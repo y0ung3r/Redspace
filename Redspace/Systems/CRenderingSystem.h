@@ -1,8 +1,8 @@
-#ifndef CRENDERSYSTEM_H
-#define CRENDERSYSTEM_H
+#ifndef CRENDERINGSYSTEM_H
+#define CRENDERINGSYSTEM_H
 
 /* —истема, управл€юща€ логикой отрисовки объектов */
-class CRenderSystem : public ex::System<CRenderSystem>
+class CRenderingSystem : public ex::System<CRenderingSystem>
 {
 private:
 	/* —сылка на окно */
@@ -10,7 +10,7 @@ private:
 
 public:
 	/* Ѕазовый конструктор */
-	explicit CRenderSystem(sf::RenderWindow& target);
+	explicit CRenderingSystem(sf::RenderWindow& target);
 
 	/* ќбновл€ет систему отрисовки объектов */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;

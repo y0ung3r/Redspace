@@ -1,3 +1,3 @@
 #include <SFML/Graphics.hpp>
 
-#include "CRenderComponent.h"
+#include "CInputComponent.h"

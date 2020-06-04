@@ -1,11 +1,11 @@
-#ifndef CPLAYERSYSTEM_H
-#define CPLAYERSYSTEM_H
+#ifndef CPLAYERMOVEMENTSYSTEM_H
+#define CPLAYERMOVEMENTSYSTEM_H
 
-class CPlayerSystem;
+class CPlayerMovementSystem;
 class CVectorHelper;
 
 /* —истема, управл€юща€ логикой перемещени€ игрока */
-class CPlayerSystem : public ex::System<CPlayerSystem>
+class CPlayerMovementSystem : public ex::System<CPlayerMovementSystem>
 {
 private:
 	CVectorHelper& vectorHelper;
@@ -18,7 +18,7 @@ private:
 
 public:
 	/* Ѕазовый конструктор */
-	explicit CPlayerSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id& playerId);
+	explicit CPlayerMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id& playerId);
 
 	/* ќбновл€ет систему перемещени€ игрока */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;

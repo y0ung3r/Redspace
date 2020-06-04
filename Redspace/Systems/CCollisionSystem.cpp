@@ -3,7 +3,7 @@
 
 namespace ex = entityx;
 
-#include "../Components/CRenderComponent.h"
+#include "../Components/CRenderingComponent.h"
 #include "../Components/CCollisionComponent.h"
 #include "../Events/CCollisionEvent.h"
 
@@ -15,19 +15,19 @@ CCollisionSystem::CCollisionSystem(sf::RenderWindow& target)
 
 void CCollisionSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	ex::ComponentHandle<CRenderComponent> renderComponent;
+	ex::ComponentHandle<CRenderingComponent> renderingComponent;
 	ex::ComponentHandle<CCollisionComponent> collisionComponent;
 
-	for (ex::Entity entity : entities.entities_with_components(renderComponent, collisionComponent))
+	for (ex::Entity entity : entities.entities_with_components(renderingComponent, collisionComponent))
 	{
 		ex::Entity::Id entityId = entity.id();
 
-		sf::FloatRect globalBounds = renderComponent->getGlobalBounds();
+		sf::FloatRect globalBounds = renderingComponent->getGlobalBounds();
 
-		ex::ComponentHandle<CRenderComponent> nearbyRenderComponent;
+		ex::ComponentHandle<CRenderingComponent> nearbyRenderingComponent;
 		ex::ComponentHandle<CCollisionComponent> nearbyCollisionComponent;
 
-		for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyRenderComponent, nearbyCollisionComponent))
+		for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyRenderingComponent, nearbyCollisionComponent))
 		{
 			ex::Entity::Id nearbyEntityId = nearbyEntity.id();
 
@@ -36,7 +36,7 @@ void CCollisionSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 				continue;
 			}
 
-			sf::FloatRect nearbyGlobalBounds = nearbyRenderComponent->getGlobalBounds();
+			sf::FloatRect nearbyGlobalBounds = nearbyRenderingComponent->getGlobalBounds();
 
 			if (globalBounds.intersects(nearbyGlobalBounds))
 			{

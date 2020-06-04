@@ -12,46 +12,41 @@ class CVectorHelper
 public:
 	template <typename T>
 	/* ¬озвращает длину вектора */
-	float getLength(sf::Vector2<T>& valueA)
+	float getLength(sf::Vector2<T>& vector)
 	{
-		return sqrt(std::powf(valueA.x, 2) + std::powf(valueA.y, 2));
+		return std::hypotf(vector.x, vector.y);
 	}
 
 	template <typename T>
 	/* ¬озвращает рассто€ние между двум€ векторами */
-	float getDistance(sf::Vector2<T>& valueA, sf::Vector2<T>& valueB)
+	float getDistance(sf::Vector2<T>& from, sf::Vector2<T>& to)
 	{
-		float lengthX = valueA.x - valueB.x;
-		float lengthY = valueA.y - valueB.y;
+		sf::Vector2<T> difference = from - to;
 
-		float sqrX = std::pow(lengthX, 2);
-		float sqrY = std::pow(lengthY, 2);
-
-		return std::sqrt(sqrX + sqrY);
+		return std::hypotf(difference.x, difference.y);
 	}
 
 	template <typename T>
 	/* ¬озвращает угол между двум€ векторами в радианах */
-	float getAngleInRadians(sf::Vector2<T>& valueA, sf::Vector2<T>& valueB)
+	float getAngleInRadians(sf::Vector2<T>& from, sf::Vector2<T>& to)
 	{
-		float lengthX = valueA.x - valueB.x;
-		float lengthY = valueA.y - valueB.y;
+		sf::Vector2<T> difference = from - to;
 
-		return std::atan2(lengthY, lengthX);
+		return std::atan2f(difference.y, difference.x) + PI;
 	}
 
 	template <typename T>
 	/* ¬озвращает угол между двум€ векторами в градусах */
-	float getAngleInDegrees(sf::Vector2<T>& valueA, sf::Vector2<T>& valueB)
+	float getAngleInDegrees(sf::Vector2<T>& from, sf::Vector2<T>& to)
 	{
-		return CVectorHelper::getAngleInRadians<T>(valueA, valueB) * (180.0f / PI);
+		return CVectorHelper::getAngleInRadians<T>(from, to) * (180.0f / PI);
 	}
 
 	template <typename T>
 	/* ¬озвращает орт вектора */
-	sf::Vector2<T> getOrt(sf::Vector2<T>& valueA)
+	sf::Vector2<T> getOrt(sf::Vector2<T>& vector)
 	{
-		return valueA * 1.0f / CVectorHelper::getLength(valueA);
+		return vector / CVectorHelper::getLength(vector);
 	}
 };
 

@@ -17,16 +17,19 @@ private:
 	CAssetsHelper& operator=(const CAssetsHelper&) = delete;
 
 	/* Текстуры для карты */
-	std::vector<sf::Texture*> mapTextures;
+	std::map<std::string, sf::Texture*> mapTextures;
 
 	/* Курсоры */
-	std::vector<sf::Cursor*> cursors;
+	std::map<std::string, sf::Cursor*> cursors;
 
 	/* Текстура игрока */
 	sf::Texture* playerTexture;
 
 	/* Текстуры метеоритов */
-	std::vector<sf::Texture*> meteoritesTextures;
+	std::map<std::string, sf::Texture*> meteoritesTextures;
+
+	/* Текстуры маркеров */
+	std::map<std::string, sf::Texture*> markersTextures;
 
 public:
 	/* Возвращает единственный экземпляр текущего класса с помощью паттерна Singleton */
@@ -36,16 +39,19 @@ public:
 	void configure(bool isTexturesSmooth = false);
 
 	/* Возвращает текстуры карты */
-	const std::vector<sf::Texture*> getMapTextures();
+	const std::map<std::string, sf::Texture*> getMapTextures();
 
 	/* Возвращает курсоры */
-	const std::vector<sf::Cursor*> getCursors();
+	const std::map<std::string, sf::Cursor*> getCursors();
 
 	/* Возвращает текстуру игрока */
 	sf::Texture* getPlayerTexture();
 
 	/* Возвращает текстуры метеоритов */
-	const std::vector<sf::Texture*> getMeteoritesTextures();
+	const std::map<std::string, sf::Texture*> getMeteoritesTextures();
+
+	/* Возвращает текстуры маркеров */
+	const std::map<std::string, sf::Texture*> getMarkersTextures();
 };
 
 #endif
