@@ -5,6 +5,7 @@ class CMouseInputEvent
 {
 public:
 	sf::Event::MouseButtonEvent instance;
+
 	CMouseInputEvent(const sf::Event::MouseButtonEvent& mouseInputEvent);
 };
 

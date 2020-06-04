@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\CCircleBorderRenderingSystem.cpp" />
+    <ClCompile Include="Components\CCircleBorderComponent.cpp" />
+    <ClCompile Include="Components\CMeteoriteComponent.cpp" />
+    <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
     <ClCompile Include="Components\CEndpointMarkerComponent.cpp" />
     <ClCompile Include="Events\CMouseInputEvent.cpp" />
     <ClCompile Include="Systems\CPlayerEndpointMarkerSystem.cpp" />
@@ -45,6 +49,10 @@
     <ClCompile Include="Systems\CRenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Systems\CCircleBorderRenderingSystem.h" />
+    <ClInclude Include="Components\CCircleBorderComponent.h" />
+    <ClInclude Include="Components\CMeteoriteComponent.h" />
+    <ClInclude Include="Systems\CMeteoriteSystem.h" />
     <ClInclude Include="Components\CEndpointMarkerComponent.h" />
     <ClInclude Include="Events\CMouseInputEvent.h" />
     <ClInclude Include="Systems\CPlayerEndpointMarkerSystem.h" />
@@ -73,7 +81,9 @@
   <ItemGroup>
     <Image Include="Resources\Sprites\Bullet.png" />
     <Image Include="Resources\Sprites\Cursor %28crosshair%29.png" />
+    <Image Include="Resources\Sprites\Cursor (crosshair, attack).png" />
     <Image Include="Resources\Sprites\Cursor (ship).png" />
+    <Image Include="Resources\Sprites\Cursor (ship, intersect).png" />
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png" />
     <Image Include="Resources\Sprites\Enemy.png" />
     <Image Include="Resources\Sprites\Meteorite (big, brown).png" />

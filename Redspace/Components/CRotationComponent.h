@@ -12,7 +12,7 @@ public:
 	sf::Vector2f rotateTo;
 
 	/* Скорость вращения */
-	float rotationSpeed = 2.5f;
+	float rotationSpeed = 350.0f;
 };
 
 #endif

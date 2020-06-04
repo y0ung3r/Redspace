@@ -8,6 +8,7 @@ namespace ex = entityx;
 #include "../Core/CGame.h"
 #include "../Enums/GameStates.h"
 #include "../Components/CRenderingComponent.h"
+#include "../Components/CCircleBorderComponent.h"
 
 #include "CCursorSystem.h"
 
@@ -19,12 +20,35 @@ void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events
 {
 	std::map<std::string, sf::Cursor*> cursors = CAssetsHelper::getInstance().getCursors();
 
-	if (CGame::isGameState(GameStates::Unpaused))
+	bool mustUseGameStates = true;
+
+	ex::ComponentHandle<CRenderingComponent> objectRenderingComponent;
+	ex::ComponentHandle<CCircleBorderComponent> nearbyObjectCircleBorderComponent;
+
+	for (ex::Entity entity : entities.entities_with_components(objectRenderingComponent, nearbyObjectCircleBorderComponent))
 	{
-		this->target.setMouseCursor(*cursors["csr_crosshair"]);
+		sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
+		sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
+
+		sf::FloatRect objectGlobalBounds = objectRenderingComponent->getGlobalBounds();
+
+		if (objectGlobalBounds.contains(mousePositionInCoords))
+		{
+			mustUseGameStates = false;
+
+			this->target.setMouseCursor(*cursors["csr_ship_intersect"]);
+		}
 	}
-	else if (CGame::isGameState(GameStates::Paused))
+
+	if (mustUseGameStates)
 	{
-		this->target.setMouseCursor(*cursors["csr_ship"]);
+		if (CGame::isGameState(GameStates::Unpaused))
+		{
+			this->target.setMouseCursor(*cursors["csr_crosshair"]);
+		}
+		else if (CGame::isGameState(GameStates::Paused))
+		{
+			this->target.setMouseCursor(*cursors["csr_ship"]);
+		}
 	}
 }

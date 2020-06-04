@@ -10,6 +10,7 @@ namespace ex = entityx;
 #include "../Components/CMovementComponent.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CEndpointMarkerComponent.h"
+#include "../Components/CCircleBorderComponent.h"
 
 #include "CPlayerEndpointMarkerSystem.h"
 
@@ -30,7 +31,7 @@ void CPlayerEndpointMarkerSystem::update(ex::EntityManager& entities, ex::EventM
 
 	for (ex::Entity entity : entities.entities_with_components(inputComponent, playerMovementComponent))
 	{
-		if (this->mouseButton == sf::Mouse::Right)
+		if (this->mouseButton == sf::Mouse::Right && playerMovementComponent->mustMove)
 		{
 			ex::Entity playerEndpointMarker = entities.create();
 
@@ -68,34 +69,52 @@ void CPlayerEndpointMarkerSystem::update(ex::EntityManager& entities, ex::EventM
 					endpointMarker.destroy();
 				}
 			}
-
-			this->mouseButton = sf::Mouse::Button();
 		}
 	}
+
+	this->mouseButton = sf::Mouse::Button::ButtonCount;
 
 	ex::ComponentHandle<CRenderingComponent> endpointMarkerRenderingComponent;
 
 	for (ex::Entity entity : entities.entities_with_components(endpointMarkerRenderingComponent, endpointMarkerComponent))
 	{
-		endpointMarkerRenderingComponent->rotate(1.0f);
+		ex::ComponentHandle<CRenderingComponent> nearbyObjectRenderingComponent;
+		ex::ComponentHandle<CCircleBorderComponent> nearbyObjectCircleBorderComponent;
 
-		sf::Color color = endpointMarkerRenderingComponent->getColor();
+		bool yetMustDraw = true;
 
-		int alpha = (color.a < 255) ? color.a + 15 : 255;
-
-		float lifeTimeAsSeconds = endpointMarkerComponent->lifeTime.getElapsedTime().asSeconds();
-
-		if (lifeTimeAsSeconds >= 0.25f)
+		for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyObjectRenderingComponent, nearbyObjectCircleBorderComponent))
 		{
-			alpha = (color.a > 0) ? color.a - 5 : 0;
+			sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectCircleBorderComponent->circleShape.getGlobalBounds();
+
+			if (nearbyObjectGlobalBounds.contains(playerMovementComponent->moveTo))
+			{
+				yetMustDraw = false;
+			}
 		}
-
-		sf::Color opacityMask = sf::Color(color.r, color.g, color.b, alpha);
-		endpointMarkerRenderingComponent->setColor(opacityMask);
-
-		if (lifeTimeAsSeconds >= 0.5f)
+		
+		if (yetMustDraw)
 		{
-			entity.destroy();
+			endpointMarkerRenderingComponent->rotate(350.0f * timeDelta);
+
+			sf::Color color = endpointMarkerRenderingComponent->getColor();
+
+			int alpha = (color.a < 255) ? color.a + 15 : 255;
+
+			float lifeTimeAsSeconds = endpointMarkerComponent->lifeTime.getElapsedTime().asSeconds();
+
+			if (lifeTimeAsSeconds >= 0.25f)
+			{
+				alpha = (color.a > 0) ? color.a - 5 : 0;
+			}
+
+			sf::Color opacityMask = sf::Color(color.r, color.g, color.b, alpha);
+			endpointMarkerRenderingComponent->setColor(opacityMask);
+
+			if (lifeTimeAsSeconds >= 0.5f)
+			{
+				entity.destroy();
+			}
 		}
 	}
 }

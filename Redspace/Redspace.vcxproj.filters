@@ -87,6 +87,18 @@
     <ClCompile Include="Components\CEndpointMarkerComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Systems\CMeteoriteSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CMeteoriteComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CCircleBorderComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CCircleBorderRenderingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CAnimationComponent.h">
@@ -161,6 +173,18 @@
     <ClInclude Include="Components\CEndpointMarkerComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\CMeteoriteSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CMeteoriteComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CCircleBorderComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CCircleBorderRenderingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Player.png">
@@ -215,6 +239,12 @@
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor (ship, intersect).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor (crosshair, attack).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

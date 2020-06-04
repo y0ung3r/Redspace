@@ -29,12 +29,17 @@ void CPlayerRotationSystem::update(ex::EntityManager& entities, ex::EventManager
 		float playerAngleRotate = playerRenderingComponent->getRotation();
 		float destinationAngleRotate = vectorHelper.getAngleInDegrees(playerRotationComponent->rotateTo, playerPosition);
 
-		float difference = std::fabsf(destinationAngleRotate - playerAngleRotate);
+		float difference = destinationAngleRotate - playerAngleRotate;
+		float absoluteDifference = std::fabsf(difference);
+		float direction = difference / absoluteDifference;
 
-		if (difference > playerRotationComponent->rotationSpeed)
+		float absoluteSpeed = static_cast<float>(timeDelta) * playerRotationComponent->rotationSpeed;
+		float destinationSpeed = direction * absoluteSpeed;
+
+		if (absoluteDifference > absoluteSpeed)
 		{
 			// TO DO: ¬ыбирать оптимальное направление поворота в зависимости от углов
-			playerRenderingComponent->rotate(playerRotationComponent->rotationSpeed);
+			playerRenderingComponent->rotate(destinationSpeed);
 		}
 		else
 		{

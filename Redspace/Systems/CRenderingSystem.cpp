@@ -18,21 +18,5 @@ void CRenderingSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 	for (ex::Entity entity : entities.entities_with_components(renderingComponent))
 	{
 		this->target.draw(*renderingComponent.get());
-
-		/* Код отрисовки границ у всех объектов */
-		/*sf::RectangleShape rectangleShape;
-
-		sf::FloatRect renderingGlobalBounds = renderingComponent->getGlobalBounds();
-
-		sf::Vector2f rectangleShapeSize;
-		rectangleShapeSize.x = renderingGlobalBounds.width;
-		rectangleShapeSize.y = renderingGlobalBounds.height;
-		rectangleShape.setSize(rectangleShapeSize);
-		rectangleShape.setPosition(renderingGlobalBounds.left, renderingGlobalBounds.top);
-
-		rectangleShape.setFillColor(sf::Color::Transparent);
-		rectangleShape.setOutlineThickness(1.0f);
-
-		this->target.draw(rectangleShape);*/
 	}
 }

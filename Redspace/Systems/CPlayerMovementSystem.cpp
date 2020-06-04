@@ -7,6 +7,7 @@ namespace ex = entityx;
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CMovementComponent.h"
 #include "../Components/CPlayerComponent.h"
+#include "../Components/CCircleBorderComponent.h"
 
 #include "CPlayerMovementSystem.h"
 
@@ -31,8 +32,22 @@ void CPlayerMovementSystem::update(ex::EntityManager& entities, ex::EventManager
 
 		float distance = vectorHelper.getLength(difference);
 
-		if (distance >= 1.0f)
+		if (distance >= 3.0f)
 		{
+			ex::ComponentHandle<CRenderingComponent> nearbyObjectRenderingComponent;
+			ex::ComponentHandle<CCircleBorderComponent> nearbyObjectCircleBorderComponent;
+
+			for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyObjectRenderingComponent, nearbyObjectCircleBorderComponent))
+			{
+				sf::FloatRect playerGlobalBounds = playerRenderingComponent->getGlobalBounds();
+				sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectCircleBorderComponent->circleShape.getGlobalBounds();
+
+				if (playerGlobalBounds.intersects(nearbyObjectGlobalBounds) && nearbyObjectGlobalBounds.contains(playerMovementComponent->moveTo))
+				{
+					playerMovementComponent->mustMove = false;
+				}
+			}
+
 			playerRenderingComponent->move(playerMovementComponent->speed * static_cast<float>(timeDelta) * direction);
 		}
 		else

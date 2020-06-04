@@ -21,7 +21,9 @@ namespace ex = entityx;
 #include "../Systems/CPlayerMovementSystem.h"
 #include "../Systems/CPlayerRotationSystem.h"
 #include "../Systems/CCollisionSystem.h"
+#include "../Systems/CMeteoriteSystem.h"
 #include "../Systems/CPlayerEndpointMarkerSystem.h"
+#include "../Systems/CCircleBorderRenderingSystem.h"
 
 #include "CGame.h"
 
@@ -44,7 +46,9 @@ CGame::CGame(sf::RenderWindow& target) : target(target)
 	std::shared_ptr<CPlayerMovementSystem> playerMovementSystem = this->systems.add<CPlayerMovementSystem>(vectorHelper, this->target, playerId);
 	std::shared_ptr<CPlayerRotationSystem> playerRotationSystem = this->systems.add<CPlayerRotationSystem>(vectorHelper, this->target, playerId);
 	std::shared_ptr<CCollisionSystem> collisionSystem = this->systems.add<CCollisionSystem>(this->target);
+	std::shared_ptr<CMeteoriteSystem> meteoriteSystem = this->systems.add<CMeteoriteSystem>(this->target, mapId, 50);
 	std::shared_ptr<CPlayerEndpointMarkerSystem> playerEndpointMarkerSystem = this->systems.add<CPlayerEndpointMarkerSystem>(this->target);
+	std::shared_ptr<CCircleBorderRenderingSystem> circleBorderRenderingSystem = this->systems.add< CCircleBorderRenderingSystem>(this->target);
 
 	this->systems.configure();
 }

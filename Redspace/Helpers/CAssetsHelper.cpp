@@ -49,6 +49,19 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorShip->loadFromPixels(cursorShipPixels, cursorShipSize, cursorShipHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_ship", cursorShip));
 
+	sf::Texture* cursorShipIntersectTexture = new sf::Texture();
+	cursorShipIntersectTexture->loadFromFile("Resources/Sprites/Cursor (ship, intersect).png");
+	cursorShipIntersectTexture->setSmooth(isTexturesSmooth);
+	sf::Image cursorShipIntersectImage = cursorShipIntersectTexture->copyToImage();
+	const sf::Uint8* cursorShipIntersectPixels = cursorShipIntersectImage.getPixelsPtr();
+	sf::Cursor* cursorShipIntersect = new sf::Cursor();
+	sf::Vector2u cursorShipIntersectSize = cursorShipIntersectTexture->getSize();
+	sf::Vector2u cursorShipIntersectHotspot = sf::Vector2u();
+	cursorShipIntersectHotspot.x = cursorShipIntersectSize.x / 2;
+	cursorShipIntersectHotspot.y = cursorShipIntersectSize.y / 2;
+	cursorShipIntersect->loadFromPixels(cursorShipIntersectPixels, cursorShipIntersectSize, cursorShipIntersectHotspot);
+	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_ship_intersect", cursorShipIntersect));
+
 	sf::Texture* cursorCrosshairTexture = new sf::Texture();
 	cursorCrosshairTexture->loadFromFile("Resources/Sprites/Cursor (crosshair).png");
 	cursorCrosshairTexture->setSmooth(isTexturesSmooth);
@@ -62,6 +75,19 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorCrosshair->loadFromPixels(cursorCrosshairPixels, cursorCrosshairSize, cursorCrosshairHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair", cursorCrosshair));
 
+	sf::Texture* cursorCrosshairAttackTexture = new sf::Texture();
+	cursorCrosshairAttackTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, attack).png");
+	cursorCrosshairAttackTexture->setSmooth(isTexturesSmooth);
+	sf::Image cursorCrosshairAttackImage = cursorCrosshairAttackTexture->copyToImage();
+	const sf::Uint8* cursorCrosshairAttackPixels = cursorCrosshairAttackImage.getPixelsPtr();
+	sf::Cursor* cursorCrosshairAttack = new sf::Cursor();
+	sf::Vector2u cursorCrosshairAttackSize = cursorCrosshairAttackTexture->getSize();
+	sf::Vector2u cursorCrosshairAttackHotspot = sf::Vector2u();
+	cursorCrosshairAttackHotspot.x = cursorCrosshairAttackSize.x / 2;
+	cursorCrosshairAttackHotspot.y = cursorCrosshairAttackSize.y / 2;
+	cursorCrosshairAttack->loadFromPixels(cursorCrosshairAttackPixels, cursorCrosshairAttackSize, cursorCrosshairAttackHotspot);
+	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair_attack", cursorCrosshairAttack));
+
 	sf::Texture* playerTexture = new sf::Texture();
 	playerTexture->loadFromFile("Resources/Sprites/Player.png");
 	playerTexture->setSmooth(isTexturesSmooth);
@@ -70,42 +96,42 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	sf::Texture* bigBrownMeteoriteTexture = new sf::Texture();
 	bigBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (big, brown).png");
 	bigBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_big_brown", bigBrownMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_0", bigBrownMeteoriteTexture));
 
 	sf::Texture* bigGrayMeteoriteTexture = new sf::Texture();
 	bigGrayMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (big, gray).png");
 	bigGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_big_gray", bigGrayMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_1", bigGrayMeteoriteTexture));
 
 	sf::Texture* largeBrownMeteoriteTexture = new sf::Texture();
 	largeBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (large, brown).png");
 	largeBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_large_brown", largeBrownMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_2", largeBrownMeteoriteTexture));
 
 	sf::Texture* largeGrayMeteoriteTexture = new sf::Texture();
 	largeGrayMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (large, gray).png");
 	largeGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_large_gray", largeGrayMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_3", largeGrayMeteoriteTexture));
 
 	sf::Texture* middleBrownMeteoriteTexture = new sf::Texture();
 	middleBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (middle, brown).png");
 	middleBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_middle_brown", middleBrownMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_4", middleBrownMeteoriteTexture));
 
 	sf::Texture* middleGrayMeteoriteTexture = new sf::Texture();
 	middleGrayMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (middle, gray).png");
 	middleGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_middle_gray", middleGrayMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_5", middleGrayMeteoriteTexture));
 
 	sf::Texture* smallBrownMeteoriteTexture = new sf::Texture();
 	smallBrownMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (small, brown).png");
 	smallBrownMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_small_brown", smallBrownMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_6", smallBrownMeteoriteTexture));
 
 	sf::Texture* smallGrayMeteoriteTexture = new sf::Texture();
 	smallGrayMeteoriteTexture->loadFromFile("Resources/Sprites/Meteorite (small, gray).png");
 	smallGrayMeteoriteTexture->setSmooth(isTexturesSmooth);
-	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_small_gray", smallGrayMeteoriteTexture));
+	this->meteoritesTextures.insert(std::pair<std::string, sf::Texture*>("meteorite_7", smallGrayMeteoriteTexture));
 
 	sf::Texture* endpointMarkerTexture = new sf::Texture();
 	endpointMarkerTexture->loadFromFile("Resources/Sprites/Marker (endpoint).png");
