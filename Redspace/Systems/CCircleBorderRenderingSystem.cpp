@@ -21,7 +21,7 @@ void CCircleBorderRenderingSystem::update(ex::EntityManager& entities, ex::Event
 		if (nearbyObjectCircleBorderComponent->isVisible)
 		{
 			sf::IntRect nearbyObjectSize = nearbyObjectRenderingComponent->getTextureRect();
-			float radius = nearbyObjectSize.height / 2 + 35.0f;
+			float radius = nearbyObjectSize.height / 2 + 25.0f;
 			nearbyObjectCircleBorderComponent->circleShape.setRadius(radius);
 
 			sf::Vector2f nearbyObjectCircleShapeOrigin;

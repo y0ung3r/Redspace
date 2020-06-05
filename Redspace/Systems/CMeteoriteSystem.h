@@ -11,10 +11,6 @@ private:
 
 	ex::Entity::Id mapId;
 
-	ex::Entity firstCollidedMeteorite;
-
-	ex::Entity secondCollidedMeteorite;
-
 	int count;
 
 public:

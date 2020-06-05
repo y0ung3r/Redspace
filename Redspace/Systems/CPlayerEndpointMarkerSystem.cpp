@@ -31,7 +31,7 @@ void CPlayerEndpointMarkerSystem::update(ex::EntityManager& entities, ex::EventM
 
 	for (ex::Entity entity : entities.entities_with_components(inputComponent, playerMovementComponent))
 	{
-		if (this->mouseButton == sf::Mouse::Right && playerMovementComponent->mustMove)
+		if (this->mouseButton == sf::Mouse::Right)
 		{
 			ex::Entity playerEndpointMarker = entities.create();
 

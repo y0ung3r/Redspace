@@ -99,6 +99,9 @@
     <ClCompile Include="Systems\CCircleBorderRenderingSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Components\CEnemyComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CAnimationComponent.h">
@@ -185,6 +188,9 @@
     <ClInclude Include="Systems\CCircleBorderRenderingSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Components\CEnemyComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Player.png">
@@ -241,10 +247,10 @@
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cursor (ship, intersect).png">
+    <Image Include="Resources\Sprites\Cursor (crosshair, attack).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cursor (crosshair, attack).png">
+    <Image Include="Resources\Sprites\Cursor (crosshair, intersect).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

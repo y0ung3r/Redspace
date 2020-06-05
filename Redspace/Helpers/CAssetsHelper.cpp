@@ -49,19 +49,6 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorShip->loadFromPixels(cursorShipPixels, cursorShipSize, cursorShipHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_ship", cursorShip));
 
-	sf::Texture* cursorShipIntersectTexture = new sf::Texture();
-	cursorShipIntersectTexture->loadFromFile("Resources/Sprites/Cursor (ship, intersect).png");
-	cursorShipIntersectTexture->setSmooth(isTexturesSmooth);
-	sf::Image cursorShipIntersectImage = cursorShipIntersectTexture->copyToImage();
-	const sf::Uint8* cursorShipIntersectPixels = cursorShipIntersectImage.getPixelsPtr();
-	sf::Cursor* cursorShipIntersect = new sf::Cursor();
-	sf::Vector2u cursorShipIntersectSize = cursorShipIntersectTexture->getSize();
-	sf::Vector2u cursorShipIntersectHotspot = sf::Vector2u();
-	cursorShipIntersectHotspot.x = cursorShipIntersectSize.x / 2;
-	cursorShipIntersectHotspot.y = cursorShipIntersectSize.y / 2;
-	cursorShipIntersect->loadFromPixels(cursorShipIntersectPixels, cursorShipIntersectSize, cursorShipIntersectHotspot);
-	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_ship_intersect", cursorShipIntersect));
-
 	sf::Texture* cursorCrosshairTexture = new sf::Texture();
 	cursorCrosshairTexture->loadFromFile("Resources/Sprites/Cursor (crosshair).png");
 	cursorCrosshairTexture->setSmooth(isTexturesSmooth);
@@ -74,6 +61,19 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorCrosshairHotspot.y = cursorCrosshairSize.y / 2;
 	cursorCrosshair->loadFromPixels(cursorCrosshairPixels, cursorCrosshairSize, cursorCrosshairHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair", cursorCrosshair));
+
+	sf::Texture* cursorCrosshairIntersectTexture = new sf::Texture();
+	cursorCrosshairIntersectTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, intersect).png");
+	cursorCrosshairIntersectTexture->setSmooth(isTexturesSmooth);
+	sf::Image cursorCrosshairIntersectImage = cursorCrosshairIntersectTexture->copyToImage();
+	const sf::Uint8* cursorCrosshairIntersectPixels = cursorCrosshairIntersectImage.getPixelsPtr();
+	sf::Cursor* cursorCrosshairIntersect = new sf::Cursor();
+	sf::Vector2u cursorCrosshairIntersectSize = cursorCrosshairIntersectTexture->getSize();
+	sf::Vector2u cursorCrosshairIntersectHotspot = sf::Vector2u();
+	cursorCrosshairIntersectHotspot.x = cursorCrosshairIntersectSize.x / 2;
+	cursorCrosshairIntersectHotspot.y = cursorCrosshairIntersectSize.y / 2;
+	cursorCrosshairIntersect->loadFromPixels(cursorCrosshairIntersectPixels, cursorCrosshairIntersectSize, cursorCrosshairIntersectHotspot);
+	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair_intersect", cursorCrosshairIntersect));
 
 	sf::Texture* cursorCrosshairAttackTexture = new sf::Texture();
 	cursorCrosshairAttackTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, attack).png");

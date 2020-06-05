@@ -36,7 +36,7 @@ void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		{
 			mustUseGameStates = false;
 
-			this->target.setMouseCursor(*cursors["csr_ship_intersect"]);
+			this->target.setMouseCursor(*cursors["csr_crosshair_intersect"]);
 		}
 	}
 

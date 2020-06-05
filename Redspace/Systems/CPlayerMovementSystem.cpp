@@ -4,6 +4,7 @@
 namespace ex = entityx;
 
 #include "../Helpers/CVectorHelper.h"
+#include "../Events/CCollisionEvent.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CMovementComponent.h"
 #include "../Components/CPlayerComponent.h"
@@ -14,6 +15,11 @@ namespace ex = entityx;
 CPlayerMovementSystem::CPlayerMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id& playerId)
 	: vectorHelper(vectorHelper), target(target), playerId(playerId)
 { }
+
+void CPlayerMovementSystem::configure(ex::EventManager& events)
+{
+	events.subscribe<CCollisionEvent>(*this);
+}
 
 void CPlayerMovementSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
@@ -34,25 +40,31 @@ void CPlayerMovementSystem::update(ex::EntityManager& entities, ex::EventManager
 
 		if (distance >= 3.0f)
 		{
-			ex::ComponentHandle<CRenderingComponent> nearbyObjectRenderingComponent;
-			ex::ComponentHandle<CCircleBorderComponent> nearbyObjectCircleBorderComponent;
-
-			for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyObjectRenderingComponent, nearbyObjectCircleBorderComponent))
-			{
-				sf::FloatRect playerGlobalBounds = playerRenderingComponent->getGlobalBounds();
-				sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectCircleBorderComponent->circleShape.getGlobalBounds();
-
-				if (playerGlobalBounds.intersects(nearbyObjectGlobalBounds) && nearbyObjectGlobalBounds.contains(playerMovementComponent->moveTo))
-				{
-					playerMovementComponent->mustMove = false;
-				}
-			}
-
 			playerRenderingComponent->move(playerMovementComponent->speed * static_cast<float>(timeDelta) * direction);
 		}
 		else
 		{
 			playerMovementComponent->mustMove = false;
 		}
+	}
+}
+
+void CPlayerMovementSystem::receive(const CCollisionEvent& collisionEvent)
+{
+	ex::Entity player;
+	
+	if (collisionEvent.firstEntity.id() == this->playerId)
+	{
+		player = collisionEvent.firstEntity;
+	}
+	else if (collisionEvent.secondEntity.id() == this->playerId)
+	{
+		player = collisionEvent.secondEntity;
+	}
+
+	if (player)
+	{
+		ex::ComponentHandle<CMovementComponent> playerMovementComponent = player.component<CMovementComponent>();
+		playerMovementComponent->mustMove = false;
 	}
 }

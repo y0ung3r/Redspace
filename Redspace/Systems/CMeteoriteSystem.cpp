@@ -6,13 +6,14 @@
 namespace ex = entityx;
 
 #include "../Helpers/CAssetsHelper.h"
+#include "../Events/CCollisionEvent.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CMovementComponent.h"
 #include "../Components/CCollisionComponent.h"
 #include "../Components/CRotationComponent.h"
 #include "../Components/CMeteoriteComponent.h"
 #include "../Components/CCircleBorderComponent.h"
-#include "../Events/CCollisionEvent.h"
+#include "../Components/CPlayerComponent.h"
 
 #include "CMeteoriteSystem.h"
 
@@ -89,19 +90,22 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		{
 			for (ex::Entity nearbyObject : entities.entities_with_components(nearbyObjectRenderComponent))
 			{
-				sf::FloatRect meteoriteGlobalBounds = meteoriteRenderComponent.getGlobalBounds();
-				sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectRenderComponent->getGlobalBounds();
-
-				if (nearbyObjectGlobalBounds.intersects(meteoriteGlobalBounds))
+				if (nearbyObject.id() != meteorite.id())
 				{
-					std::uniform_real_distribution<float> positionDistributionX(mapSize.left, mapSize.width);
-					positionX = positionDistributionX(randomGenerator);
+					sf::FloatRect meteoriteGlobalBounds = meteoriteRenderComponent.getGlobalBounds();
+					sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectRenderComponent->getGlobalBounds();
 
-					std::uniform_real_distribution<float> positionDistributionY(mapSize.top, mapSize.height);
-					positionY = positionDistributionY(randomGenerator);
+					if (nearbyObjectGlobalBounds.intersects(meteoriteGlobalBounds))
+					{
+						std::uniform_real_distribution<float> positionDistributionX(mapSize.left, mapSize.width);
+						positionX = positionDistributionX(randomGenerator);
 
-					sf::Vector2f meteoritePosition = sf::Vector2f(positionX, positionY);
-					meteoriteRenderComponent.setPosition(meteoritePosition);
+						std::uniform_real_distribution<float> positionDistributionY(mapSize.top, mapSize.height);
+						positionY = positionDistributionY(randomGenerator);
+
+						sf::Vector2f meteoritePosition = sf::Vector2f(positionX, positionY);
+						meteoriteRenderComponent.setPosition(meteoritePosition);
+					}
 				}
 			}
 		}
