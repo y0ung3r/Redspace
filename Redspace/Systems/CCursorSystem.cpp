@@ -9,6 +9,7 @@ namespace ex = entityx;
 #include "../Enums/GameStates.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CCircleBorderComponent.h"
+#include "../Components/CEnemyComponent.h"
 
 #include "CCursorSystem.h"
 
@@ -36,7 +37,8 @@ void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		{
 			mustUseGameStates = false;
 
-			this->target.setMouseCursor(*cursors["csr_crosshair_intersect"]);
+			sf::Cursor* crosshair = (entity.has_component<CEnemyComponent>()) ? cursors["csr_crosshair_attack"] : cursors["csr_crosshair_intersect"];
+			this->target.setMouseCursor(*crosshair);
 		}
 	}
 

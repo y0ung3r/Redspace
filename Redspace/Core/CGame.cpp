@@ -24,6 +24,7 @@ namespace ex = entityx;
 #include "../Systems/CMeteoriteSystem.h"
 #include "../Systems/CPlayerEndpointMarkerSystem.h"
 #include "../Systems/CCircleBorderRenderingSystem.h"
+#include "../Systems/CEnemySystem.h"
 
 #include "CGame.h"
 
@@ -49,6 +50,7 @@ CGame::CGame(sf::RenderWindow& target) : target(target)
 	std::shared_ptr<CMeteoriteSystem> meteoriteSystem = this->systems.add<CMeteoriteSystem>(this->target, mapId, 50);
 	std::shared_ptr<CPlayerEndpointMarkerSystem> playerEndpointMarkerSystem = this->systems.add<CPlayerEndpointMarkerSystem>(this->target);
 	std::shared_ptr<CCircleBorderRenderingSystem> circleBorderRenderingSystem = this->systems.add< CCircleBorderRenderingSystem>(this->target);
+	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(vectorHelper, this->target, mapId, 15);
 
 	this->systems.configure();
 }
@@ -128,8 +130,6 @@ ex::Entity::Id CGame::createPlayer()
 
 void CGame::pollEvent(sf::Event event)
 {
-	// В будущем вынести этот код в отдельную систему
-
 	while (this->target.pollEvent(event))
 	{
 		if (event.type == sf::Event::MouseButtonPressed)

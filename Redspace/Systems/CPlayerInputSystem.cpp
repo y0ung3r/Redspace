@@ -10,6 +10,7 @@ namespace ex = entityx;
 #include "../Components/CRotationComponent.h"
 #include "../Components/CCircleBorderComponent.h"
 #include "../Components/CRenderingComponent.h"
+#include "../Components/CEnemyComponent.h"
 
 #include "CPlayerInputSystem.h"
 

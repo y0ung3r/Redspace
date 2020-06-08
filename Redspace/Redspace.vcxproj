@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Systems\CEnemySystem.cpp" />
     <ClCompile Include="Components\CEnemyComponent.cpp" />
     <ClCompile Include="Systems\CCircleBorderRenderingSystem.cpp" />
     <ClCompile Include="Components\CCircleBorderComponent.cpp" />
@@ -50,6 +51,7 @@
     <ClCompile Include="Systems\CRenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Systems\CEnemySystem.h" />
     <ClInclude Include="Components\CEnemyComponent.h" />
     <ClInclude Include="Systems\CCircleBorderRenderingSystem.h" />
     <ClInclude Include="Components\CCircleBorderComponent.h" />

@@ -31,6 +31,9 @@ private:
 	/* Текстуры маркеров */
 	std::map<std::string, sf::Texture*> markersTextures;
 
+	/* Текстуры противников */
+	std::map<std::string, sf::Texture*> enemiesTextures;
+
 public:
 	/* Возвращает единственный экземпляр текущего класса с помощью паттерна Singleton */
 	static CAssetsHelper& getInstance();
@@ -52,6 +55,9 @@ public:
 
 	/* Возвращает текстуры маркеров */
 	const std::map<std::string, sf::Texture*> getMarkersTextures();
+
+	/* Возвращает текстуры противников */
+	const std::map<std::string, sf::Texture*> getEnemiesTextures();
 };
 
 #endif

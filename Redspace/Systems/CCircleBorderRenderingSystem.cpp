@@ -5,6 +5,7 @@ namespace ex = entityx;
 
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CCircleBorderComponent.h"
+#include "../Components/CEnemyComponent.h"
 #include "CCircleBorderRenderingSystem.h"
 
 CCircleBorderRenderingSystem::CCircleBorderRenderingSystem(sf::RenderWindow& target)
@@ -29,7 +30,8 @@ void CCircleBorderRenderingSystem::update(ex::EntityManager& entities, ex::Event
 			nearbyObjectCircleShapeOrigin.y = radius;
 			nearbyObjectCircleBorderComponent->circleShape.setOrigin(nearbyObjectCircleShapeOrigin);
 
-			nearbyObjectCircleBorderComponent->circleShape.setOutlineColor(sf::Color::Yellow);
+			sf::Color circleBorderColor = (entity.has_component<CEnemyComponent>()) ? sf::Color::Red : sf::Color::Yellow;
+			nearbyObjectCircleBorderComponent->circleShape.setOutlineColor(circleBorderColor);
 			nearbyObjectCircleBorderComponent->circleShape.setOutlineThickness(1.5f);
 			nearbyObjectCircleBorderComponent->circleShape.setFillColor(sf::Color::Transparent);
 

@@ -137,6 +137,11 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	endpointMarkerTexture->loadFromFile("Resources/Sprites/Marker (endpoint).png");
 	endpointMarkerTexture->setSmooth(isTexturesSmooth);
 	this->markersTextures.insert(std::pair<std::string, sf::Texture*>("marker_ep", endpointMarkerTexture));
+
+	sf::Texture* enemyTexture = new sf::Texture();
+	enemyTexture->loadFromFile("Resources/Sprites/Enemy.png");
+	enemyTexture->setSmooth(isTexturesSmooth);
+	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy", enemyTexture));
 }
 
 const std::map<std::string, sf::Texture*> CAssetsHelper::getMapTextures()
@@ -162,4 +167,9 @@ const std::map<std::string, sf::Texture*> CAssetsHelper::getMeteoritesTextures()
 const std::map<std::string, sf::Texture*> CAssetsHelper::getMarkersTextures()
 {
 	return this->markersTextures;
+}
+
+const std::map<std::string, sf::Texture*> CAssetsHelper::getEnemiesTextures()
+{
+	return this->enemiesTextures;
 }

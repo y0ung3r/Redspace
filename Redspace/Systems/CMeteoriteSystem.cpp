@@ -43,34 +43,32 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 	size_t meteoritesTexturesSize = meteoritesTextures.size();
 	int meteoritesTexturesCount = static_cast<int>(meteoritesTexturesSize);
 
-	ex::ComponentHandle<CRenderingComponent> renderComponent;
+	ex::ComponentHandle<CRenderingComponent> renderingComponent;
 	ex::ComponentHandle<CRotationComponent> rotationComponent;
 	ex::ComponentHandle<CCollisionComponent> collisionComponent;
 	ex::ComponentHandle<CMeteoriteComponent> component;
 
-	for (ex::Entity entity : entities.entities_with_components(renderComponent, rotationComponent, collisionComponent, component))
+	for (ex::Entity entity : entities.entities_with_components(renderingComponent, rotationComponent, collisionComponent, component))
 	{
 		counter++;
 
-		renderComponent->setColor(sf::Color::White);
+		sf::FloatRect globalBounds = renderingComponent->getGlobalBounds();
 
-		sf::FloatRect globalBounds = renderComponent->getGlobalBounds();
-
-		renderComponent->rotate(static_cast<float>(timeDelta) * rotationComponent->rotationSpeed);
+		renderingComponent->rotate(static_cast<float>(timeDelta) * rotationComponent->rotationSpeed);
 	}
 
 	for (int i = 0; i < count - counter; i++)
 	{
 		ex::Entity meteorite = entities.create();
 
-		CRenderingComponent meteoriteRenderComponent;
+		CRenderingComponent meteoriteRenderingComponent;
 
 		std::uniform_int_distribution<int> textureNumberDistribution(0, meteoritesTexturesCount - 1);
 		int textureNumber = textureNumberDistribution(randomGenerator);
 
 		std::string meteoriteKey = "meteorite_" + std::to_string(textureNumber);
 		sf::Texture* meteoriteTexture = meteoritesTextures[meteoriteKey];
-		meteoriteRenderComponent.setTexture(*meteoriteTexture);
+		meteoriteRenderingComponent.setTexture(*meteoriteTexture);
 
 		sf::Vector2u meteoriteTextureSizeInPixels = meteoriteTexture->getSize();
 		sf::Vector2f meteoriteTextureSizeInCoords = static_cast<sf::Vector2f>(meteoriteTextureSizeInPixels);
@@ -78,7 +76,7 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		sf::Vector2f meteoriteOrigin;
 		meteoriteOrigin.x = meteoriteTextureSizeInCoords.x / 2.0f;
 		meteoriteOrigin.y = meteoriteTextureSizeInCoords.y / 2.0f;
-		meteoriteRenderComponent.setOrigin(meteoriteOrigin);
+		meteoriteRenderingComponent.setOrigin(meteoriteOrigin);
 
 		sf::FloatRect mapSize = mapRenderComponent->getGlobalBounds();
 
@@ -92,7 +90,7 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 			{
 				if (nearbyObject.id() != meteorite.id())
 				{
-					sf::FloatRect meteoriteGlobalBounds = meteoriteRenderComponent.getGlobalBounds();
+					sf::FloatRect meteoriteGlobalBounds = meteoriteRenderingComponent.getGlobalBounds();
 					sf::FloatRect nearbyObjectGlobalBounds = nearbyObjectRenderComponent->getGlobalBounds();
 
 					if (nearbyObjectGlobalBounds.intersects(meteoriteGlobalBounds))
@@ -104,13 +102,13 @@ void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 						positionY = positionDistributionY(randomGenerator);
 
 						sf::Vector2f meteoritePosition = sf::Vector2f(positionX, positionY);
-						meteoriteRenderComponent.setPosition(meteoritePosition);
+						meteoriteRenderingComponent.setPosition(meteoritePosition);
 					}
 				}
 			}
 		}
 
-		meteorite.assign<CRenderingComponent>(meteoriteRenderComponent);
+		meteorite.assign<CRenderingComponent>(meteoriteRenderingComponent);
 
 		CCollisionComponent meteoriteCollisionComponent;
 		meteorite.assign<CCollisionComponent>(meteoriteCollisionComponent);
