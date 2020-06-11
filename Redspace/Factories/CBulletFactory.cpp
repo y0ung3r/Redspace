@@ -10,7 +10,7 @@ namespace ex = entityx;
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
 #include "../Components/CMovementComponent.h"
-#include "../Components/CBulletMovementComponent.h"
+#include "../Components/CDirectionMovementComponent.h"
 
 #include "CBulletFactory.h"
 
@@ -56,7 +56,7 @@ ex::Entity::Id CBulletFactory::create(std::string textureKey, sf::Vector2f posit
 	
 	bullet.assign<CRenderingComponent>(bulletRenderingComponent);
 
-	CMovementComponent* bulletMovementComponent = new CBulletMovementComponent(1000.0f, direction);
+	CMovementComponent* bulletMovementComponent = new CDirectionMovementComponent(1000.0f, direction);
 	bullet.assign<CMovementComponent*>(bulletMovementComponent);
 
 	return bullet.id();

@@ -7,7 +7,7 @@ namespace ex = entityx;
 #include "../Events/CCollisionEvent.h"
 #include "../Events/CLostVisibilityEvent.h"
 #include "../Components/CRenderingComponent.h"
-#include "../Components/CBulletMovementComponent.h"
+#include "../Components/CDirectionMovementComponent.h"
 #include "../Components/CTagComponent.h"
 
 #include "CBulletSystem.h"

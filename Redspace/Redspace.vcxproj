@@ -28,7 +28,7 @@
     <ClCompile Include="Interfaces\IObjectFactory.cpp" />
     <ClCompile Include="Systems\CLostVisibilityTrackingSystem.cpp" />
     <ClCompile Include="Events\CLostVisibilityEvent.cpp" />
-    <ClCompile Include="Components\CBulletMovementComponent.cpp" />
+    <ClCompile Include="Components\CDirectionMovementComponent.cpp" />
     <ClCompile Include="Components\CWeaponComponent.cpp" />
     <ClCompile Include="Systems\CShootingSystem.cpp" />
     <ClCompile Include="Systems\CBulletSystem.cpp" />
@@ -64,7 +64,7 @@
     <ClInclude Include="Interfaces\IObjectFactory.h" />
     <ClInclude Include="Systems\CLostVisibilityTrackingSystem.h" />
     <ClInclude Include="Events\CLostVisibilityEvent.h" />
-    <ClInclude Include="Components\CBulletMovementComponent.h" />
+    <ClInclude Include="Components\CDirectionMovementComponent.h" />
     <ClInclude Include="Components\CWeaponComponent.h" />
     <ClInclude Include="Systems\CShootingSystem.h" />
     <ClInclude Include="Systems\CBulletSystem.h" />

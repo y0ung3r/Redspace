@@ -9,7 +9,7 @@ namespace ex = entityx;
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
 #include "../Components/CMovementComponent.h"
-#include "../Components/CBulletMovementComponent.h"
+#include "../Components/CDirectionMovementComponent.h"
 
 #include "CMovementSystem.h"
 
@@ -106,9 +106,9 @@ void CMovementSystem::update(ex::EntityManager& entities, ex::EventManager& even
 
 		case Bullet:
 		{
-			CBulletMovementComponent* bulletMovementComponent = static_cast<CBulletMovementComponent*>(entityMovementComponent);
-			entitySpeed = bulletMovementComponent->getSpeed();
-			direction = bulletMovementComponent->getDirection();
+			CDirectionMovementComponent* directionMovementComponent = static_cast<CDirectionMovementComponent*>(entityMovementComponent);
+			entitySpeed = directionMovementComponent->getSpeed();
+			direction = directionMovementComponent->getDirection();
 		}
 		break;
 

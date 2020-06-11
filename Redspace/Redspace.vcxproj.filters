@@ -99,9 +99,6 @@
     <ClCompile Include="Systems\CMovementSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CBulletMovementComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Factories\CMapFactory.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -115,6 +112,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Extensions\Collision.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CDirectionMovementComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,9 +203,6 @@
     <ClInclude Include="Systems\CMovementSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CBulletMovementComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Factories\CMapFactory.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -219,6 +216,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Extensions\Collision.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CDirectionMovementComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

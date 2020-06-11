@@ -13,7 +13,7 @@ namespace ex = entityx;
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
 #include "../Components/CMovementComponent.h"
-#include "../Components/CBulletMovementComponent.h"
+#include "../Components/CDirectionMovementComponent.h"
 #include "../Components/CWeaponComponent.h"
 
 #include "CShootingSystem.h"
@@ -26,13 +26,10 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 {
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 	ex::ComponentHandle<CTagComponent> entityTagComponent;
-	ex::ComponentHandle<CMovementComponent*> entityBaseMovementComponent;
 	ex::ComponentHandle<CWeaponComponent> entityWeaponComponent;
 
-	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent, entityTagComponent, entityBaseMovementComponent, entityWeaponComponent))
+	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent, entityTagComponent, entityWeaponComponent))
 	{
-		CMovementComponent* entityMovementComponent = *entityBaseMovementComponent.get();
-
 		bool canAttack = false;
 		bool canShot = entityWeaponComponent->canShot();
 
