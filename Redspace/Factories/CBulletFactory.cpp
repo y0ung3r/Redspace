@@ -38,17 +38,17 @@ ex::Entity::Id CBulletFactory::create(std::string textureKey, sf::Vector2f posit
 
 	bulletRenderingComponent.setScale(0.75f, 0.75f);
 
-	float angleRotateInDegrees = angleRotate * (180.0f / PI);
-	bulletRenderingComponent.setRotation(angleRotateInDegrees);
+	bulletRenderingComponent.setRotation(angleRotate);
 
 	CTagComponent bulletTagComponent(ObjectTypes::Bullet);
 	bullet.assign<CTagComponent>(bulletTagComponent);
 
 	float length = -1.0f * vectorHelper.getLength(position);
+	float angleRotateInRadians = angleRotate * (PI / 180.0f);
 
 	sf::Vector2f difference;
-	difference.x = length * std::cosf(angleRotate);
-	difference.y = length * std::sinf(angleRotate);
+	difference.x = length * std::cosf(angleRotateInRadians);
+	difference.y = length * std::sinf(angleRotateInRadians);
 
 	sf::Vector2f direction = vectorHelper.getOrt(difference);
 

@@ -36,7 +36,7 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 		bool canShot = entityWeaponComponent->canShot();
 
 		sf::Vector2f entityPosition = entityRenderingComponent->getPosition();
-		float entityAngleRotate = entityRenderingComponent->getRotation() * (PI / 180.0f);
+		float entityAngleRotate = entityRenderingComponent->getRotation();
 
 		ObjectTypes entityTag = entityTagComponent->getTag();
 

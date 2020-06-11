@@ -7,6 +7,9 @@ namespace ex = entityx;
 #include "../Helpers/CVectorHelper.h"
 #include "../Enums/GameStates.h"
 #include "../Enums/ObjectTypes.h"
+#include "../Factories/CMapFactory.h"
+#include "../Factories/CCameraFactory.h"
+#include "../Factories/CPlayerFactory.h"
 #include "../Factories/CBulletFactory.h"
 #include "../Events/CSingleMouseInputEvent.h"
 #include "../Events/CSingleKeyInputEvent.h"
@@ -34,12 +37,17 @@ CGame::CGame(sf::RenderWindow& target)
 	CVectorHelper vectorHelper;
 	CAssetsHelper::getInstance().configure(true);
 
+	IObjectFactory* mapFactory = new CMapFactory(this->entities, this->target);
+	ex::Entity::Id mapId = mapFactory->create("bg_light");
+
+	IObjectFactory* cameraFactory = new CCameraFactory(this->entities, this->target);
+	ex::Entity::Id cameraId = cameraFactory->create();
+	
+	IObjectFactory* playerFactory = new CPlayerFactory(this->entities, this->target);
+	ex::Entity::Id playerId = playerFactory->create("player");
+
 	IObjectFactory* bulletFactory = new CBulletFactory(vectorHelper, this->entities, this->target);
-
-	ex::Entity::Id mapId = this->createMap();
-	ex::Entity::Id cameraId = this->createCamera();
-	ex::Entity::Id playerId = this->createPlayer();
-
+	
 	std::shared_ptr<CRenderingSystem> renderingSystem = this->systems.add<CRenderingSystem>(this->target);
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target);
 	std::shared_ptr<CCameraSystem> cameraSystem = this->systems.add<CCameraSystem>(this->target, cameraId, mapId, playerId);
@@ -51,79 +59,6 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*bulletFactory, this->target);
 
 	this->systems.configure();
-}
-
-ex::Entity::Id CGame::createMap()
-{
-	ex::Entity map = entities.create();
-
-	CRenderingComponent mapRenderingComponent;
-
-	std::map<std::string, sf::Texture*> mapTextures = CAssetsHelper::getInstance().getMapTextures();
-	mapRenderingComponent.setTexture(*mapTextures["bg_light"]);
-
-	sf::VideoMode desktopVideoMode = sf::VideoMode::getDesktopMode();
-	sf::IntRect textureArea = sf::IntRect(0, 0, desktopVideoMode.width * 4, desktopVideoMode.height * 4);
-	mapRenderingComponent.setTextureRect(textureArea);
-
-	map.assign<CRenderingComponent>(mapRenderingComponent);
-
-	CTagComponent mapTagComponent(ObjectTypes::Map);
-	map.assign<CTagComponent>(mapTagComponent);
-
-	return map.id();
-}
-
-ex::Entity::Id CGame::createCamera()
-{
-	ex::Entity camera = entities.create();
-
-	CCameraComponent cameraComponent;
-	camera.assign<CCameraComponent>(cameraComponent);
-
-	CTagComponent cameraTagComponent(ObjectTypes::Camera);
-	camera.assign<CTagComponent>(cameraTagComponent);
-
-	return camera.id();
-}
-
-ex::Entity::Id CGame::createPlayer()
-{
-	ex::Entity player = entities.create();
-
-	CRenderingComponent playerRenderingComponent;
-
-	sf::Texture* playerTexture = CAssetsHelper::getInstance().getPlayerTexture();
-	playerRenderingComponent.setTexture(*playerTexture);
-
-	sf::Vector2u playerTextureSizeInPixels = playerTexture->getSize();
-	sf::Vector2f playerTextureSizeInCoords = static_cast<sf::Vector2f>(playerTextureSizeInPixels);
-
-	sf::Vector2f playerOrigin;
-	playerOrigin.x = playerTextureSizeInCoords.x / 2.0f;
-	playerOrigin.y = playerTextureSizeInCoords.y / 2.0f;
-	playerRenderingComponent.setOrigin(playerOrigin);
-
-	sf::Vector2u targetSizeInPixels = target.getSize();
-	sf::Vector2f targetSizeInCoords = static_cast<sf::Vector2f>(targetSizeInPixels);
-
-	sf::Vector2f playerPosition;
-	playerPosition.x = targetSizeInCoords.x / 2.0f;
-	playerPosition.y = targetSizeInCoords.y / 2.0f;
-	playerRenderingComponent.setPosition(playerPosition);
-
-	player.assign<CRenderingComponent>(playerRenderingComponent);
-
-	CTagComponent playerTagComponent(ObjectTypes::Player);
-	player.assign<CTagComponent>(playerTagComponent);
-
-	CMovementComponent* playerMovementComponent = new CMovementComponent(300.0f);
-	player.assign<CMovementComponent*>(playerMovementComponent);
-
-	CWeaponComponent playerWeaponComponent(25.0f);
-	player.assign<CWeaponComponent>(playerWeaponComponent);
-
-	return player.id();
 }
 
 void CGame::pollEvent(sf::Event event)

@@ -13,15 +13,6 @@ private:
 	/* Текущее игровое состояние */
 	GameStates gameState;
 
-	/* Создает карту и возвращает ее идентификатор */
-	ex::Entity::Id createMap();
-
-	/* Создает объект камеры и возвращает его идентификатор */
-	ex::Entity::Id createCamera();
-
-	/* Создает игрока и возвращает его идентификатор */
-	ex::Entity::Id createPlayer();
-
 public:
 	/* Базовый конструктор */
 	explicit CGame(sf::RenderWindow& target);

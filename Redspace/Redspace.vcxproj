@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Factories\CPlayerFactory.cpp" />
+    <ClCompile Include="Factories\CCameraFactory.cpp" />
+    <ClCompile Include="Factories\CMapFactory.cpp" />
     <ClCompile Include="Factories\CBulletFactory.cpp" />
     <ClCompile Include="Interfaces\IObjectFactory.cpp" />
     <ClCompile Include="Systems\CLostVisibilityTrackingSystem.cpp" />
@@ -50,6 +53,9 @@
     <ClCompile Include="Systems\CRenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Factories\CPlayerFactory.h" />
+    <ClInclude Include="Factories\CCameraFactory.h" />
+    <ClInclude Include="Factories\CMapFactory.h" />
     <ClInclude Include="Factories\CBulletFactory.h" />
     <ClInclude Include="Interfaces\IObjectFactory.h" />
     <ClInclude Include="Systems\CLostVisibilityTrackingSystem.h" />
