@@ -1,20 +1,17 @@
 #ifndef CMOVEMENTCOMPONENT_H
 #define CMOVEMENTCOMPONENT_H
 
-class CMovementComponent;
-
-/* Компонент для перемещения */
 class CMovementComponent
 {
+private:
+	float speed;
+
 public:
-	/* Должен ли объект перемещаться? */
-	bool mustMove = false;
+	CMovementComponent(float speed);
 
-	/* Координаты объекта, по отношению к которому производится перемещение */
-	sf::Vector2f moveTo;
+	float getSpeed();
 
-	/* Скорость */
-	float speed = 250.0f;
+	void setSpeed(float speed);
 };
 
 #endif

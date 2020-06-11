@@ -62,19 +62,6 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorCrosshair->loadFromPixels(cursorCrosshairPixels, cursorCrosshairSize, cursorCrosshairHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair", cursorCrosshair));
 
-	sf::Texture* cursorCrosshairIntersectTexture = new sf::Texture();
-	cursorCrosshairIntersectTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, intersect).png");
-	cursorCrosshairIntersectTexture->setSmooth(isTexturesSmooth);
-	sf::Image cursorCrosshairIntersectImage = cursorCrosshairIntersectTexture->copyToImage();
-	const sf::Uint8* cursorCrosshairIntersectPixels = cursorCrosshairIntersectImage.getPixelsPtr();
-	sf::Cursor* cursorCrosshairIntersect = new sf::Cursor();
-	sf::Vector2u cursorCrosshairIntersectSize = cursorCrosshairIntersectTexture->getSize();
-	sf::Vector2u cursorCrosshairIntersectHotspot = sf::Vector2u();
-	cursorCrosshairIntersectHotspot.x = cursorCrosshairIntersectSize.x / 2;
-	cursorCrosshairIntersectHotspot.y = cursorCrosshairIntersectSize.y / 2;
-	cursorCrosshairIntersect->loadFromPixels(cursorCrosshairIntersectPixels, cursorCrosshairIntersectSize, cursorCrosshairIntersectHotspot);
-	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair_intersect", cursorCrosshairIntersect));
-
 	sf::Texture* cursorCrosshairAttackTexture = new sf::Texture();
 	cursorCrosshairAttackTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, attack).png");
 	cursorCrosshairAttackTexture->setSmooth(isTexturesSmooth);
@@ -87,6 +74,19 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	cursorCrosshairAttackHotspot.y = cursorCrosshairAttackSize.y / 2;
 	cursorCrosshairAttack->loadFromPixels(cursorCrosshairAttackPixels, cursorCrosshairAttackSize, cursorCrosshairAttackHotspot);
 	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair_attack", cursorCrosshairAttack));
+
+	sf::Texture* cursorCrosshairHoverTexture = new sf::Texture();
+	cursorCrosshairHoverTexture->loadFromFile("Resources/Sprites/Cursor (crosshair, hover).png");
+	cursorCrosshairHoverTexture->setSmooth(isTexturesSmooth);
+	sf::Image cursorCrosshairHoverImage = cursorCrosshairHoverTexture->copyToImage();
+	const sf::Uint8* cursorCrosshairHoverPixels = cursorCrosshairHoverImage.getPixelsPtr();
+	sf::Cursor* cursorCrosshairHover = new sf::Cursor();
+	sf::Vector2u cursorCrosshairHoverSize = cursorCrosshairHoverTexture->getSize();
+	sf::Vector2u cursorCrosshairHoverHotspot = sf::Vector2u();
+	cursorCrosshairHoverHotspot.x = cursorCrosshairHoverSize.x / 2;
+	cursorCrosshairHoverHotspot.y = cursorCrosshairHoverSize.y / 2;
+	cursorCrosshairHover->loadFromPixels(cursorCrosshairHoverPixels, cursorCrosshairHoverSize, cursorCrosshairHoverHotspot);
+	this->cursors.insert(std::pair<std::string, sf::Cursor*>("csr_crosshair_hover", cursorCrosshairHover));
 
 	sf::Texture* playerTexture = new sf::Texture();
 	playerTexture->loadFromFile("Resources/Sprites/Player.png");
@@ -142,6 +142,16 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	enemyTexture->loadFromFile("Resources/Sprites/Enemy.png");
 	enemyTexture->setSmooth(isTexturesSmooth);
 	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy", enemyTexture));
+
+	sf::Texture* bulletBlueTexture = new sf::Texture();
+	bulletBlueTexture->loadFromFile("Resources/Sprites/Bullet (blue).png");
+	bulletBlueTexture->setSmooth(isTexturesSmooth);
+	this->bulletsTextures.insert(std::pair<std::string, sf::Texture*>("bullet_blue", bulletBlueTexture));
+
+	sf::Texture* bulletRedTexture = new sf::Texture();
+	bulletRedTexture->loadFromFile("Resources/Sprites/Bullet (red).png");
+	bulletRedTexture->setSmooth(isTexturesSmooth);
+	this->bulletsTextures.insert(std::pair<std::string, sf::Texture*>("bullet_red", bulletRedTexture));
 }
 
 const std::map<std::string, sf::Texture*> CAssetsHelper::getMapTextures()
@@ -172,4 +182,9 @@ const std::map<std::string, sf::Texture*> CAssetsHelper::getMarkersTextures()
 const std::map<std::string, sf::Texture*> CAssetsHelper::getEnemiesTextures()
 {
 	return this->enemiesTextures;
+}
+
+const std::map<std::string, sf::Texture*> CAssetsHelper::getBulletsTextures()
+{
+	return this->bulletsTextures;
 }

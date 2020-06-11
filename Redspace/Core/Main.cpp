@@ -5,6 +5,7 @@ namespace ex = entityx;
 
 #include "CGame.h"
 #include "../Enums/GameStates.h"
+
 #include "Main.h"
 
 int main()
@@ -23,6 +24,8 @@ int main()
 
 	CGame game(window);
 
+	game.setGameState(GameStates::Unpaused);
+
 	sf::Clock clock;
 	ex::TimeDelta timeDelta;
 
@@ -31,7 +34,7 @@ int main()
 		sf::Event event = sf::Event();
 
 		game.pollEvent(event);
-		
+
 		if (window.hasFocus())
 		{
 			window.clear(sf::Color::White);

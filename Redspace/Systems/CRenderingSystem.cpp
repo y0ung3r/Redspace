@@ -13,10 +13,28 @@ CRenderingSystem::CRenderingSystem(sf::RenderWindow& target)
 
 void CRenderingSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	ex::ComponentHandle<CRenderingComponent> renderingComponent;
+	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 
-	for (ex::Entity entity : entities.entities_with_components(renderingComponent))
+	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent))
 	{
-		this->target.draw(*renderingComponent.get());
+		CRenderingComponent instance = *entityRenderingComponent.get();
+		this->target.draw(instance);
+
+		sf::RectangleShape rectangleShape;
+
+		sf::FloatRect entityGlobalBounds = entityRenderingComponent->getGlobalBounds();
+
+		sf::Vector2f rectangleShapeSize;
+		rectangleShapeSize.x = entityGlobalBounds.width;
+		rectangleShapeSize.y = entityGlobalBounds.height;
+
+		rectangleShape.setSize(rectangleShapeSize);
+		rectangleShape.setPosition(entityGlobalBounds.left, entityGlobalBounds.top);
+
+		rectangleShape.setFillColor(sf::Color::Transparent);
+		rectangleShape.setOutlineThickness(1.0f);
+		rectangleShape.setOutlineColor(sf::Color::White);
+
+		this->target.draw(rectangleShape);
 	}
 }

@@ -15,13 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\CAnimationComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Components\CCameraComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CMovementComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Core\CGame.cpp">
@@ -45,19 +39,7 @@
     <ClCompile Include="Enums\GameStates.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CCollisionSystem.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CCollisionComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Events\CCollisionEvent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CPlayerComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Systems\CPlayerMovementSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Systems\CRenderingSystem.cpp">
@@ -66,54 +48,63 @@
     <ClCompile Include="Components\CRenderingComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CInputComponent.cpp">
+    <ClCompile Include="Enums\ObjectTypes.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CRotationComponent.cpp">
+    <ClCompile Include="Components\CTagComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CPlayerRotationSystem.cpp">
+    <ClCompile Include="Components\CMovementComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CPlayerInputSystem.cpp">
+    <ClCompile Include="Events\CMouseHoverEvent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CPlayerEndpointMarkerSystem.cpp">
+    <ClCompile Include="Events\CGameStateChangedEvent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Events\CMouseInputEvent.cpp">
+    <ClCompile Include="Events\CSingleMouseInputEvent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CEndpointMarkerComponent.cpp">
+    <ClCompile Include="Events\CSingleKeyInputEvent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CMeteoriteSystem.cpp">
+    <ClCompile Include="Components\CWeaponComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CMeteoriteComponent.cpp">
+    <ClCompile Include="Systems\CBulletSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CCircleBorderComponent.cpp">
+    <ClCompile Include="Events\CLostVisibilityEvent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CCircleBorderRenderingSystem.cpp">
+    <ClCompile Include="Systems\CLostVisibilityTrackingSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Components\CEnemyComponent.cpp">
+    <ClCompile Include="Systems\CCollisionTrackingSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CEnemySystem.cpp">
+    <ClCompile Include="Systems\CMouseHoverTrackingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Interfaces\IObjectFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CBulletFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CShootingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CMovementSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CBulletMovementComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\CAnimationComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Components\CCameraComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\CMovementComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Core\CGame.h">
@@ -137,19 +128,7 @@
     <ClInclude Include="Enums\GameStates.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CCollisionSystem.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\CCollisionComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Events\CCollisionEvent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\CPlayerComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\CPlayerMovementSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Systems\CRenderingSystem.h">
@@ -158,43 +137,58 @@
     <ClInclude Include="Components\CRenderingComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CInputComponent.h">
+    <ClInclude Include="Enums\ObjectTypes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CRotationComponent.h">
+    <ClInclude Include="Components\CTagComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CPlayerRotationSystem.h">
+    <ClInclude Include="Components\CMovementComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CPlayerInputSystem.h">
+    <ClInclude Include="Events\CMouseHoverEvent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CPlayerEndpointMarkerSystem.h">
+    <ClInclude Include="Events\CGameStateChangedEvent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Events\CMouseInputEvent.h">
+    <ClInclude Include="Events\CSingleMouseInputEvent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CEndpointMarkerComponent.h">
+    <ClInclude Include="Events\CSingleKeyInputEvent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CMeteoriteSystem.h">
+    <ClInclude Include="Components\CWeaponComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CMeteoriteComponent.h">
+    <ClInclude Include="Systems\CBulletSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CCircleBorderComponent.h">
+    <ClInclude Include="Events\CLostVisibilityEvent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CCircleBorderRenderingSystem.h">
+    <ClInclude Include="Systems\CLostVisibilityTrackingSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Components\CEnemyComponent.h">
+    <ClInclude Include="Systems\CCollisionTrackingSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CEnemySystem.h">
+    <ClInclude Include="Systems\CMouseHoverTrackingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\IObjectFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CBulletFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CShootingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CMovementSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CBulletMovementComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -247,16 +241,19 @@
     <Image Include="Resources\Sprites\Enemy.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Bullet.png">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="Resources\Sprites\Cursor (crosshair, attack).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Cursor (crosshair, intersect).png">
+    <Image Include="Resources\Sprites\Cursor %28crosshair, hover%29.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet (blue).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet (red).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

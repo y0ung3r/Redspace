@@ -7,50 +7,66 @@ namespace ex = entityx;
 #include "../Helpers/CAssetsHelper.h"
 #include "../Core/CGame.h"
 #include "../Enums/GameStates.h"
+#include "../Enums/ObjectTypes.h"
+#include "../Events/CGameStateChangedEvent.h"
+#include "../Events/CMouseHoverEvent.h"
 #include "../Components/CRenderingComponent.h"
-#include "../Components/CCircleBorderComponent.h"
-#include "../Components/CEnemyComponent.h"
+#include "../Components/CTagComponent.h"
 
 #include "CCursorSystem.h"
 
 CCursorSystem::CCursorSystem(sf::RenderWindow& target)
 	: target(target)
-{ }
+{
+	this->cursors = CAssetsHelper::getInstance().getCursors();
+}
+
+void CCursorSystem::configure(ex::EventManager& events)
+{
+	events.subscribe<CGameStateChangedEvent>(*this);
+	events.subscribe<CMouseHoverEvent>(*this);
+}
 
 void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	std::map<std::string, sf::Cursor*> cursors = CAssetsHelper::getInstance().getCursors();
+	this->target.setMouseCursor(*this->cursor);
+}
 
-	bool mustUseGameStates = true;
+void CCursorSystem::receive(const CGameStateChangedEvent& gameStateChangedEvent)
+{
+	GameStates gameState = gameStateChangedEvent.getGameState();
 
-	ex::ComponentHandle<CRenderingComponent> objectRenderingComponent;
-	ex::ComponentHandle<CCircleBorderComponent> nearbyObjectCircleBorderComponent;
-
-	for (ex::Entity entity : entities.entities_with_components(objectRenderingComponent, nearbyObjectCircleBorderComponent))
+	switch (gameState)
 	{
-		sf::Vector2i mousePositionInPixels = sf::Mouse::getPosition(this->target);
-		sf::Vector2f mousePositionInCoords = this->target.mapPixelToCoords(mousePositionInPixels);
+	case Paused:
+		this->cursor = this->cursors["csr_ship"];
+		break;
 
-		sf::FloatRect objectGlobalBounds = objectRenderingComponent->getGlobalBounds();
-
-		if (objectGlobalBounds.contains(mousePositionInCoords))
-		{
-			mustUseGameStates = false;
-
-			sf::Cursor* crosshair = (entity.has_component<CEnemyComponent>()) ? cursors["csr_crosshair_attack"] : cursors["csr_crosshair_intersect"];
-			this->target.setMouseCursor(*crosshair);
-		}
+	case Unpaused:
+		this->cursor = this->cursors["csr_crosshair"];
+		break;
 	}
+}
 
-	if (mustUseGameStates)
+void CCursorSystem::receive(const CMouseHoverEvent& mouseHoverEvent)
+{
+	ex::Entity hoveredObject = mouseHoverEvent.getHoveredObject();
+	ex::ComponentHandle<CTagComponent> hoveredObjectTagComponent = hoveredObject.component<CTagComponent>();
+
+	ObjectTypes hoveredObjectTag = hoveredObjectTagComponent->getTag();
+
+	switch (hoveredObjectTag)
 	{
-		if (CGame::isGameState(GameStates::Unpaused))
-		{
-			this->target.setMouseCursor(*cursors["csr_crosshair"]);
-		}
-		else if (CGame::isGameState(GameStates::Paused))
-		{
-			this->target.setMouseCursor(*cursors["csr_ship"]);
-		}
+	case Thing:
+		this->cursor = this->cursors["csr_crosshair_hover"];
+		break;
+
+	case Enemy:
+		this->cursor = this->cursors["csr_crosshair_attack"];
+		break;
+
+	default:
+		this->cursor = this->cursors["csr_crosshair"];
+		break;
 	}
 }

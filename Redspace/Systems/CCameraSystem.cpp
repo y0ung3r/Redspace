@@ -82,5 +82,6 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		cameraComponent->setCenter(mapSize.width - cameraSizeX, cameraSizeY);
 	}
 
-	this->target.setView(*cameraComponent.get());
+	CCameraComponent instance = *cameraComponent.get();
+	this->target.setView(instance);
 }
