@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Extensions\Collision.cpp" />
+    <ClCompile Include="Events\CShotFiredEvent.cpp" />
     <ClCompile Include="Factories\CPlayerFactory.cpp" />
     <ClCompile Include="Factories\CCameraFactory.cpp" />
     <ClCompile Include="Factories\CMapFactory.cpp" />
@@ -53,6 +55,8 @@
     <ClCompile Include="Systems\CRenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Extensions\Collision.h" />
+    <ClInclude Include="Events\CShotFiredEvent.h" />
     <ClInclude Include="Factories\CPlayerFactory.h" />
     <ClInclude Include="Factories\CCameraFactory.h" />
     <ClInclude Include="Factories\CMapFactory.h" />

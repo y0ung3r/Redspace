@@ -52,8 +52,8 @@ ex::Entity::Id CBulletFactory::create(std::string textureKey, sf::Vector2f posit
 
 	sf::Vector2f direction = vectorHelper.getOrt(difference);
 
-	bulletRenderingComponent.setPosition(position + bulletTextureSizeInCoords.x * direction);
-
+	bulletRenderingComponent.setPosition(position + (15.0f + bulletTextureSizeInCoords.x) * direction);
+	
 	bullet.assign<CRenderingComponent>(bulletRenderingComponent);
 
 	CMovementComponent* bulletMovementComponent = new CBulletMovementComponent(1000.0f, direction);

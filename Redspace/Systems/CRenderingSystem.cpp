@@ -20,21 +20,21 @@ void CRenderingSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		CRenderingComponent instance = *entityRenderingComponent.get();
 		this->target.draw(instance);
 
-		sf::RectangleShape rectangleShape;
+		{
+			sf::RectangleShape rectangleShape;
 
-		sf::FloatRect entityGlobalBounds = entityRenderingComponent->getGlobalBounds();
+			sf::FloatRect entityGlobalBounds = entityRenderingComponent->getGlobalBounds();
 
-		sf::Vector2f rectangleShapeSize;
-		rectangleShapeSize.x = entityGlobalBounds.width;
-		rectangleShapeSize.y = entityGlobalBounds.height;
+			sf::Vector2f rectangleShapeSize(entityGlobalBounds.width, entityGlobalBounds.height);
+			rectangleShape.setSize(rectangleShapeSize);
 
-		rectangleShape.setSize(rectangleShapeSize);
-		rectangleShape.setPosition(entityGlobalBounds.left, entityGlobalBounds.top);
+			rectangleShape.setPosition(entityGlobalBounds.left, entityGlobalBounds.top);
 
-		rectangleShape.setFillColor(sf::Color::Transparent);
-		rectangleShape.setOutlineThickness(1.0f);
-		rectangleShape.setOutlineColor(sf::Color::White);
+			rectangleShape.setFillColor(sf::Color::Transparent);
+			rectangleShape.setOutlineThickness(1.0f);
+			rectangleShape.setOutlineColor(sf::Color::White);
 
-		this->target.draw(rectangleShape);
+			this->target.draw(rectangleShape);
+		}
 	}
 }

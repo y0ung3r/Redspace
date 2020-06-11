@@ -8,6 +8,7 @@ namespace ex = entityx;
 #include "../Helpers/CVectorHelper.h"
 #include "../Enums/ObjectTypes.h"
 #include "../Events/CSingleMouseInputEvent.h"
+#include "../Events/CShotFiredEvent.h"
 #include "../Interfaces/IObjectFactory.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
@@ -35,6 +36,7 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 		bool canAttack = false;
 		bool canShot = entityWeaponComponent->canShot();
 
+		std::string textureKey;
 		sf::Vector2f entityPosition = entityRenderingComponent->getPosition();
 		float entityAngleRotate = entityRenderingComponent->getRotation();
 
@@ -45,13 +47,17 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 
 		case Player:
 		{
+			textureKey = "bullet_blue";
+
 			canAttack = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 		}
 		break;
 
 		case Enemy:
 		{
-			
+			textureKey = "bullet_red";
+
+
 		}
 		break;
 
@@ -59,7 +65,9 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 
 		if (canAttack && canShot)
 		{
-			bulletFactory.create("bullet_blue", entityPosition, entityAngleRotate);
+			bulletFactory.create(textureKey, entityPosition, entityAngleRotate);
+
+			events.emit<CShotFiredEvent>(entity);
 		}
 	}
 }

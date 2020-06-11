@@ -21,6 +21,8 @@ public:
 	void receive(const CCollisionEvent& collisionEvent);
 
 	void receive(const CLostVisibilityEvent& lostVisibilityEvent);
+
+	void receive(const ex::EntityDestroyedEvent& entityDestroyedEvent);
 };
 
 #endif

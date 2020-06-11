@@ -20,6 +20,7 @@ void CBulletSystem::configure(ex::EventManager& events)
 {
 	events.subscribe<CCollisionEvent>(*this);
 	events.subscribe<CLostVisibilityEvent>(*this);
+	events.subscribe<ex::EntityDestroyedEvent>(*this);
 }
 
 void CBulletSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
@@ -36,6 +37,22 @@ void CBulletSystem::receive(const CCollisionEvent& collisionEvent)
 	ObjectTypes secondEntityType = secondEntityTagComponent->getTag();
 
 	ex::Entity object, bullet;
+
+	if (firstEntityType != ObjectTypes::Bullet && secondEntityType == ObjectTypes::Bullet)
+	{
+		object = firstEntity;
+		bullet = secondEntity;
+	}
+	else if (firstEntityType == ObjectTypes::Bullet && secondEntityType != ObjectTypes::Bullet)
+	{
+		object = secondEntity;
+		bullet = firstEntity;
+	}
+
+	if (object && bullet)
+	{
+		bullet.destroy();
+	}
 }
 
 void CBulletSystem::receive(const CLostVisibilityEvent& lostVisibilityEvent)
@@ -48,5 +65,18 @@ void CBulletSystem::receive(const CLostVisibilityEvent& lostVisibilityEvent)
 	if (lostObjectTag == ObjectTypes::Bullet)
 	{
 		lostObject.destroy();
+	}
+}
+
+void CBulletSystem::receive(const ex::EntityDestroyedEvent& entityDestroyedEvent)
+{
+	ex::Entity destoyedObject = entityDestroyedEvent.entity;
+
+	ex::ComponentHandle<CTagComponent> destoyedObjectTagComponent = destoyedObject.component<CTagComponent>();
+	ObjectTypes destoyedObjectTag = destoyedObjectTagComponent->getTag();
+
+	if (destoyedObjectTag == ObjectTypes::Bullet)
+	{
+		// Отобразить взрыв?
 	}
 }

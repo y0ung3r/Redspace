@@ -7,6 +7,7 @@ namespace ex = entityx;
 #include "../Events/CCollisionEvent.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
+#include "../Extensions/Collision.h"
 
 #include "CCollisionTrackingSystem.h"
 
@@ -27,8 +28,6 @@ void CCollisionTrackingSystem::update(ex::EntityManager& entities, ex::EventMana
 
 		if (entityTag != ObjectTypes::Map && entityTag != ObjectTypes::Camera)
 		{
-			sf::FloatRect entityGlobalBounds = entityRenderingComponent->getGlobalBounds();
-
 			ex::ComponentHandle<CRenderingComponent> nearbyEntityRenderingComponent;
 			ex::ComponentHandle<CTagComponent> nearbyEntityTagComponent;
 
@@ -40,9 +39,10 @@ void CCollisionTrackingSystem::update(ex::EntityManager& entities, ex::EventMana
 
 				if (entityId != nearbyEntityId && nearbyEntityTag != ObjectTypes::Map && nearbyEntityTag != ObjectTypes::Camera)
 				{
-					sf::FloatRect nearbyEntityGlobalBounds = nearbyEntityRenderingComponent->getGlobalBounds();
+					sf::Sprite entitySprite = *entityRenderingComponent.get();
+					sf::Sprite nearbyEntitySprite = *nearbyEntityRenderingComponent.get();
 
-					if (entityGlobalBounds.intersects(nearbyEntityGlobalBounds))
+					if (Collision::BoundingBoxTest(entitySprite, nearbyEntitySprite))
 					{
 						events.emit<CCollisionEvent>(entity, nearbyEntity);
 					}

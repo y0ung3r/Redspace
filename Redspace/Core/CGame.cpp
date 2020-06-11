@@ -34,20 +34,21 @@ namespace ex = entityx;
 CGame::CGame(sf::RenderWindow& target)
 	: target(target)
 {
-	CVectorHelper vectorHelper;
 	CAssetsHelper::getInstance().configure(true);
+
+	CVectorHelper vectorHelper;
 
 	IObjectFactory* mapFactory = new CMapFactory(this->entities, this->target);
 	ex::Entity::Id mapId = mapFactory->create("bg_light");
 
 	IObjectFactory* cameraFactory = new CCameraFactory(this->entities, this->target);
 	ex::Entity::Id cameraId = cameraFactory->create();
-	
+
 	IObjectFactory* playerFactory = new CPlayerFactory(this->entities, this->target);
 	ex::Entity::Id playerId = playerFactory->create("player");
 
 	IObjectFactory* bulletFactory = new CBulletFactory(vectorHelper, this->entities, this->target);
-	
+
 	std::shared_ptr<CRenderingSystem> renderingSystem = this->systems.add<CRenderingSystem>(this->target);
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target);
 	std::shared_ptr<CCameraSystem> cameraSystem = this->systems.add<CCameraSystem>(this->target, cameraId, mapId, playerId);
