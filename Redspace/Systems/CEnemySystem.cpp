@@ -15,8 +15,8 @@ namespace ex = entityx;
 
 #include "CEnemySystem.h"
 
-CEnemySystem::CEnemySystem(IObjectFactory& enemyFactory, sf::RenderWindow& target, ex::Entity::Id mapId, int maxCount)
-	: enemyFactory(enemyFactory), target(target), mapId(mapId), maxCount(maxCount)
+CEnemySystem::CEnemySystem(CGame& game, IObjectFactory& enemyFactory, sf::RenderWindow& target, int maxCount)
+	: game(game), enemyFactory(enemyFactory), target(target), maxCount(maxCount)
 { }
 
 void CEnemySystem::configure(ex::EventManager & events)
@@ -32,7 +32,8 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 	unsigned int seed = static_cast<unsigned int>(time);
 	std::default_random_engine randomGenerator(seed);
 
-	ex::Entity map = entities.get(this->mapId);
+	ex::Entity::Id mapId = this->game.getMapId();
+	ex::Entity map = entities.get(mapId);
 	ex::ComponentHandle<CRenderingComponent> mapRenderComponent = map.component<CRenderingComponent>();
 	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
 

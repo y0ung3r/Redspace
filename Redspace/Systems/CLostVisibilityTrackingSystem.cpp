@@ -9,13 +9,14 @@ namespace ex = entityx;
 
 #include "CLostVisibilityTrackingSystem.h"
 
-CLostVisibilityTrackingSystem::CLostVisibilityTrackingSystem(sf::RenderWindow& target, ex::Entity::Id mapId)
-	: target(target), mapId(mapId)
+CLostVisibilityTrackingSystem::CLostVisibilityTrackingSystem(CGame& game, sf::RenderWindow& target)
+	: game(game), target(target)
 { }
 
 void CLostVisibilityTrackingSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	ex::Entity map = entities.get(this->mapId);
+	ex::Entity::Id mapId = this->game.getMapId();
+	ex::Entity map = entities.get(mapId);
 
 	ex::ComponentHandle<CRenderingComponent> mapRenderingComponent = map.component<CRenderingComponent>();
 	sf::FloatRect mapGlobalBounds = mapRenderingComponent->getGlobalBounds();

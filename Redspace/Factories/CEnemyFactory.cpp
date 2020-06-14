@@ -13,6 +13,7 @@ namespace ex = entityx;
 #include "../Components/CWeaponComponent.h"
 #include "../Components/CHealthComponent.h"
 #include "../Components/ÑEndpointMovementComponent.h"
+#include "../Components/CViewRadiusComponent.h"
 
 #include "CEnemyFactory.h"
 
@@ -53,6 +54,9 @@ ex::Entity::Id CEnemyFactory::create(std::string textureKey, sf::Vector2f positi
 
 	CHealthComponent enemyHealthComponent(100.0f);
 	enemy.assign<CHealthComponent>(enemyHealthComponent);
+
+	CViewRadiusComponent enemyViewRadiusComponent(500.0f);
+	enemy.assign<CViewRadiusComponent>(enemyViewRadiusComponent);
 
 	return enemy.id();
 }

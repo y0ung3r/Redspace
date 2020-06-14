@@ -4,7 +4,6 @@
 
 namespace ex = entityx;
 
-#include "../Core/CGame.h"
 #include "../Helpers/CVectorHelper.h"
 #include "../Enums/ObjectTypes.h"
 #include "../Components/CRenderingComponent.h"
@@ -15,8 +14,8 @@ namespace ex = entityx;
 
 #include "CMovementSystem.h"
 
-CMovementSystem::CMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id mapId)
-	: vectorHelper(vectorHelper), target(target), mapId(mapId)
+CMovementSystem::CMovementSystem(CGame& game, CVectorHelper& vectorHelper, sf::RenderWindow& target)
+	: game(game), vectorHelper(vectorHelper), target(target)
 { }
 
 void CMovementSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
@@ -25,7 +24,8 @@ void CMovementSystem::update(ex::EntityManager& entities, ex::EventManager& even
 	unsigned int seed = static_cast<unsigned int>(time);
 	std::default_random_engine randomGenerator(seed);
 
-	ex::Entity map = entities.get(this->mapId);
+	ex::Entity::Id mapId = this->game.getMapId();
+	ex::Entity map = entities.get(mapId);
 	ex::ComponentHandle<CRenderingComponent> mapRenderComponent = map.component<CRenderingComponent>();
 	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
 

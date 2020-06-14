@@ -1,19 +1,21 @@
 #ifndef CENEMYSYSTEM_H
 #define CENEMYSYSTEM_H
 
+#include "../Core/CGame.h"
+
 class CEnemySystem : public ex::System<CEnemySystem>, public ex::Receiver<CEnemySystem>
 {
 private:
+	CGame& game;
+
 	IObjectFactory& enemyFactory;
 
 	sf::RenderWindow& target;
 
-	ex::Entity::Id mapId;
-
 	int maxCount;
 
 public:
-	explicit CEnemySystem(IObjectFactory& enemyFactory, sf::RenderWindow& target, ex::Entity::Id mapId, int count);
+	explicit CEnemySystem(CGame& game, IObjectFactory& enemyFactory, sf::RenderWindow& target, int count);
 
 	void configure(ex::EventManager& events) override;
 

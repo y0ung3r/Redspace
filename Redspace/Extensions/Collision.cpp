@@ -113,11 +113,26 @@ namespace Collision
 		return sf::Vector2f(AABB.left + AABB.width / 2.f, AABB.top + AABB.height / 2.f);
 	}
 
+	// made by y0ung3r
+	sf::Vector2f GetCircleShapeCenter(const sf::CircleShape& circleShape)
+	{
+		sf::FloatRect AABB = circleShape.getGlobalBounds();
+		return sf::Vector2f(AABB.left + AABB.width / 2.f, AABB.top + AABB.height / 2.f);
+	}
+
 	sf::Vector2f GetSpriteSize(const sf::Sprite& Object)
 	{
 		sf::IntRect OriginalSize = Object.getTextureRect();
 		sf::Vector2f Scale = Object.getScale();
 		return sf::Vector2f(OriginalSize.width * Scale.x, OriginalSize.height * Scale.y);
+	}
+
+	// made by y0ung3r
+	sf::Vector2f GetCircleShapeSize(const sf::CircleShape& circleShape)
+	{
+		float originalSize = circleShape.getRadius() * 2;
+		sf::Vector2f scale = circleShape.getScale();
+		return sf::Vector2f(originalSize * scale.x, originalSize * scale.y);
 	}
 
 	bool CircleTest(const sf::Sprite& Object1, const sf::Sprite& Object2) {
@@ -129,6 +144,19 @@ namespace Collision
 		sf::Vector2f Distance = GetSpriteCenter(Object1) - GetSpriteCenter(Object2);
 
 		return (Distance.x * Distance.x + Distance.y * Distance.y <= (Radius1 + Radius2) * (Radius1 + Radius2));
+	}
+
+	// made by y0ung3r
+	bool CircleTest(const sf::Sprite& object, const sf::CircleShape& circleShape)
+	{
+		sf::Vector2f objectSize = GetSpriteSize(object);
+		sf::Vector2f shapeSize = GetCircleShapeSize(circleShape);
+		float objectRadius = (objectSize.x + objectSize.y) / 4;
+		float shapeRadius = (shapeSize.x + shapeSize.y) / 4;
+
+		sf::Vector2f distance = GetSpriteCenter(object) - GetCircleShapeCenter(circleShape);
+
+		return (distance.x * distance.x + distance.y * distance.y <= (objectRadius + shapeRadius) * (objectRadius + shapeRadius));
 	}
 
 	class OrientedBoundingBox // Used in the BoundingBoxTest

@@ -3,7 +3,7 @@
 
 namespace ex = entityx;
 
-#include "../Core/CGame.h"
+#include "../Extensions/Collision.h"
 #include "../Helpers/CAssetsHelper.h"
 #include "../Helpers/CVectorHelper.h"
 #include "../Enums/ObjectTypes.h"
@@ -15,15 +15,21 @@ namespace ex = entityx;
 #include "../Components/CMovementComponent.h"
 #include "../Components/CDirectionMovementComponent.h"
 #include "../Components/CWeaponComponent.h"
+#include "../Components/CViewRadiusComponent.h"
 
 #include "CShootingSystem.h"
 
-CShootingSystem::CShootingSystem(IObjectFactory& bulletFactory, sf::RenderWindow& target)
-	: bulletFactory(bulletFactory), target(target)
+CShootingSystem::CShootingSystem(CGame& game, CVectorHelper& vectorHelper, IObjectFactory& bulletFactory, sf::RenderWindow& target)
+	: game(game), vectorHelper(vectorHelper), bulletFactory(bulletFactory), target(target)
 { }
 
 void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
+	ex::Entity::Id playerId = this->game.getPlayerId();
+	ex::Entity player = entities.get(playerId);
+	ex::ComponentHandle<CRenderingComponent> playerRenderingComponent = player.component<CRenderingComponent>();
+	CRenderingComponent playerSprite = *playerRenderingComponent.get();
+
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 	ex::ComponentHandle<CTagComponent> entityTagComponent;
 	ex::ComponentHandle<CWeaponComponent> entityWeaponComponent;
@@ -34,6 +40,7 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 		bool canShot = entityWeaponComponent->canShot();
 
 		std::string textureKey;
+		sf::Vector2f entityOrigin = entityRenderingComponent->getOrigin();
 		sf::Vector2f entityPosition = entityRenderingComponent->getPosition();
 		float entityAngleRotate = entityRenderingComponent->getRotation();
 
@@ -54,7 +61,28 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 		{
 			textureKey = "bullet_red";
 
+			ex::ComponentHandle<CViewRadiusComponent> viewRadiusComponent = entity.component<CViewRadiusComponent>();
 
+			float viewRadius = viewRadiusComponent->getViewRadius();
+
+			sf::CircleShape viewRadiusCircle;
+
+			sf::Vector2f viewRadiusCircleOrigin = sf::Vector2f(viewRadius, viewRadius);
+			viewRadiusCircle.setOrigin(viewRadiusCircleOrigin);
+
+			viewRadiusCircle.setRadius(viewRadius);
+			viewRadiusCircle.setPosition(entityPosition);
+			viewRadiusCircle.setRotation(entityAngleRotate);
+
+			if (Collision::CircleTest(playerSprite, viewRadiusCircle))
+			{
+				sf::Vector2f playerPosition = playerRenderingComponent->getPosition();
+				entityAngleRotate = vectorHelper.getAngleInDegrees(playerPosition, entityPosition);
+
+				entityRenderingComponent->setRotation(entityAngleRotate);
+
+				canAttack = true;
+			}
 		}
 		break;
 

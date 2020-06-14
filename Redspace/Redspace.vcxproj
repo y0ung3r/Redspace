@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\CViewRadiusComponent.cpp" />
     <ClCompile Include="Events\CMouseExitEvent.cpp" />
     <ClCompile Include="Systems\CHealthSystem.cpp" />
     <ClCompile Include="Components\CHealthComponent.cpp" />
@@ -61,6 +62,7 @@
     <ClCompile Include="Components\СEndpointMovementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components\CViewRadiusComponent.h" />
     <ClInclude Include="Events\CMouseExitEvent.h" />
     <ClInclude Include="Systems\CHealthSystem.h" />
     <ClInclude Include="Components\CHealthComponent.h" />
@@ -127,6 +129,7 @@
     <Image Include="Resources\Textures\Background (light).png" />
   </ItemGroup>
   <ItemGroup>
+    <Font Include="Resources\Fonts\KenVector.ttf" />
     <Font Include="Resources\Fonts\Tahoma.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

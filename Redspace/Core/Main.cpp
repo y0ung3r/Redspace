@@ -19,9 +19,6 @@ int main()
 		"Redspace"
 	);
 
-	window.setFramerateLimit(120);
-	window.setVerticalSyncEnabled(false);
-
 	CGame game(window);
 
 	game.setGameState(GameStates::Unpaused);

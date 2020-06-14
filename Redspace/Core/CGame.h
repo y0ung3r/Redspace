@@ -3,14 +3,32 @@
 
 enum GameStates;
 
+#include "../Interfaces/IObjectFactory.h"
+
 /* Основной класс игры */
-class CGame : public ex::EntityX
+class CGame : public ex::EntityX, public ex::Receiver<CGame>
 {
 private:
 	/* Ссылка на окно */
 	sf::RenderWindow& target;
 
 	float fps;
+
+	IObjectFactory* mapFactory;
+
+	IObjectFactory* cameraFactory;
+
+	IObjectFactory* playerFactory;
+
+	IObjectFactory* bulletFactory;
+
+	IObjectFactory* enemyFactory;
+
+	ex::Entity::Id mapId;
+
+	ex::Entity::Id cameraId;
+
+	ex::Entity::Id playerId;
 
 	/* Текущее игровое состояние */
 	GameStates gameState;
@@ -27,6 +45,12 @@ public:
 
 	float getFPS();
 
+	ex::Entity::Id getCameraId();
+
+	ex::Entity::Id getMapId();
+
+	ex::Entity::Id getPlayerId();
+
 	/* Задает игровое состояние */
 	void setGameState(GameStates gameState);
 
@@ -35,6 +59,8 @@ public:
 
 	/* Возвращает координаты мыши */
 	static const sf::Vector2f& getMousePositionInCoords(sf::RenderWindow& target);
+
+	void receive(const ex::EntityDestroyedEvent& entityDestroyedEvent);
 };
 
 #endif

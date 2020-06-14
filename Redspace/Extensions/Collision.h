@@ -72,6 +72,13 @@ namespace Collision {
 	bool CircleTest(const sf::Sprite& Object1, const sf::Sprite& Object2);
 
 	//////
+	/// Test for collision using circle collision dection
+	/// Radius is averaged from the dimensions of the sprite so
+	/// roughly circular objects will be much more accurate
+	//////
+	bool CircleTest(const sf::Sprite& object, const sf::CircleShape& circleShape);
+
+	//////
 	/// Test for bounding box collision using the Separating Axis Theorem
 	/// Supports scaling and rotation
 	//////
