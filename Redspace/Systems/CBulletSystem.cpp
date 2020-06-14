@@ -1,3 +1,4 @@
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
@@ -24,34 +25,38 @@ void CBulletSystem::configure(ex::EventManager& events)
 }
 
 void CBulletSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
-{ }
+{
+	for (ex::Entity entity : this->listOfDestruction)
+	{
+		entity.destroy();
+	}
+
+	this->listOfDestruction.clear();
+}
 
 void CBulletSystem::receive(const CCollisionEvent& collisionEvent)
 {
-	ex::Entity firstEntity = collisionEvent.getFirstEntity();
-	ex::ComponentHandle<CTagComponent> firstEntityTagComponent = firstEntity.component<CTagComponent>();
-	ObjectTypes firstEntityType = firstEntityTagComponent->getTag();
-
-	ex::Entity secondEntity = collisionEvent.getSecondEntity();
-	ex::ComponentHandle<CTagComponent> secondEntityTagComponent = secondEntity.component<CTagComponent>();
-	ObjectTypes secondEntityType = secondEntityTagComponent->getTag();
+	ObjectTypes entityType = collisionEvent.getEntityType();
+	ObjectTypes nearbyEntityType = collisionEvent.getNearbyEntityType();
 
 	ex::Entity object, bullet;
 
-	if (firstEntityType != ObjectTypes::Bullet && secondEntityType == ObjectTypes::Bullet)
+	if (entityType != ObjectTypes::Bullet && nearbyEntityType == ObjectTypes::Bullet)
 	{
-		object = firstEntity;
-		bullet = secondEntity;
+		object = collisionEvent.getEntity();
+		bullet = collisionEvent.getNearbyEntity();
 	}
-	else if (firstEntityType == ObjectTypes::Bullet && secondEntityType != ObjectTypes::Bullet)
+	else if (entityType == ObjectTypes::Bullet && nearbyEntityType != ObjectTypes::Bullet)
 	{
-		object = secondEntity;
-		bullet = firstEntity;
+		object = collisionEvent.getNearbyEntity();
+		bullet = collisionEvent.getEntity();
 	}
 
-	if (object && bullet)
+	bool canBeDestroyed = std::find(this->listOfDestruction.begin(), this->listOfDestruction.end(), bullet) == this->listOfDestruction.end();
+
+	if (object && bullet && canBeDestroyed)
 	{
-		bullet.destroy();
+		this->listOfDestruction.push_back(bullet);
 	}
 }
 
@@ -59,24 +64,37 @@ void CBulletSystem::receive(const CLostVisibilityEvent& lostVisibilityEvent)
 {
 	ex::Entity lostObject = lostVisibilityEvent.getLostObject();
 
+	if (!lostObject)
+	{
+		return;
+	}
+
 	ex::ComponentHandle<CTagComponent> lostObjectTagComponent = lostObject.component<CTagComponent>();
 	ObjectTypes lostObjectTag = lostObjectTagComponent->getTag();
 
-	if (lostObjectTag == ObjectTypes::Bullet)
+	bool canBeDestroyed = std::find(this->listOfDestruction.begin(), this->listOfDestruction.end(), lostObject) == this->listOfDestruction.end();
+
+	if (lostObjectTag == ObjectTypes::Bullet && canBeDestroyed)
 	{
-		lostObject.destroy();
+		this->listOfDestruction.push_back(lostObject);
 	}
 }
 
 void CBulletSystem::receive(const ex::EntityDestroyedEvent& entityDestroyedEvent)
 {
-	ex::Entity destoyedObject = entityDestroyedEvent.entity;
+	// Перенести в отдельную систему?
+	ex::Entity destroyedObject = entityDestroyedEvent.entity;
 
-	ex::ComponentHandle<CTagComponent> destoyedObjectTagComponent = destoyedObject.component<CTagComponent>();
-	ObjectTypes destoyedObjectTag = destoyedObjectTagComponent->getTag();
-
-	if (destoyedObjectTag == ObjectTypes::Bullet)
+	if (!destroyedObject)
 	{
-		// Отобразить взрыв?
+		return;
+	}
+
+	ex::ComponentHandle<CTagComponent> destroyedObjectTagComponent = destroyedObject.component<CTagComponent>();
+	ObjectTypes destroyedObjectTag = destroyedObjectTagComponent->getTag();
+
+	if (destroyedObjectTag == ObjectTypes::Bullet)
+	{
+		// Отображать взрыв здесь?
 	}
 }

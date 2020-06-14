@@ -10,6 +10,8 @@ private:
 	/* Ссылка на окно */
 	sf::RenderWindow& target;
 
+	float fps;
+
 	/* Текущее игровое состояние */
 	GameStates gameState;
 
@@ -21,7 +23,9 @@ public:
 	void pollEvent(sf::Event event);
 
 	/* Обновляет игру */
-	void update(ex::TimeDelta timeDelta);
+	void update(ex::TimeDelta timeDelta, sf::Time elapsedTime);
+
+	float getFPS();
 
 	/* Задает игровое состояние */
 	void setGameState(GameStates gameState);

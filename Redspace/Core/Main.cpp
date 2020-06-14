@@ -27,7 +27,6 @@ int main()
 	game.setGameState(GameStates::Unpaused);
 
 	sf::Clock clock;
-	ex::TimeDelta timeDelta;
 
 	while (window.isOpen())
 	{
@@ -35,12 +34,14 @@ int main()
 
 		game.pollEvent(event);
 
+		sf::Time elapsedTime = clock.getElapsedTime();
+		ex::TimeDelta timeDelta = clock.restart().asSeconds();
+
 		if (window.hasFocus())
 		{
 			window.clear(sf::Color::White);
 
-			timeDelta = clock.restart().asSeconds();
-			game.update(timeDelta);
+			game.update(timeDelta, elapsedTime);
 
 			window.display();
 		}

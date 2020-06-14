@@ -5,6 +5,7 @@ namespace ex = entityx;
 
 #include "../Events/CLostVisibilityEvent.h"
 #include "../Components/CRenderingComponent.h"
+#include "../Extensions/Collision.h"
 
 #include "CLostVisibilityTrackingSystem.h"
 
@@ -23,9 +24,10 @@ void CLostVisibilityTrackingSystem::update(ex::EntityManager& entities, ex::Even
 
 	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent))
 	{
-		sf::FloatRect entityGlobalBounds = entityRenderingComponent->getGlobalBounds();
+		sf::Sprite mapSprite = *mapRenderingComponent.get();
+		sf::Sprite entitySprite = *entityRenderingComponent.get();
 
-		if (!mapGlobalBounds.intersects(entityGlobalBounds))
+		if (entity && !Collision::BoundingBoxTest(mapSprite, entitySprite))
 		{
 			events.emit<CLostVisibilityEvent>(entity);
 		}

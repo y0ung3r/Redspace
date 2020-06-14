@@ -10,6 +10,7 @@ namespace ex = entityx;
 #include "../Enums/ObjectTypes.h"
 #include "../Events/CGameStateChangedEvent.h"
 #include "../Events/CMouseHoverEvent.h"
+#include "../Events/CMouseExitEvent.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
 
@@ -25,6 +26,7 @@ void CCursorSystem::configure(ex::EventManager& events)
 {
 	events.subscribe<CGameStateChangedEvent>(*this);
 	events.subscribe<CMouseHoverEvent>(*this);
+	events.subscribe<CMouseExitEvent>(*this);
 }
 
 void CCursorSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
@@ -51,6 +53,12 @@ void CCursorSystem::receive(const CGameStateChangedEvent& gameStateChangedEvent)
 void CCursorSystem::receive(const CMouseHoverEvent& mouseHoverEvent)
 {
 	ex::Entity hoveredObject = mouseHoverEvent.getHoveredObject();
+
+	if (!hoveredObject)
+	{
+		return;
+	}
+
 	ex::ComponentHandle<CTagComponent> hoveredObjectTagComponent = hoveredObject.component<CTagComponent>();
 
 	ObjectTypes hoveredObjectTag = hoveredObjectTagComponent->getTag();
@@ -69,4 +77,9 @@ void CCursorSystem::receive(const CMouseHoverEvent& mouseHoverEvent)
 		this->cursor = this->cursors["csr_crosshair"];
 		break;
 	}
+}
+
+void CCursorSystem::receive(const CMouseExitEvent& mouseExitEvent)
+{
+	this->cursor = this->cursors["csr_crosshair"];
 }

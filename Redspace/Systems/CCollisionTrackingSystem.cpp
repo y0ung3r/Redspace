@@ -20,6 +20,8 @@ void CCollisionTrackingSystem::update(ex::EntityManager& entities, ex::EventMana
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 	ex::ComponentHandle<CTagComponent> entityTagComponent;
 
+	int entityIndex = 0;
+
 	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent, entityTagComponent))
 	{
 		ex::Entity::Id entityId = entity.id();
@@ -31,23 +33,32 @@ void CCollisionTrackingSystem::update(ex::EntityManager& entities, ex::EventMana
 			ex::ComponentHandle<CRenderingComponent> nearbyEntityRenderingComponent;
 			ex::ComponentHandle<CTagComponent> nearbyEntityTagComponent;
 
+			int nearbyEntityIndex = 0;
+
 			for (ex::Entity nearbyEntity : entities.entities_with_components(nearbyEntityRenderingComponent, nearbyEntityTagComponent))
 			{
-				ex::Entity::Id nearbyEntityId = nearbyEntity.id();
-
-				ObjectTypes nearbyEntityTag = nearbyEntityTagComponent->getTag();
-
-				if (entityId != nearbyEntityId && nearbyEntityTag != ObjectTypes::Map && nearbyEntityTag != ObjectTypes::Camera)
+				if (entityIndex <= nearbyEntityIndex)
 				{
-					sf::Sprite entitySprite = *entityRenderingComponent.get();
-					sf::Sprite nearbyEntitySprite = *nearbyEntityRenderingComponent.get();
+					ex::Entity::Id nearbyEntityId = nearbyEntity.id();
 
-					if (Collision::BoundingBoxTest(entitySprite, nearbyEntitySprite))
+					ObjectTypes nearbyEntityTag = nearbyEntityTagComponent->getTag();
+
+					if (entity && nearbyEntity && entityId != nearbyEntityId && nearbyEntityTag != ObjectTypes::Map && nearbyEntityTag != ObjectTypes::Camera)
 					{
-						events.emit<CCollisionEvent>(entity, nearbyEntity);
+						sf::Sprite entitySprite = *entityRenderingComponent.get();
+						sf::Sprite nearbyEntitySprite = *nearbyEntityRenderingComponent.get();
+
+						if (Collision::BoundingBoxTest(entitySprite, nearbyEntitySprite))
+						{
+							events.emit<CCollisionEvent>(entity, entityTag, nearbyEntity, nearbyEntityTag);
+						}
 					}
 				}
+
+				nearbyEntityIndex++;
 			}
+
+			entityIndex++;
 		}
 	}
 }

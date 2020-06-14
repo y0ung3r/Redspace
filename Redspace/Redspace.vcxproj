@@ -19,6 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Events\CMouseExitEvent.cpp" />
+    <ClCompile Include="Systems\CHealthSystem.cpp" />
+    <ClCompile Include="Components\CHealthComponent.cpp" />
+    <ClCompile Include="Factories\CEnemyFactory.cpp" />
+    <ClCompile Include="Systems\CEnemySystem.cpp" />
     <ClCompile Include="Extensions\Collision.cpp" />
     <ClCompile Include="Events\CShotFiredEvent.cpp" />
     <ClCompile Include="Factories\CPlayerFactory.cpp" />
@@ -53,8 +58,14 @@
     <ClCompile Include="Systems\CCameraSystem.cpp" />
     <ClCompile Include="Systems\CCursorSystem.cpp" />
     <ClCompile Include="Systems\CRenderingSystem.cpp" />
+    <ClCompile Include="Components\СEndpointMovementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Events\CMouseExitEvent.h" />
+    <ClInclude Include="Systems\CHealthSystem.h" />
+    <ClInclude Include="Components\CHealthComponent.h" />
+    <ClInclude Include="Factories\CEnemyFactory.h" />
+    <ClInclude Include="Systems\CEnemySystem.h" />
     <ClInclude Include="Extensions\Collision.h" />
     <ClInclude Include="Events\CShotFiredEvent.h" />
     <ClInclude Include="Factories\CPlayerFactory.h" />
@@ -89,9 +100,11 @@
     <ClInclude Include="Systems\CCameraSystem.h" />
     <ClInclude Include="Systems\CCursorSystem.h" />
     <ClInclude Include="Systems\CRenderingSystem.h" />
+    <ClInclude Include="Components\СEndpointMovementComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Bullet (blue).png" />
+    <Image Include="Resources\Sprites\Bullet (hit).png" />
     <Image Include="Resources\Sprites\Bullet (red).png" />
     <Image Include="Resources\Sprites\Cursor %28crosshair%29.png" />
     <Image Include="Resources\Sprites\Cursor (crosshair, attack).png" />
@@ -112,6 +125,9 @@
     <Image Include="Resources\Textures\Background (blue).png" />
     <Image Include="Resources\Textures\Background (dark).png" />
     <Image Include="Resources\Textures\Background (light).png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Corbel.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

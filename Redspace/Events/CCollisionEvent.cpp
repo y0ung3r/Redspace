@@ -2,18 +2,30 @@
 
 namespace ex = entityx;
 
+#include "../Enums/ObjectTypes.h"
+
 #include "CCollisionEvent.h"
 
-CCollisionEvent::CCollisionEvent(const ex::Entity& firstEntity, const ex::Entity& secondEntity) 
-	: firstEntity(firstEntity), secondEntity(secondEntity)
+CCollisionEvent::CCollisionEvent(const ex::Entity& entity, ObjectTypes entityType, const ex::Entity& nearbyEntity, ObjectTypes nearbyEntityType)
+	: entity(entity), entityType(entityType), nearbyEntity(nearbyEntity), nearbyEntityType(nearbyEntityType)
 { }
 
-const ex::Entity& CCollisionEvent::getFirstEntity() const
+const ex::Entity& CCollisionEvent::getEntity() const
 {
-	return this->firstEntity;
+	return this->entity;
 }
 
-const ex::Entity& CCollisionEvent::getSecondEntity() const
+ObjectTypes CCollisionEvent::getEntityType() const
 {
-	return this->secondEntity;
+	return this->entityType;
+}
+
+const ex::Entity& CCollisionEvent::getNearbyEntity() const
+{
+	return this->nearbyEntity;
+}
+
+ObjectTypes CCollisionEvent::getNearbyEntityType() const
+{
+	return this->nearbyEntityType;
 }

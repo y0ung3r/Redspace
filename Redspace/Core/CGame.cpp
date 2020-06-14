@@ -1,3 +1,5 @@
+#include <sstream>
+#include <iomanip>
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
@@ -11,6 +13,7 @@ namespace ex = entityx;
 #include "../Factories/CCameraFactory.h"
 #include "../Factories/CPlayerFactory.h"
 #include "../Factories/CBulletFactory.h"
+#include "../Factories/CEnemyFactory.h"
 #include "../Events/CSingleMouseInputEvent.h"
 #include "../Events/CSingleKeyInputEvent.h"
 #include "../Events/CGameStateChangedEvent.h"
@@ -28,6 +31,8 @@ namespace ex = entityx;
 #include "../Systems/CMovementSystem.h"
 #include "../Systems/CBulletSystem.h"
 #include "../Systems/CShootingSystem.h"
+#include "../Systems/CEnemySystem.h"
+#include "../Systems/CHealthSystem.h"
 
 #include "CGame.h"
 
@@ -48,6 +53,7 @@ CGame::CGame(sf::RenderWindow& target)
 	ex::Entity::Id playerId = playerFactory->create("player");
 
 	IObjectFactory* bulletFactory = new CBulletFactory(vectorHelper, this->entities, this->target);
+	IObjectFactory* enemyFactory = new CEnemyFactory(this->entities, this->target);
 
 	std::shared_ptr<CRenderingSystem> renderingSystem = this->systems.add<CRenderingSystem>(this->target);
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target);
@@ -55,9 +61,11 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CCollisionTrackingSystem> collisionTrackingSystem = this->systems.add<CCollisionTrackingSystem>(this->target);
 	std::shared_ptr<CMouseHoverTrackingSystem> mouseHoverTrackingSystem = this->systems.add<CMouseHoverTrackingSystem>(this->target);
 	std::shared_ptr<CLostVisibilityTrackingSystem> lostVisibilityTrackingSystem = this->systems.add<CLostVisibilityTrackingSystem>(this->target, mapId);
-	std::shared_ptr<CMovementSystem> MovementSystem = this->systems.add<CMovementSystem>(vectorHelper, this->target);
+	std::shared_ptr<CMovementSystem> movementSystem = this->systems.add<CMovementSystem>(vectorHelper, this->target);
 	std::shared_ptr<CBulletSystem> bulletSystem = this->systems.add<CBulletSystem>(this->target);
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*bulletFactory, this->target);
+	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*enemyFactory, this->target, mapId, 50);
+	std::shared_ptr<CHealthSystem> healthSystem = this->systems.add<CHealthSystem>(this->target);
 
 	this->systems.configure();
 }
@@ -89,9 +97,38 @@ void CGame::pollEvent(sf::Event event)
 	}
 }
 
-void CGame::update(ex::TimeDelta timeDelta)
+void CGame::update(ex::TimeDelta timeDelta, sf::Time elapsedTime)
 {
+	this->fps = 1.0f / elapsedTime.asSeconds();
 	this->systems.update_all(timeDelta);
+
+	// Позже перенести в правильное место!
+	sf::Font font = CAssetsHelper::getInstance().getFont();
+
+	std::ostringstream stream;
+
+	stream << "FPS: ";
+	stream << std::fixed;
+	stream << std::setprecision(2);
+	stream << this->fps;
+
+	std::string line = stream.str();
+	sf::Text text(line, font, 16);
+
+	sf::View targetView = this->target.getView();
+	sf::Vector2f targetCenter = targetView.getCenter();
+	sf::Vector2f targetSize = targetView.getSize();
+
+	float left = targetCenter.x - targetSize.x / 2 + 10.0f;
+	float top = targetCenter.y - targetSize.y / 2 + 10.0f;
+	text.setPosition(left, top);
+	
+	this->target.draw(text);
+}
+
+float CGame::getFPS()
+{
+	return this->fps;
 }
 
 void CGame::setGameState(GameStates gameState)

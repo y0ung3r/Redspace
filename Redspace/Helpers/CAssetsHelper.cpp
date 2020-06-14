@@ -12,6 +12,8 @@ CAssetsHelper& CAssetsHelper::getInstance()
 
 void CAssetsHelper::configure(bool isTexturesSmooth)
 {
+	this->font.loadFromFile("Resources/Fonts/Corbel.ttf");
+
 	sf::Texture* mapBlackTexture = new sf::Texture();
 	mapBlackTexture->loadFromFile("Resources/Textures/Background (black).png");
 	mapBlackTexture->setRepeated(true);
@@ -152,6 +154,16 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	bulletRedTexture->loadFromFile("Resources/Sprites/Bullet (red).png");
 	bulletRedTexture->setSmooth(isTexturesSmooth);
 	this->bulletsTextures.insert(std::pair<std::string, sf::Texture*>("bullet_red", bulletRedTexture));
+
+	sf::Texture* bulletHitTexture = new sf::Texture();
+	bulletHitTexture->loadFromFile("Resources/Sprites/Bullet (hit).png");
+	bulletHitTexture->setSmooth(isTexturesSmooth);
+	this->bulletsTextures.insert(std::pair<std::string, sf::Texture*>("bullet_hit", bulletHitTexture));
+}
+
+const sf::Font& CAssetsHelper::getFont()
+{
+	return this->font;
 }
 
 const std::map<std::string, sf::Texture*> CAssetsHelper::getMapTextures()

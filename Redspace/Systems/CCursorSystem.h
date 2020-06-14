@@ -3,6 +3,7 @@
 
 class CGameStateChangedEvent;
 class CMouseHoverEvent;
+class CMouseExitEvent;
 
 /* —истема, управл€юща€ логикой поведени€ курсора */
 class CCursorSystem : public ex::System<CCursorSystem>, public ex::Receiver<CCursorSystem>
@@ -27,6 +28,8 @@ public:
 	void receive(const CGameStateChangedEvent& gameStateChangedEvent);
 
 	void receive(const CMouseHoverEvent& mouseHoverEvent);
+
+	void receive(const CMouseExitEvent& mouseExitEvent);
 };
 
 #endif

@@ -6,6 +6,8 @@ class CMouseHoverTrackingSystem : public ex::System<CMouseHoverTrackingSystem>
 private:
 	sf::RenderWindow& target;
 
+	std::vector<ex::Entity> listOfHoveredObjects;
+
 public:
 	explicit CMouseHoverTrackingSystem(sf::RenderWindow& target);
 

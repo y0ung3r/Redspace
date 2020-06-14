@@ -22,7 +22,7 @@ void CRenderingSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 		CRenderingComponent instance = *entityRenderingComponent.get();
 		this->target.draw(instance);
 
-		ex::ComponentHandle<CTagComponent> entityTagComponent = entity.component<CTagComponent>();
+		/*ex::ComponentHandle<CTagComponent> entityTagComponent = entity.component<CTagComponent>();
 		ObjectTypes entityTag = entityTagComponent->getTag();
 
 		if (entityTag != ObjectTypes::Map && entityTag != ObjectTypes::Camera)
@@ -47,6 +47,6 @@ void CRenderingSystem::update(ex::EntityManager& entities, ex::EventManager& eve
 			rectangleShape.setOutlineColor(sf::Color::White);
 
 			this->target.draw(rectangleShape);
-		}
+		}*/
 	}
 }

@@ -6,18 +6,26 @@ class CCollisionEvent
 {
 private:
 	/* Первый объект, столкнувшийся со вторым */
-	ex::Entity firstEntity;
+	ex::Entity entity;
+
+	ObjectTypes entityType;
 
 	/* Второй объект, столкнувшийся с первым */
-	ex::Entity secondEntity;
+	ex::Entity nearbyEntity;
+
+	ObjectTypes nearbyEntityType;
 
 public:
 	/* Базовый конструктор */
-	CCollisionEvent(const ex::Entity& firstEntity, const ex::Entity& secondEntity);
+	CCollisionEvent(const ex::Entity& entity, ObjectTypes entityType, const ex::Entity& nearbyEntity, ObjectTypes nearbyEntityType);
 
-	const ex::Entity& getFirstEntity() const;
+	const ex::Entity& getEntity() const;
 
-	const ex::Entity& getSecondEntity() const;
+	ObjectTypes getEntityType() const;
+
+	const ex::Entity& getNearbyEntity() const;
+
+	ObjectTypes getNearbyEntityType() const;
 };
 
 #endif

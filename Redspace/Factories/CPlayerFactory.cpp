@@ -10,6 +10,7 @@ namespace ex = entityx;
 #include "../Components/CTagComponent.h"
 #include "../Components/CMovementComponent.h"
 #include "../Components/CWeaponComponent.h"
+#include "../Components/CHealthComponent.h"
 
 #include "CPlayerFactory.h"
 
@@ -57,11 +58,14 @@ ex::Entity::Id CPlayerFactory::create(std::string textureKey, sf::Vector2f posit
 	CTagComponent playerTagComponent(ObjectTypes::Player);
 	player.assign<CTagComponent>(playerTagComponent);
 
-	CMovementComponent* playerMovementComponent = new CMovementComponent(300.0f);
+	CMovementComponent* playerMovementComponent = new CMovementComponent(350.0f);
 	player.assign<CMovementComponent*>(playerMovementComponent);
 
-	CWeaponComponent playerWeaponComponent(25.0f);
+	CWeaponComponent playerWeaponComponent(15.0f);
 	player.assign<CWeaponComponent>(playerWeaponComponent);
+
+	CHealthComponent playerHealthComponent(100.0f);
+	player.assign<CHealthComponent>(playerHealthComponent);
 
 	return player.id();
 }
