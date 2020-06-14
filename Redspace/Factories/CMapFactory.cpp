@@ -25,7 +25,7 @@ ex::Entity::Id CMapFactory::create(std::string textureKey, sf::Vector2f position
 	mapRenderingComponent.setTexture(*mapTextures[textureKey]);
 
 	sf::VideoMode desktopVideoMode = sf::VideoMode::getDesktopMode();
-	sf::IntRect textureArea = sf::IntRect(0, 0, desktopVideoMode.width * 4, desktopVideoMode.height * 4);
+	sf::IntRect textureArea = sf::IntRect(0, 0, desktopVideoMode.width * 2, desktopVideoMode.height * 2);
 	mapRenderingComponent.setTextureRect(textureArea);
 
 	mapRenderingComponent.setPosition(position);
