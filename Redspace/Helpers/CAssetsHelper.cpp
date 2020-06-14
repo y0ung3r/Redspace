@@ -12,13 +12,13 @@ CAssetsHelper& CAssetsHelper::getInstance()
 
 void CAssetsHelper::configure(bool isTexturesSmooth)
 {
-	sf::Font kenVectorFont;
-	kenVectorFont.loadFromFile("Resources/Fonts/KenVector.ttf");
-	this->fonts.insert(std::pair<std::string, sf::Font>("kenVector", kenVectorFont));
+	sf::Font* kenVectorFont = new sf::Font();
+	kenVectorFont->loadFromFile("Resources/Fonts/KenVector.ttf");
+	this->fonts.insert(std::pair<std::string, sf::Font*>("kenVector", kenVectorFont));
 	
-	sf::Font tahomaFont;
-	tahomaFont.loadFromFile("Resources/Fonts/Tahoma.ttf");
-	this->fonts.insert(std::pair<std::string, sf::Font>("tahoma", tahomaFont));
+	sf::Font* tahomaFont = new sf::Font();
+	tahomaFont->loadFromFile("Resources/Fonts/Tahoma.ttf");
+	this->fonts.insert(std::pair<std::string, sf::Font*>("tahoma", tahomaFont));
 
 	sf::Texture* mapBlackTexture = new sf::Texture();
 	mapBlackTexture->loadFromFile("Resources/Textures/Background (black).png");
@@ -167,7 +167,7 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	this->bulletsTextures.insert(std::pair<std::string, sf::Texture*>("bullet_hit", bulletHitTexture));
 }
 
-const std::map<std::string, sf::Font>& CAssetsHelper::getFonts()
+const std::map<std::string, sf::Font*>& CAssetsHelper::getFonts()
 {
 	return this->fonts;
 }

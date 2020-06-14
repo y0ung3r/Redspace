@@ -1,5 +1,3 @@
-#include <sstream>
-#include <iomanip>
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
@@ -33,6 +31,7 @@ namespace ex = entityx;
 #include "../Systems/CShootingSystem.h"
 #include "../Systems/CEnemySystem.h"
 #include "../Systems/CHealthSystem.h"
+#include "../Systems/CUserInterfaceSystem.h"
 
 #include "CGame.h"
 
@@ -42,10 +41,10 @@ CGame::CGame(sf::RenderWindow& target)
 	this->target.setFramerateLimit(120);
 	this->target.setVerticalSyncEnabled(false);
 
-	this->events.subscribe<ex::EntityDestroyedEvent>(*this);
-
 	CAssetsHelper::getInstance().configure(true);
 	CVectorHelper vectorHelper;
+
+	this->SFMLRenderer = new CSFMLRenderer(this->target);
 
 	this->mapFactory = new CMapFactory(this->entities, this->target);
 	this->mapId = mapFactory->create("bg_light");
@@ -58,7 +57,7 @@ CGame::CGame(sf::RenderWindow& target)
 
 	this->bulletFactory = new CBulletFactory(vectorHelper, this->entities, this->target);
 	this->enemyFactory = new CEnemyFactory(this->entities, this->target);
-	
+
 	std::shared_ptr<CRenderingSystem> renderingSystem = this->systems.add<CRenderingSystem>(this->target);
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target);
 	std::shared_ptr<CCameraSystem> cameraSystem = this->systems.add<CCameraSystem>(*this, this->target);
@@ -70,6 +69,9 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*this, vectorHelper, *this->bulletFactory, this->target);
 	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*this, *this->enemyFactory, this->target, 25);
 	std::shared_ptr<CHealthSystem> healthSystem = this->systems.add<CHealthSystem>(this->target);
+	std::shared_ptr<CUserInterfaceSystem> userInterfaceSystem = this->systems.add<CUserInterfaceSystem>(*this, this->target);
+
+	this->events.subscribe<ex::EntityDestroyedEvent>(*this);
 
 	this->systems.configure();
 }
@@ -103,36 +105,18 @@ void CGame::pollEvent(sf::Event event)
 
 void CGame::update(ex::TimeDelta timeDelta, sf::Time elapsedTime)
 {
-	this->fps = 1.0f / elapsedTime.asSeconds();
 	this->systems.update_all(timeDelta);
-
-	// Позже перенести в правильное место!
-	sf::Font font = CAssetsHelper::getInstance().getFonts().at("tahoma");
-
-	std::ostringstream stream;
-
-	stream << "FPS: ";
-	stream << std::fixed;
-	stream << std::setprecision(2);
-	stream << this->fps;
-
-	std::string line = stream.str();
-	sf::Text text(line, font, 16);
-
-	sf::View targetView = this->target.getView();
-	sf::Vector2f targetCenter = targetView.getCenter();
-	sf::Vector2f targetSize = targetView.getSize();
-
-	float left = targetCenter.x - targetSize.x / 2 + 10.0f;
-	float top = targetCenter.y - targetSize.y / 2 + 10.0f;
-	text.setPosition(left, top);
-	
-	this->target.draw(text);
+	this->fps = 1.0f / elapsedTime.asSeconds();
 }
 
 float CGame::getFPS()
 {
 	return this->fps;
+}
+
+CSFMLRenderer* CGame::getSFMLRenderer()
+{
+	return this->SFMLRenderer;
 }
 
 ex::Entity::Id CGame::getCameraId()

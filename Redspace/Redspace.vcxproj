@@ -20,7 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CViewRadiusComponent.cpp" />
+    <ClCompile Include="Shapes\RoundedRectangleShape.cpp" />
+    <ClCompile Include="Systems\CUserInterfaceSystem.cpp" />
+    <ClCompile Include="Renderers\CSFMLRenderer.cpp" />
     <ClCompile Include="Events\CMouseExitEvent.cpp" />
+    <ClCompile Include="Extensions\StringFormat.cpp" />
     <ClCompile Include="Systems\CHealthSystem.cpp" />
     <ClCompile Include="Components\CHealthComponent.cpp" />
     <ClCompile Include="Factories\CEnemyFactory.cpp" />
@@ -63,7 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CViewRadiusComponent.h" />
+    <ClInclude Include="Shapes\RoundedRectangleShape.h" />
+    <ClInclude Include="Systems\CUserInterfaceSystem.h" />
+    <ClInclude Include="Renderers\CSFMLRenderer.h" />
     <ClInclude Include="Events\CMouseExitEvent.h" />
+    <ClInclude Include="Extensions\StringFormat.h" />
     <ClInclude Include="Systems\CHealthSystem.h" />
     <ClInclude Include="Components\CHealthComponent.h" />
     <ClInclude Include="Factories\CEnemyFactory.h" />

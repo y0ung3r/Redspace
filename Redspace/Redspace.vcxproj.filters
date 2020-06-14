@@ -138,6 +138,18 @@
     <ClCompile Include="Components\CViewRadiusComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Extensions\StringFormat.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CUserInterfaceSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\CSFMLRenderer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\RoundedRectangleShape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CCameraComponent.h">
@@ -263,6 +275,18 @@
     <ClInclude Include="Components\CViewRadiusComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Extensions\StringFormat.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CUserInterfaceSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\CSFMLRenderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\RoundedRectangleShape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Player.png">
@@ -336,6 +360,8 @@
     <Font Include="Resources\Fonts\Tahoma.ttf">
       <Filter>Файлы ресурсов</Filter>
     </Font>
-    <Font Include="Resources\Fonts\KenVector.ttf" />
+    <Font Include="Resources\Fonts\KenVector.ttf">
+      <Filter>Файлы ресурсов</Filter>
+    </Font>
   </ItemGroup>
 </Project>

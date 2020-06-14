@@ -46,7 +46,7 @@ ex::Entity::Id CEnemyFactory::create(std::string textureKey, sf::Vector2f positi
 	CTagComponent enemyTagComponent(ObjectTypes::Enemy);
 	enemy.assign<CTagComponent>(enemyTagComponent);
 	
-	CMovementComponent* enemyMovementComponent = new ÑEndpointMovementComponent(350.0f, position);
+	CMovementComponent* enemyMovementComponent = new ÑEndpointMovementComponent(250.0f, position);
 	enemy.assign<CMovementComponent*>(enemyMovementComponent);
 
 	CWeaponComponent enemyWeaponComponent(15.0f);

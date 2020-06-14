@@ -17,7 +17,7 @@ private:
 	CAssetsHelper& operator=(const CAssetsHelper&) = delete;
 
 	/* Шрифты */
-	std::map<std::string, sf::Font> fonts;
+	std::map<std::string, sf::Font*> fonts;
 
 	/* Текстуры для карты */
 	std::map<std::string, sf::Texture*> mapTextures;
@@ -47,7 +47,7 @@ public:
 	/* Инициализирует все ресурсы игры */
 	void configure(bool isTexturesSmooth = false);
 
-	const std::map<std::string, sf::Font>& getFonts();
+	const std::map<std::string, sf::Font*>& getFonts();
 
 	/* Возвращает текстуры карты */
 	const std::map<std::string, sf::Texture*> getMapTextures();

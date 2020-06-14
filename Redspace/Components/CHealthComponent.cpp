@@ -19,6 +19,11 @@ void CHealthComponent::setHealth(float health)
 	}
 }
 
+float CHealthComponent::getMaxHealth()
+{
+	return this->maxHealth;
+}
+
 bool CHealthComponent::isDead()
 {
 	return this->health == 0.0f;

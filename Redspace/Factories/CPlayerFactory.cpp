@@ -58,7 +58,7 @@ ex::Entity::Id CPlayerFactory::create(std::string textureKey, sf::Vector2f posit
 	CTagComponent playerTagComponent(ObjectTypes::Player);
 	player.assign<CTagComponent>(playerTagComponent);
 
-	CMovementComponent* playerMovementComponent = new CMovementComponent(350.0f);
+	CMovementComponent* playerMovementComponent = new CMovementComponent(250.0f);
 	player.assign<CMovementComponent*>(playerMovementComponent);
 
 	CWeaponComponent playerWeaponComponent(15.0f);

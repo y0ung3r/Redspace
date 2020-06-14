@@ -14,6 +14,8 @@ public:
 	float getHealth();
 
 	void setHealth(float health);
+
+	float getMaxHealth();
 	
 	bool isDead();
 };

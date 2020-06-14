@@ -3,6 +3,7 @@
 
 enum GameStates;
 
+#include "../Renderers/CSFMLRenderer.h"
 #include "../Interfaces/IObjectFactory.h"
 
 /* Основной класс игры */
@@ -14,6 +15,10 @@ private:
 
 	float fps;
 
+	CSFMLRenderer* SFMLRenderer;
+
+	// В будущем необходимо не передавать в системы указатели на фабрики, а получать их из экземляра класса
+	// И вообще надо сделать оптимизацию кода :)
 	IObjectFactory* mapFactory;
 
 	IObjectFactory* cameraFactory;
@@ -44,6 +49,8 @@ public:
 	void update(ex::TimeDelta timeDelta, sf::Time elapsedTime);
 
 	float getFPS();
+
+	CSFMLRenderer* getSFMLRenderer();
 
 	ex::Entity::Id getCameraId();
 
