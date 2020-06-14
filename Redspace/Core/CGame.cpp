@@ -61,7 +61,7 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CCollisionTrackingSystem> collisionTrackingSystem = this->systems.add<CCollisionTrackingSystem>(this->target);
 	std::shared_ptr<CMouseHoverTrackingSystem> mouseHoverTrackingSystem = this->systems.add<CMouseHoverTrackingSystem>(this->target);
 	std::shared_ptr<CLostVisibilityTrackingSystem> lostVisibilityTrackingSystem = this->systems.add<CLostVisibilityTrackingSystem>(this->target, mapId);
-	std::shared_ptr<CMovementSystem> movementSystem = this->systems.add<CMovementSystem>(vectorHelper, this->target);
+	std::shared_ptr<CMovementSystem> movementSystem = this->systems.add<CMovementSystem>(vectorHelper, this->target, mapId);
 	std::shared_ptr<CBulletSystem> bulletSystem = this->systems.add<CBulletSystem>(this->target);
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*bulletFactory, this->target);
 	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*enemyFactory, this->target, mapId, 50);

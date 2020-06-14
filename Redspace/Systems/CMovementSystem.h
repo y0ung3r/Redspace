@@ -8,8 +8,10 @@ private:
 
 	sf::RenderWindow& target;
 
+	ex::Entity::Id mapId;
+
 public:
-	explicit CMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target);
+	explicit CMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id mapId);
 
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;
 };

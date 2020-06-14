@@ -8,11 +8,6 @@
 	this->setEndpoint(endpoint);
 }
 
-bool ÑEndpointMovementComponent::canMove()
-{
-	return this->isCanMove;
-}
-
 const sf::Vector2f& ÑEndpointMovementComponent::getEndpoint()
 {
 	return this->endpoint;
@@ -21,5 +16,4 @@ const sf::Vector2f& ÑEndpointMovementComponent::getEndpoint()
 void ÑEndpointMovementComponent::setEndpoint(const sf::Vector2f& endpoint)
 {
 	this->endpoint = endpoint;
-	this->isCanMove = true;
 }

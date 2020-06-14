@@ -1,3 +1,4 @@
+#include <random>
 #include <SFML/Graphics.hpp>
 #include <entityx/entityx.h>
 
@@ -10,15 +11,27 @@ namespace ex = entityx;
 #include "../Components/CTagComponent.h"
 #include "../Components/CMovementComponent.h"
 #include "../Components/CDirectionMovementComponent.h"
+#include "../Components/ÑEndpointMovementComponent.h"
 
 #include "CMovementSystem.h"
 
-CMovementSystem::CMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target)
-	: vectorHelper(vectorHelper), target(target)
+CMovementSystem::CMovementSystem(CVectorHelper& vectorHelper, sf::RenderWindow& target, ex::Entity::Id mapId)
+	: vectorHelper(vectorHelper), target(target), mapId(mapId)
 { }
 
 void CMovementSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
+	time_t time = std::time(0);
+	unsigned int seed = static_cast<unsigned int>(time);
+	std::default_random_engine randomGenerator(seed);
+
+	ex::Entity map = entities.get(this->mapId);
+	ex::ComponentHandle<CRenderingComponent> mapRenderComponent = map.component<CRenderingComponent>();
+	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
+
+	std::uniform_real_distribution<float> endpointDistributionX(mapGlobalBounds.left, mapGlobalBounds.width);
+	std::uniform_real_distribution<float> endpointDistributionY(mapGlobalBounds.top, mapGlobalBounds.height);
+
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 	ex::ComponentHandle<CTagComponent> entityTagComponent;
 	ex::ComponentHandle<CMovementComponent*> entityBaseMovementComponent;
@@ -100,21 +113,39 @@ void CMovementSystem::update(ex::EntityManager& entities, ex::EventManager& even
 
 		case Enemy:
 		{
+			ÑEndpointMovementComponent* endpointMovementComponent = static_cast<ÑEndpointMovementComponent*>(entityMovementComponent);
+			sf::Vector2f endpoint = endpointMovementComponent->getEndpoint();
 
+			float entityAngleRotate = vectorHelper.getAngleInDegrees(endpoint, entityPosition);
+			entityRenderingComponent->setRotation(entityAngleRotate);
+
+			float distance = vectorHelper.getDistance(entityPosition, endpoint);
+
+			if (distance >= 2.0f)
+			{
+				sf::Vector2f difference = endpoint - entityPosition;
+				direction = vectorHelper.getOrt(difference);
+			}
+			else
+			{
+				endpoint.x = endpointDistributionX(randomGenerator);
+				endpoint.y = endpointDistributionY(randomGenerator);
+
+				endpointMovementComponent->setEndpoint(endpoint);
+			}
 		}
 		break;
 
 		case Bullet:
 		{
 			CDirectionMovementComponent* directionMovementComponent = static_cast<CDirectionMovementComponent*>(entityMovementComponent);
-			entitySpeed = directionMovementComponent->getSpeed();
 			direction = directionMovementComponent->getDirection();
 		}
 		break;
 
 		}
 
-		sf::Vector2f endpoint = entitySpeed * static_cast<float>(timeDelta) * direction;
-		entityRenderingComponent->move(endpoint);
+		sf::Vector2f offset = entitySpeed * static_cast<float>(timeDelta) * direction;
+		entityRenderingComponent->move(offset);
 	}
 }

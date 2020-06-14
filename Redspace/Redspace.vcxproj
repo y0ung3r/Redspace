@@ -127,7 +127,7 @@
     <Image Include="Resources\Textures\Background (light).png" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Resources\Fonts\Corbel.ttf" />
+    <Font Include="Resources\Fonts\Tahoma.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

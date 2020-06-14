@@ -327,7 +327,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Resources\Fonts\Corbel.ttf">
+    <Font Include="Resources\Fonts\Tahoma.ttf">
       <Filter>Файлы ресурсов</Filter>
     </Font>
   </ItemGroup>

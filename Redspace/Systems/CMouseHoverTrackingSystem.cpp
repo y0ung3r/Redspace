@@ -40,6 +40,7 @@ void CMouseHoverTrackingSystem::update(ex::EntityManager& entities, ex::EventMan
 		}
 	}
 
+	// Здесь нужен список?
 	for (ex::Entity hoveredObject : this->listOfHoveredObjects)
 	{
 		if (hoveredObject)
@@ -49,9 +50,7 @@ void CMouseHoverTrackingSystem::update(ex::EntityManager& entities, ex::EventMan
 			if (!hoveredObjectGlobalBounds.contains(mousePosition))
 			{
 				events.emit<CMouseExitEvent>(hoveredObject);
-
-				auto objectIterator = std::find(this->listOfHoveredObjects.begin(), this->listOfHoveredObjects.end(), hoveredObject);
-				this->listOfHoveredObjects.erase(objectIterator);
+				this->listOfHoveredObjects.clear();
 			}
 		}
 	}

@@ -12,7 +12,7 @@ CAssetsHelper& CAssetsHelper::getInstance()
 
 void CAssetsHelper::configure(bool isTexturesSmooth)
 {
-	this->font.loadFromFile("Resources/Fonts/Corbel.ttf");
+	this->font.loadFromFile("Resources/Fonts/Tahoma.ttf");
 
 	sf::Texture* mapBlackTexture = new sf::Texture();
 	mapBlackTexture->loadFromFile("Resources/Textures/Background (black).png");
