@@ -11,6 +11,7 @@ namespace ex = entityx;
 #include "../Components/CMovementComponent.h"
 #include "../Components/CWeaponComponent.h"
 #include "../Components/CHealthComponent.h"
+#include "../Components/CScoreComponent.h"
 
 #include "CPlayerFactory.h"
 
@@ -64,8 +65,11 @@ ex::Entity::Id CPlayerFactory::create(std::string textureKey, sf::Vector2f posit
 	CWeaponComponent playerWeaponComponent(15.0f);
 	player.assign<CWeaponComponent>(playerWeaponComponent);
 
-	CHealthComponent playerHealthComponent(500.0f);
+	CHealthComponent playerHealthComponent(9999999999.0f);
 	player.assign<CHealthComponent>(playerHealthComponent);
+
+	CScoreComponent playerScoreComponent;
+	player.assign<CScoreComponent>(playerScoreComponent);
 
 	return player.id();
 }

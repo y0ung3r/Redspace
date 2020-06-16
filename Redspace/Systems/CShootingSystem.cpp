@@ -90,9 +90,10 @@ void CShootingSystem::update(ex::EntityManager& entities, ex::EventManager& even
 
 		if (canAttack && canShot)
 		{
-			bulletFactory.create(textureKey, entityPosition, entityAngleRotate);
+			ex::Entity::Id bulletId = bulletFactory.create(textureKey, entityPosition, entityAngleRotate);
+			ex::Entity bullet = entities.get(bulletId);
 
-			events.emit<CShotFiredEvent>(entity);
+			events.emit<CShotFiredEvent>(entity, bullet);
 		}
 	}
 }

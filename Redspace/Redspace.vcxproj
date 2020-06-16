@@ -20,6 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\CViewRadiusComponent.cpp" />
+    <ClCompile Include="Components\CScoreComponent.cpp" />
+    <ClCompile Include="Events\CPlayerDestroyedObjectEvent.cpp" />
+    <ClCompile Include="Systems\CScoreSystem.cpp" />
     <ClCompile Include="Shapes\RoundedRectangleShape.cpp" />
     <ClCompile Include="Systems\CUserInterfaceSystem.cpp" />
     <ClCompile Include="Renderers\CSFMLRenderer.cpp" />
@@ -67,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\CViewRadiusComponent.h" />
+    <ClInclude Include="Components\CScoreComponent.h" />
+    <ClInclude Include="Events\CPlayerDestroyedObjectEvent.h" />
+    <ClInclude Include="Systems\CScoreSystem.h" />
     <ClInclude Include="Shapes\RoundedRectangleShape.h" />
     <ClInclude Include="Systems\CUserInterfaceSystem.h" />
     <ClInclude Include="Renderers\CSFMLRenderer.h" />

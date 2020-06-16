@@ -32,6 +32,7 @@ namespace ex = entityx;
 #include "../Systems/CEnemySystem.h"
 #include "../Systems/CHealthSystem.h"
 #include "../Systems/CUserInterfaceSystem.h"
+#include "../Systems/CScoreSystem.h"
 
 #include "CGame.h"
 
@@ -67,9 +68,10 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CMovementSystem> movementSystem = this->systems.add<CMovementSystem>(*this, vectorHelper, this->target);
 	std::shared_ptr<CBulletSystem> bulletSystem = this->systems.add<CBulletSystem>(this->target);
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*this, vectorHelper, *this->bulletFactory, this->target);
-	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*this, *this->enemyFactory, this->target, 25);
-	std::shared_ptr<CHealthSystem> healthSystem = this->systems.add<CHealthSystem>(this->target);
+	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*this, *this->enemyFactory, this->target, 20);
+	std::shared_ptr<CHealthSystem> healthSystem = this->systems.add<CHealthSystem>(*this, this->target);
 	std::shared_ptr<CUserInterfaceSystem> userInterfaceSystem = this->systems.add<CUserInterfaceSystem>(*this, this->target);
+	std::shared_ptr<CScoreSystem> scoreSystem = this->systems.add<CScoreSystem>(*this, this->target);
 
 	this->events.subscribe<ex::EntityDestroyedEvent>(*this);
 
