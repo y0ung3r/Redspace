@@ -1,3 +1,11 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "CGame.h"
+#include "../Enums/GameStates.h"
+
 #include "Main.h"
 
 int main()
@@ -8,36 +16,29 @@ int main()
 	window.create
 	(
 		videoMode,
-		"Redland"
+		"Redspace"
 	);
-
-	window.setFramerateLimit(120);
-	window.setVerticalSyncEnabled(false);
-	window.setMouseCursorVisible(false);
 
 	CGame game(window);
 
+	game.setGameState(GameStates::Unpaused);
+
 	sf::Clock clock;
-	ex::TimeDelta timeDelta;
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		sf::Event event = sf::Event();
 
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
+		game.pollEvent(event);
+
+		sf::Time elapsedTime = clock.getElapsedTime();
+		ex::TimeDelta timeDelta = clock.restart().asSeconds();
 
 		if (window.hasFocus())
 		{
 			window.clear(sf::Color::White);
 
-			timeDelta = clock.restart().asSeconds();
-			game.update(timeDelta);
+			game.update(timeDelta, elapsedTime);
 
 			window.display();
 		}

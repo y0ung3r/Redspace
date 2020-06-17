@@ -1,14 +1,31 @@
+#include <SFML/Graphics.hpp>
+#include <entityx/entityx.h>
+
+namespace ex = entityx;
+
+#include "../Components/CCameraComponent.h"
+#include "../Components/CRenderingComponent.h"
+
 #include "CCameraSystem.h"
+
+CCameraSystem::CCameraSystem(CGame& game, sf::RenderWindow& target)
+	: game(game), target(target)
+{ }
 
 void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
-	ex::Entity camera = entities.get(this->cameraId);
-	ex::Entity map = entities.get(this->mapId);
-	ex::Entity object = entities.get(this->objectId);
+	ex::Entity::Id cameraId = this->game.getCameraId();
+	ex::Entity camera = entities.get(cameraId);
+
+	ex::Entity::Id mapId = this->game.getMapId();
+	ex::Entity map = entities.get(mapId);
+
+	ex::Entity::Id playerId = this->game.getPlayerId();
+	ex::Entity player = entities.get(playerId);
 
 	ex::ComponentHandle<CCameraComponent> cameraComponent = camera.component<CCameraComponent>();
-	ex::ComponentHandle<CRenderComponent> mapRenderComponent = map.component<CRenderComponent>();
-	ex::ComponentHandle<CRenderComponent> objectRenderComponent = object.component<CRenderComponent>();
+	ex::ComponentHandle<CRenderingComponent> mapRenderingComponent = map.component<CRenderingComponent>();
+	ex::ComponentHandle<CRenderingComponent> playerRenderingComponent = player.component<CRenderingComponent>();
 
 	sf::Vector2u targetSize = this->target.getSize();
 
@@ -20,24 +37,24 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	float cameraSizeX = newSizeX / 2.0f;
 	float cameraSizeY = newSizeY / 2.0f;
 
-	sf::IntRect mapSize = mapRenderComponent->getTextureRect();
+	sf::IntRect mapSize = mapRenderingComponent->getTextureRect();
 
-	sf::Vector2f objectPosition = objectRenderComponent->getPosition();
-	cameraComponent->setCenter(objectPosition);
+	sf::Vector2f playerPosition = playerRenderingComponent->getPosition();
+	cameraComponent->setCenter(playerPosition);
 
-	bool isReachedLeft = objectPosition.x - cameraSizeX < mapSize.left;
-	bool isReachedTop = objectPosition.y - cameraSizeY < mapSize.top;
-	bool isReachedRight = objectPosition.x + cameraSizeX > mapSize.width;
-	bool isReachedBottom = objectPosition.y + cameraSizeY > mapSize.height;
+	bool isReachedLeft = playerPosition.x - cameraSizeX < mapSize.left;
+	bool isReachedTop = playerPosition.y - cameraSizeY < mapSize.top;
+	bool isReachedRight = playerPosition.x + cameraSizeX > mapSize.width;
+	bool isReachedBottom = playerPosition.y + cameraSizeY > mapSize.height;
 
 	if (isReachedLeft)
 	{
-		cameraComponent->setCenter(cameraSizeX, objectPosition.y);
+		cameraComponent->setCenter(cameraSizeX, playerPosition.y);
 	}
 
 	if (isReachedTop)
 	{
-		cameraComponent->setCenter(objectPosition.x, cameraSizeY);
+		cameraComponent->setCenter(playerPosition.x, cameraSizeY);
 	}
 
 	if (isReachedLeft && isReachedTop)
@@ -47,12 +64,12 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 
 	if (isReachedRight)
 	{
-		cameraComponent->setCenter(mapSize.width - cameraSizeX, objectPosition.y);
+		cameraComponent->setCenter(mapSize.width - cameraSizeX, playerPosition.y);
 	}
 
 	if (isReachedBottom)
 	{
-		cameraComponent->setCenter(objectPosition.x, mapSize.height - cameraSizeY);
+		cameraComponent->setCenter(playerPosition.x, mapSize.height - cameraSizeY);
 	}
 
 	if (isReachedRight && isReachedBottom)
@@ -70,5 +87,6 @@ void CCameraSystem::update(ex::EntityManager& entities, ex::EventManager& events
 		cameraComponent->setCenter(mapSize.width - cameraSizeX, cameraSizeY);
 	}
 
-	this->target.setView(*cameraComponent.get());
+	CCameraComponent instance = *cameraComponent.get();
+	this->target.setView(instance);
 }

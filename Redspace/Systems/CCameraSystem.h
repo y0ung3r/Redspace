@@ -1,18 +1,14 @@
 #ifndef CCAMERASYSTEM_H
 #define CCAMERASYSTEM_H
 
-#include <SFML/Graphics.hpp>
-#include "entityx/entityx.h"
-
-#include "../Components/CCameraComponent.h"
-#include "../Components/CRenderComponent.h"
-
-namespace ex = entityx;
+#include "../Core/CGame.h"
 
 /* —истема, управл€юща€ логикой поведени€ камеры */
 class CCameraSystem : public ex::System<CCameraSystem>
 {
 private:
+	CGame& game;
+
 	/* —сылка на окно */
 	sf::RenderWindow& target;
 
@@ -27,9 +23,7 @@ private:
 
 public:
 	/* Ѕазовый конструктор */
-	explicit CCameraSystem(sf::RenderWindow& target, ex::Entity::Id cameraId, ex::Entity::Id mapId, ex::Entity::Id objectId)
-		: target(target), cameraId(cameraId), mapId(mapId), objectId(objectId)
-	{ }
+	explicit CCameraSystem(CGame& game, sf::RenderWindow& target);
 
 	/* ќбновл€ет систему управлени€ камерой */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;

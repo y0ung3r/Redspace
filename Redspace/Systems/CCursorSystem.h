@@ -1,31 +1,41 @@
 #ifndef CCURSORSYSTEM_H
 #define CCURSORSYSTEM_H
 
-#include <SFML/Graphics.hpp>
-#include "entityx/entityx.h"
-
-#include "../Components/CRenderComponent.h"
-
-namespace ex = entityx;
+class CGameStateChangedEvent;
+class CMouseHoverEvent;
+class CMouseExitEvent;
 
 /* —истема, управл€юща€ логикой поведени€ курсора */
-class CCursorSystem : public ex::System<CCursorSystem>
+class CCursorSystem : public ex::System<CCursorSystem>, public ex::Receiver<CCursorSystem>
 {
 private:
 	/* —сылка на окно */
 	sf::RenderWindow& target;
 
-	/* »дентификатор курсора */
-	ex::Entity::Id cursorId;
+	std::map<std::string, sf::Cursor*> cursors;
+
+	sf::Cursor* cursor;
+
+	bool isCursorHover;
+
+	ex::Entity hoveredObject;
+
+	GameStates gameState;
 
 public:
 	/* Ѕазовый конструктор */
-	explicit CCursorSystem(sf::RenderWindow& target, ex::Entity::Id& cursorId)
-		: target(target), cursorId(cursorId)
-	{ }
+	explicit CCursorSystem(sf::RenderWindow& target);
+
+	void configure(ex::EventManager& events) override;
 
 	/* ќбновл€ет систему управлени€ курсором */
 	void update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta) override;
+
+	void receive(const CGameStateChangedEvent& gameStateChangedEvent);
+
+	void receive(const CMouseHoverEvent& mouseHoverEvent);
+
+	void receive(const CMouseExitEvent& mouseExitEvent);
 };
 
 #endif

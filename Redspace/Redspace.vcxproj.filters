@@ -15,16 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\CAnimationComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Components\CCameraComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CMovementComponent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\CRenderComponent.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Core\CGame.cpp">
@@ -42,24 +33,144 @@
     <ClCompile Include="Systems\CCursorSystem.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CPlayerSystem.cpp">
+    <ClCompile Include="Helpers\CAssetsHelper.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\CRenderSystem.cpp">
+    <ClCompile Include="Enums\GameStates.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CCollisionEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CRenderingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CRenderingComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Enums\ObjectTypes.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CTagComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CMovementComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CMouseHoverEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CGameStateChangedEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CSingleMouseInputEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CSingleKeyInputEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CWeaponComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CBulletSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CLostVisibilityEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CLostVisibilityTrackingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CCollisionTrackingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CMouseHoverTrackingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Interfaces\IObjectFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CBulletFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CShootingSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CMovementSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CMapFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CCameraFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CPlayerFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CShotFiredEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Extensions\Collision.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CDirectionMovementComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CEnemyFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CEnemySystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CHealthComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CHealthSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\СEndpointMovementComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CMouseExitEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CViewRadiusComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Extensions\StringFormat.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CUserInterfaceSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\CSFMLRenderer.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\RoundedRectangleShape.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CScoreComponent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CScoreSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CPlayerDestroyedObjectEvent.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CEffectFactory.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\CMeteoriteSystem.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Factories\CMeteoriteFactory.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Components\CAnimationComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Components\CCameraComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\CMovementComponent.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\CRenderComponent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Core\CGame.h">
@@ -77,22 +188,222 @@
     <ClInclude Include="Systems\CCursorSystem.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CPlayerSystem.h">
+    <ClInclude Include="Helpers\CAssetsHelper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\CRenderSystem.h">
+    <ClInclude Include="Enums\GameStates.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CCollisionEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CRenderingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CRenderingComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums\ObjectTypes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CTagComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CMovementComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CMouseHoverEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CGameStateChangedEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CSingleMouseInputEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CSingleKeyInputEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CWeaponComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CBulletSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CLostVisibilityEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CLostVisibilityTrackingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CCollisionTrackingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CMouseHoverTrackingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\IObjectFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CBulletFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CShootingSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CMovementSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CMapFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CCameraFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CPlayerFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CShotFiredEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Extensions\Collision.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CDirectionMovementComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CEnemyFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CEnemySystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CHealthComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CHealthSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\СEndpointMovementComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CMouseExitEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CViewRadiusComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Extensions\StringFormat.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CUserInterfaceSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\CSFMLRenderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\RoundedRectangleShape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CScoreComponent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CScoreSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\CPlayerDestroyedObjectEvent.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CEffectFactory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CMeteoriteSystem.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Factories\CMeteoriteFactory.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Sprites\Crosshair.png">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="Resources\Sprites\Player.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Textures\Background.png">
+    <Image Include="Resources\Textures\Background (dark).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="Resources\Textures\Background (light).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Background (black).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Background (blue).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (big, gray).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (middle, gray).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (small, gray).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (big, brown).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (middle, brown).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (small, brown).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor %28crosshair%29.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor (ship).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (large, brown).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Meteorite (large, gray).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Marker %28endpoint%29.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor (crosshair, attack).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Cursor %28crosshair, hover%29.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet (blue).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet (red).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Bullet (hit).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (blue).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (green).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (orange).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Tahoma.ttf">
+      <Filter>Файлы ресурсов</Filter>
+    </Font>
+    <Font Include="Resources\Fonts\KenVector.ttf">
+      <Filter>Файлы ресурсов</Filter>
+    </Font>
   </ItemGroup>
 </Project>
