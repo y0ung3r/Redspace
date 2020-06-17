@@ -146,10 +146,20 @@ void CAssetsHelper::configure(bool isTexturesSmooth)
 	endpointMarkerTexture->setSmooth(isTexturesSmooth);
 	this->markersTextures.insert(std::pair<std::string, sf::Texture*>("marker_ep", endpointMarkerTexture));
 
-	sf::Texture* enemyTexture = new sf::Texture();
-	enemyTexture->loadFromFile("Resources/Sprites/Enemy.png");
-	enemyTexture->setSmooth(isTexturesSmooth);
-	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy", enemyTexture));
+	sf::Texture* enemyBlueTexture = new sf::Texture();
+	enemyBlueTexture->loadFromFile("Resources/Sprites/Enemy (blue).png");
+	enemyBlueTexture->setSmooth(isTexturesSmooth);
+	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy_0", enemyBlueTexture));
+
+	sf::Texture* enemyGreenTexture = new sf::Texture();
+	enemyGreenTexture->loadFromFile("Resources/Sprites/Enemy (green).png");
+	enemyGreenTexture->setSmooth(isTexturesSmooth);
+	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy_1", enemyGreenTexture));
+
+	sf::Texture* enemyOrangeTexture = new sf::Texture();
+	enemyOrangeTexture->loadFromFile("Resources/Sprites/Enemy (orange).png");
+	enemyOrangeTexture->setSmooth(isTexturesSmooth);
+	this->enemiesTextures.insert(std::pair<std::string, sf::Texture*>("enemy_2", enemyOrangeTexture));
 
 	sf::Texture* bulletBlueTexture = new sf::Texture();
 	bulletBlueTexture->loadFromFile("Resources/Sprites/Bullet (blue).png");

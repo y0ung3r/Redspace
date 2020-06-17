@@ -65,7 +65,7 @@ ex::Entity::Id CPlayerFactory::create(std::string textureKey, sf::Vector2f posit
 	CWeaponComponent playerWeaponComponent(15.0f);
 	player.assign<CWeaponComponent>(playerWeaponComponent);
 
-	CHealthComponent playerHealthComponent(9999999999.0f);
+	CHealthComponent playerHealthComponent(5000.0f);
 	player.assign<CHealthComponent>(playerHealthComponent);
 
 	CScoreComponent playerScoreComponent;

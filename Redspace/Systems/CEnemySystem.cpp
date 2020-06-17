@@ -37,6 +37,9 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 	ex::ComponentHandle<CRenderingComponent> mapRenderComponent = map.component<CRenderingComponent>();
 	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
 
+	size_t enemiesTexturesSize = CAssetsHelper::getInstance().getEnemiesTextures().size();
+	int enemiesTexturesCount = static_cast<int>(enemiesTexturesSize);
+
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
 	ex::ComponentHandle<CTagComponent> entityTagComponent;
 	ex::ComponentHandle<CMovementComponent*> entityBaseMovementComponent;
@@ -53,6 +56,10 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 
 	for (int i = 0; i < this->maxCount - count; i++)
 	{
+		std::uniform_int_distribution<int> textureNumberDistribution(0, enemiesTexturesCount - 1);
+		int textureNumber = textureNumberDistribution(randomGenerator);
+		std::string enemyTextureKey = "enemy_" + std::to_string(textureNumber);
+
 		std::uniform_real_distribution<float> positionDistributionX(mapGlobalBounds.left, mapGlobalBounds.width);
 		float positionX = positionDistributionX(randomGenerator);
 
@@ -60,7 +67,7 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 		float positionY = positionDistributionY(randomGenerator);
 
 		sf::Vector2f entityPosition = sf::Vector2f(positionX, positionY);
-		enemyFactory.create("enemy", entityPosition);
+		enemyFactory.create(enemyTextureKey, entityPosition);
 	}
 }
 

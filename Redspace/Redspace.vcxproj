@@ -132,8 +132,10 @@
     <Image Include="Resources\Sprites\Cursor (crosshair, attack).png" />
     <Image Include="Resources\Sprites\Cursor %28crosshair, hover%29.png" />
     <Image Include="Resources\Sprites\Cursor (ship).png" />
+    <Image Include="Resources\Sprites\Enemy (blue).png" />
+    <Image Include="Resources\Sprites\Enemy (green).png" />
+    <Image Include="Resources\Sprites\Enemy (orange).png" />
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png" />
-    <Image Include="Resources\Sprites\Enemy.png" />
     <Image Include="Resources\Sprites\Meteorite (big, brown).png" />
     <Image Include="Resources\Sprites\Meteorite (big, gray).png" />
     <Image Include="Resources\Sprites\Meteorite (large, brown).png" />

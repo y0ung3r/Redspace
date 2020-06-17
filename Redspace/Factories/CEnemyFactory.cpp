@@ -28,7 +28,7 @@ ex::Entity::Id CEnemyFactory::create(std::string textureKey, sf::Vector2f positi
 	CRenderingComponent enemyRenderingComponent;
 
 	std::map<std::string, sf::Texture*> enemiesTextures = CAssetsHelper::getInstance().getEnemiesTextures();
-	sf::Texture* enemyTexture = enemiesTextures["enemy"];
+	sf::Texture* enemyTexture = enemiesTextures[textureKey];
 	enemyRenderingComponent.setTexture(*enemyTexture);
 
 	sf::Vector2u enemyTextureSizeInPixels = enemyTexture->getSize();

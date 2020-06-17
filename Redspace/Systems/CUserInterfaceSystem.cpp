@@ -36,11 +36,18 @@ void CUserInterfaceSystem::update(ex::EntityManager& entities, ex::EventManager&
 	ex::Entity::Id playerId = this->game.getPlayerId();
 	ex::Entity player = entities.get(playerId);
 
+	ex::ComponentHandle<CHealthComponent> playerHealthComponent = player.component<CHealthComponent>();
+	float playerHealth = playerHealthComponent->getHealth();
+
+	std::string playerHealthText = format("HEALTH: %.1f", playerHealth);
+	sf::Vector2f playerHealthTextPosition = sf::Vector2f(10.0f, 30.0f);
+	SFMLRenderer->createTextOnScreen("kenVector", 20, playerHealthText, playerHealthTextPosition, sf::Color::White);
+
 	ex::ComponentHandle<CScoreComponent> playerScoreComponent = player.component<CScoreComponent>();
 	unsigned int playerScore = playerScoreComponent->getScore();
 
-	std::string scoreText = format("%08d", playerScore);
-	sf::Vector2f scoreTextPosition = sf::Vector2f(10.0f, 30.0f);
+	std::string scoreText = format("SCORE: %08d", playerScore);
+	sf::Vector2f scoreTextPosition = sf::Vector2f(10.0f, 55.0f);
 	SFMLRenderer->createTextOnScreen("kenVector", 20, scoreText, scoreTextPosition, sf::Color::White);
 
 	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;

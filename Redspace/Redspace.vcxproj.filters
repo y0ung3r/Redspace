@@ -370,9 +370,6 @@
     <Image Include="Resources\Sprites\Meteorite (large, gray).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="Resources\Sprites\Enemy.png">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="Resources\Sprites\Marker %28endpoint%29.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
@@ -389,6 +386,15 @@
       <Filter>Файлы ресурсов</Filter>
     </Image>
     <Image Include="Resources\Sprites\Bullet (hit).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (blue).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (green).png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Enemy (orange).png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>
