@@ -24,7 +24,7 @@ void CScoreSystem::configure(ex::EventManager& events)
 void CScoreSystem::updateTextScoreVisibility(ScoreText& scoreText)
 {
 	float timeInSeconds = scoreText.lifeTime.getElapsedTime().asSeconds();
-	
+
 	int offset = scoreText.color.a + 15;
 	int alpha = (offset < 255) ? offset : 255;
 
@@ -49,7 +49,7 @@ void CScoreSystem::update(ex::EntityManager& entities, ex::EventManager& events,
 		std::thread(&CScoreSystem::updateTextScoreVisibility, this, std::ref(this->scoreTexts[index])).join();
 
 		unsigned int score = this->scoreTexts[index].score;
-		this->game.getSFMLRenderer()->createGameText("kenVector", 16, "+" + std::to_string(score), this->scoreTexts[index].position, this->scoreTexts[index].color);
+		this->game.getSFMLRenderer()->createGameText("kenVector", 18, "+" + std::to_string(score), this->scoreTexts[index].position, this->scoreTexts[index].color);
 
 		float timeInSeconds = this->scoreTexts[index].lifeTime.getElapsedTime().asSeconds();
 
@@ -63,13 +63,24 @@ void CScoreSystem::update(ex::EntityManager& entities, ex::EventManager& events,
 
 void CScoreSystem::receive(const CPlayerDestroyedObjectEvent& playerDestroyedObjectEvent)
 {
+	ObjectTypes objectType = playerDestroyedObjectEvent.getObjectType();
+
 	ScoreText scoreText;
 	scoreText.lifeTime.restart();
 
 	scoreText.color = sf::Color::White;
 	scoreText.color.a = 0;
 
-	scoreText.score = 50;
+	switch (objectType)
+	{
+	case Enemy:
+		scoreText.score = 50;
+		break;
+
+	case Meteorite:
+		scoreText.score = 2;
+		break;
+	}
 
 	scoreText.position = playerDestroyedObjectEvent.getPlaceOfDestroy();
 

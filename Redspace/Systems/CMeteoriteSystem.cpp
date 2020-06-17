@@ -6,25 +6,23 @@
 namespace ex = entityx;
 
 #include "../Helpers/CAssetsHelper.h"
-#include "../Helpers/CVectorHelper.h"
 #include "../Enums/ObjectTypes.h"
 #include "../Interfaces/IObjectFactory.h"
 #include "../Components/CRenderingComponent.h"
 #include "../Components/CTagComponent.h"
-#include "../Components/CMovementComponent.h"
 
-#include "CEnemySystem.h"
+#include "CMeteoriteSystem.h"
 
-CEnemySystem::CEnemySystem(CGame& game, IObjectFactory& enemyFactory, sf::RenderWindow& target, int maxCount)
-	: game(game), enemyFactory(enemyFactory), target(target), maxCount(maxCount)
+CMeteoriteSystem::CMeteoriteSystem(IObjectFactory& meteoriteFactory, CGame& game, sf::RenderWindow& target, int maxCount)
+	: meteoriteFactory(meteoriteFactory), game(game), target(target), maxCount(maxCount)
 { }
 
-void CEnemySystem::configure(ex::EventManager & events)
+void CMeteoriteSystem::configure(ex::EventManager & events)
 {
 	events.subscribe<ex::EntityDestroyedEvent>(*this);
 }
 
-void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
+void CMeteoriteSystem::update(ex::EntityManager& entities, ex::EventManager& events, ex::TimeDelta timeDelta)
 {
 	int count = 0;
 
@@ -35,24 +33,33 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 	ex::Entity::Id mapId = this->game.getMapId();
 	ex::Entity map = entities.get(mapId);
 	ex::ComponentHandle<CRenderingComponent> mapRenderComponent = map.component<CRenderingComponent>();
+
 	sf::FloatRect mapGlobalBounds = mapRenderComponent->getGlobalBounds();
 
-	ex::ComponentHandle<CRenderingComponent> entityRenderingComponent;
-	ex::ComponentHandle<CTagComponent> entityTagComponent;
-	ex::ComponentHandle<CMovementComponent*> entityBaseMovementComponent;
+	size_t meteoritesTexturesSize = CAssetsHelper::getInstance().getMeteoritesTextures().size();
+	int meteoritesTexturesCount = static_cast<int>(meteoritesTexturesSize);
 
-	for (ex::Entity entity : entities.entities_with_components(entityRenderingComponent, entityTagComponent, entityBaseMovementComponent))
+	ex::ComponentHandle<CRenderingComponent> renderingComponent;
+	ex::ComponentHandle<CTagComponent> entityTagComponent;
+
+	for (ex::Entity entity : entities.entities_with_components(renderingComponent, entityTagComponent))
 	{
 		ObjectTypes entityTag = entityTagComponent->getTag();
 
-		if (entityTag == ObjectTypes::Enemy)
+		if (entityTag == ObjectTypes::Meteorite)
 		{
 			count++;
+
+			renderingComponent->rotate(static_cast<float>(timeDelta) * 50.0f);
 		}
 	}
 
 	for (int i = 0; i < this->maxCount - count; i++)
 	{
+		std::uniform_int_distribution<int> textureNumberDistribution(0, meteoritesTexturesCount - 1);
+		int textureNumber = textureNumberDistribution(randomGenerator);
+		std::string meteoriteKey = "meteorite_" + std::to_string(textureNumber);
+
 		std::uniform_real_distribution<float> positionDistributionX(mapGlobalBounds.left, mapGlobalBounds.width);
 		float positionX = positionDistributionX(randomGenerator);
 
@@ -60,11 +67,11 @@ void CEnemySystem::update(ex::EntityManager& entities, ex::EventManager& events,
 		float positionY = positionDistributionY(randomGenerator);
 
 		sf::Vector2f entityPosition = sf::Vector2f(positionX, positionY);
-		enemyFactory.create("enemy", entityPosition);
+		meteoriteFactory.create(meteoriteKey, entityPosition);
 	}
 }
 
-void CEnemySystem::receive(const ex::EntityDestroyedEvent& entityDestroyedEvent)
+void CMeteoriteSystem::receive(const ex::EntityDestroyedEvent& entityDestroyedEvent)
 {
 	ex::Entity destroyedObject = entityDestroyedEvent.entity;
 
@@ -76,7 +83,7 @@ void CEnemySystem::receive(const ex::EntityDestroyedEvent& entityDestroyedEvent)
 	ex::ComponentHandle<CTagComponent> destroyedObjectTagComponent = destroyedObject.component<CTagComponent>();
 	ObjectTypes destroyedObjectTag = destroyedObjectTagComponent->getTag();
 
-	if (destroyedObjectTag == ObjectTypes::Enemy)
+	if (destroyedObjectTag == ObjectTypes::Meteorite)
 	{
 		this->maxCount--;
 	}

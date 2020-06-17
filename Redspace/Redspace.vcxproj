@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Factories\CMeteoriteFactory.cpp" />
+    <ClCompile Include="Systems\CMeteoriteSystem.cpp" />
+    <ClCompile Include="Factories\CEffectFactory.cpp" />
     <ClCompile Include="Components\CViewRadiusComponent.cpp" />
     <ClCompile Include="Components\CScoreComponent.cpp" />
     <ClCompile Include="Events\CPlayerDestroyedObjectEvent.cpp" />
@@ -69,6 +72,9 @@
     <ClCompile Include="Components\СEndpointMovementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Factories\CMeteoriteFactory.h" />
+    <ClInclude Include="Systems\CMeteoriteSystem.h" />
+    <ClInclude Include="Factories\CEffectFactory.h" />
     <ClInclude Include="Components\CViewRadiusComponent.h" />
     <ClInclude Include="Components\CScoreComponent.h" />
     <ClInclude Include="Events\CPlayerDestroyedObjectEvent.h" />

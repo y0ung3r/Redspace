@@ -12,6 +12,8 @@ namespace ex = entityx;
 #include "../Factories/CPlayerFactory.h"
 #include "../Factories/CBulletFactory.h"
 #include "../Factories/CEnemyFactory.h"
+#include "../Factories/CEffectFactory.h"
+#include "../Factories/CMeteoriteFactory.h"
 #include "../Events/CSingleMouseInputEvent.h"
 #include "../Events/CSingleKeyInputEvent.h"
 #include "../Events/CGameStateChangedEvent.h"
@@ -33,6 +35,7 @@ namespace ex = entityx;
 #include "../Systems/CHealthSystem.h"
 #include "../Systems/CUserInterfaceSystem.h"
 #include "../Systems/CScoreSystem.h"
+#include "../Systems/CMeteoriteSystem.h"
 
 #include "CGame.h"
 
@@ -58,6 +61,8 @@ CGame::CGame(sf::RenderWindow& target)
 
 	this->bulletFactory = new CBulletFactory(vectorHelper, this->entities, this->target);
 	this->enemyFactory = new CEnemyFactory(this->entities, this->target);
+	this->effectFactory = new CEffectFactory(this->entities, this->target);
+	this->meteoriteFactory = new CMeteoriteFactory(this->entities, this->target);
 
 	std::shared_ptr<CRenderingSystem> renderingSystem = this->systems.add<CRenderingSystem>(this->target);
 	std::shared_ptr<CCursorSystem> cursorSystem = this->systems.add<CCursorSystem>(this->target);
@@ -68,6 +73,7 @@ CGame::CGame(sf::RenderWindow& target)
 	std::shared_ptr<CMovementSystem> movementSystem = this->systems.add<CMovementSystem>(*this, vectorHelper, this->target);
 	std::shared_ptr<CBulletSystem> bulletSystem = this->systems.add<CBulletSystem>(this->target);
 	std::shared_ptr<CShootingSystem> shootingSystem = this->systems.add<CShootingSystem>(*this, vectorHelper, *this->bulletFactory, this->target);
+	std::shared_ptr<CMeteoriteSystem> meteoriteSystem = this->systems.add<CMeteoriteSystem>(*this->meteoriteFactory, *this, this->target, 35);
 	std::shared_ptr<CEnemySystem> enemySystem = this->systems.add<CEnemySystem>(*this, *this->enemyFactory, this->target, 20);
 	std::shared_ptr<CHealthSystem> healthSystem = this->systems.add<CHealthSystem>(*this, this->target);
 	std::shared_ptr<CUserInterfaceSystem> userInterfaceSystem = this->systems.add<CUserInterfaceSystem>(*this, this->target);

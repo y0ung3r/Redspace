@@ -16,6 +16,12 @@ private:
 
 	sf::Cursor* cursor;
 
+	bool isCursorHover;
+
+	ex::Entity hoveredObject;
+
+	GameStates gameState;
+
 public:
 	/* Базовый конструктор */
 	explicit CCursorSystem(sf::RenderWindow& target);

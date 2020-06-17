@@ -15,7 +15,9 @@ enum ObjectTypes
 	/* Предмет */
 	Thing,
 	/* Пуля */
-	Bullet
+	Bullet,
+	/* Метеорит */
+	Meteorite
 };
 
 #endif

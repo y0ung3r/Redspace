@@ -10,13 +10,14 @@ private:
 	struct DestroyInfo
 	{
 		ex::Entity object;
+		ObjectTypes objectType;
 		ex::Entity bullet;
 		sf::Vector2f placeOfDestroy;
 		bool destroyedByPlayer = false;
 
 		friend bool operator==(const DestroyInfo& left, const DestroyInfo& right)
 		{
-			return left.object == right.object && left.bullet == right.bullet && left.placeOfDestroy == right.placeOfDestroy && left.destroyedByPlayer == right.destroyedByPlayer;
+			return left.object == right.object && left.objectType == right.objectType && left.bullet == right.bullet && left.placeOfDestroy == right.placeOfDestroy && left.destroyedByPlayer == right.destroyedByPlayer;
 		}
 
 		friend bool operator==(const DestroyInfo& left, const ex::Entity& right)

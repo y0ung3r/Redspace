@@ -29,6 +29,10 @@ private:
 
 	IObjectFactory* enemyFactory;
 
+	IObjectFactory* effectFactory;
+
+	IObjectFactory* meteoriteFactory;
+
 	ex::Entity::Id mapId;
 
 	ex::Entity::Id cameraId;

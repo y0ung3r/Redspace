@@ -31,7 +31,7 @@ void CHealthSystem::update(ex::EntityManager& entities, ex::EventManager& events
 	{
 		if (destroyInfo.destroyedByPlayer)
 		{
-			events.emit<CPlayerDestroyedObjectEvent>(destroyInfo.placeOfDestroy);
+			events.emit<CPlayerDestroyedObjectEvent>(destroyInfo.placeOfDestroy, destroyInfo.objectType);
 		}
 
 		destroyInfo.object.destroy();
@@ -58,15 +58,18 @@ void CHealthSystem::receive(const CCollisionEvent& collisionEvent)
 	ObjectTypes nearbyEntityType = collisionEvent.getNearbyEntityType();
 
 	ex::Entity object, bullet;
+	ObjectTypes objectType;
 
 	if (entityType != ObjectTypes::Bullet && nearbyEntityType == ObjectTypes::Bullet)
 	{
 		object = collisionEvent.getEntity();
+		objectType = collisionEvent.getEntityType();
 		bullet = collisionEvent.getNearbyEntity();
 	}
 	else if (entityType == ObjectTypes::Bullet && nearbyEntityType != ObjectTypes::Bullet)
 	{
 		object = collisionEvent.getNearbyEntity();
+		objectType = collisionEvent.getNearbyEntityType();
 		bullet = collisionEvent.getEntity();
 	}
 
@@ -89,6 +92,7 @@ void CHealthSystem::receive(const CCollisionEvent& collisionEvent)
 				DestroyInfo destroyInfo;
 
 				destroyInfo.object = object;
+				destroyInfo.objectType = objectType;
 				destroyInfo.bullet = bullet;
 				destroyInfo.placeOfDestroy = objectRenderingComponent->getPosition();
 
